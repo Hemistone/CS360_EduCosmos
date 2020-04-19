@@ -59,11 +59,8 @@
  *  This function should be called if the user modify the buffer.
  */
 
-
 #include "EduBfM_common.h"
 #include "EduBfM_Internal.h"
-
-
 
 /*@================================
  * EduBfM_SetDirty()
@@ -85,18 +82,17 @@
  *    some errors caused by function calls
  */
 Four EduBfM_SetDirty(
-    TrainID             *trainId,               /* IN which train has been modified in the buffer?  */
-    Four                type )                  /* IN buffer type */
+    TrainID *trainId, /* IN which train has been modified in the buffer?  */
+    Four type)        /* IN buffer type */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                index;                  /* an index of the buffer table & pool */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four index; /* an index of the buffer table & pool */
 
     /*@ Is the paramter valid? */
     if (IS_BAD_BUFFERTYPE(type)) ERR(eBADBUFFERTYPE_BFM);
+    index = edubfm_LookUp(trainId, type);
+    if (index < 0) return (eNOTFOUND_BFM);
+    BI_BITS(type, index) = BI_BITS(type, index)|DIRTY;
+    return (eNOERROR);
 
-
-
-    return( eNOERROR );
-
-}  /* EduBfM_SetDirty */
+} /* EduBfM_SetDirty */

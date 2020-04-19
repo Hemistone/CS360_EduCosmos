@@ -92,20 +92,56 @@ extern CfgParams_T sm_cfgParams;
  *     eNOUNFIXEDBUF_BFM - There is no unfixed buffer.
  *     some errors caused by fuction calls
  */
+#define GET_INDEX(type, idx) (BI_NEXTVICTIM(type)+idx) % BI_NBUFS(type)
+#define IS_REFERED(type, idx) (BI_BITS(type, idx) & REFER)
+#define IS_DIRTY(type, idx) (BI_BITS(type, idx) & DIRTY)
+
 Four edubfm_AllocTrain(
     Four 	type)			/* IN type of buffer (PAGE or TRAIN) */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+	/* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     Four 	e;			/* for error */
     Four 	victim;			/* return value */
-    Four 	i;
+    Four 	i = 0;
     
 
 	/* Error check whether using not supported functionality by EduBfM */
 	if(sm_cfgParams.useBulkFlush) ERR(eNOTSUPPORTED_EDUBFM);
 
+    while(i < 2*BI_NBUFS(type)){
+        victim = GET_INDEX(type, i);
+        //printf("i=%d, victim=%d\n",i, victim);
+        if(BI_FIXED(type, victim) == 0 && !IS_REFERED(type, victim)){
+            //printf("Found a block to alloc\n");         
 
-    
-    return( victim );
+            // Flush DIRTY data
+            if(IS_DIRTY(type, victim)){
+                //printf("Flushing... {pageNo: %d}\n", BI_KEY(type, victim).pageNo);
+                e = edubfm_FlushTrain(&(BI_KEY(type, victim)), type);
+                if (e < 0) ERR(e);
+            }
+            
+            // Initialize bufTable elements
+            BI_BITS(type, victim) = ALL_0;
+            BI_NEXTVICTIM(type) = (victim + 1) % BI_NBUFS(type);
+            if(BI_KEY(type, victim).pageNo != NIL){
+                //printf("There was data on hashTable. Deleting...\n");
+                e = edubfm_Delete(&(BI_KEY(type, victim)), type);
+                if (e < 0) ERR(e);
+            }
+            
+            return ( victim );
+        };
+
+        if(BI_FIXED(type, victim) == 0 && IS_REFERED(type, victim)){
+            //printf("making REFER bit to 0 : result = ");
+            BI_BITS(type, victim) &= ~REFER;
+            //printf("%x\n", victim);
+        }
+        
+        i++;
+    }
+    //printf("NO UNFIXED BUF\n");
+    return( eNOUNFIXEDBUF_BFM );
     
 }  /* edubfm_AllocTrain */

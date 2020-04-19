@@ -106,7 +106,7 @@ Four edubfm_Insert(
     Two 		index,			/* IN an index used in the buffer pool */
     Four 		type)			/* IN buffer type */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+	/* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     Four 		i;			
     Two  		hashValue;
 
@@ -116,6 +116,14 @@ Four edubfm_Insert(
     if( (index < 0) || (index > BI_NBUFS(type)) )
         ERR( eBADBUFINDEX_BFM );
 
+    hashValue = BFM_HASH(key, type);
+    if(BI_HASHTABLEENTRY(type, hashValue) == NIL){
+        BI_HASHTABLEENTRY(type, hashValue) = index;
+    }else{
+        i = BI_HASHTABLEENTRY(type, hashValue); // original array index which was in hashtable entry
+        BI_HASHTABLEENTRY(type, hashValue) = index;
+        BI_NEXTHASHENTRY(type, index) = i;
+    }
    
 
     return( eNOERROR );
@@ -145,13 +153,30 @@ Four edubfm_Delete(
     BfMHashKey          *key,                   /* IN a hash key in buffer manager */
     Four                type )                  /* IN buffer type */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+	/* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     Two                 i, prev;                
     Two                 hashValue;
 
-
     CHECKKEY(key);    /*@ check validity of key */
-
+    
+    hashValue = BFM_HASH(key, type);
+    //printf("hashValue: %d\n", hashValue);
+    i = BI_HASHTABLEENTRY(type, hashValue);
+    if(EQUALKEY(&BI_KEY(type, i), key)){
+        BI_HASHTABLEENTRY(type, hashValue) = BI_NEXTHASHENTRY(type, i);
+        //BI_NEXTHASHENTRY(type, i) = NIL;
+        return (eNOERROR);
+    };
+    while(i != NIL){
+        if(EQUALKEY(&BI_KEY(type, i), key)){
+            BI_NEXTHASHENTRY(type, prev) = BI_NEXTHASHENTRY(type, i);
+            //BI_NEXTHASHENTRY(type, i) = NIL;
+            return (eNOERROR);
+        } else {
+            prev = i;
+            i = BI_NEXTHASHENTRY(type, i);
+        }
+    }
 
 
     ERR( eNOTFOUND_BFM );
@@ -181,12 +206,20 @@ Four edubfm_LookUp(
     BfMHashKey          *key,                   /* IN a hash key in Buffer Manager */
     Four                type)                   /* IN buffer type */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+	/* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     Two                 i, j;                   /* indices */
     Two                 hashValue;
 
-
     CHECKKEY(key);    /*@ check validity of key */
+
+    hashValue=BFM_HASH(key,type);
+    i = BI_HASHTABLEENTRY(type, hashValue);
+    while(i != NIL){
+        if(BI_KEY(type, i).pageNo == (*key).pageNo && BI_KEY(type, i).volNo == (*key).volNo){
+            return i;
+        }
+        i = BI_NEXTHASHENTRY(type,i);
+    }
 
 
 
@@ -213,10 +246,17 @@ Four edubfm_LookUp(
  */
 Four edubfm_DeleteAll(void)
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+	/* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     Two 	i;
-    Four        tableSize;
-    
+    Four    tableSize;
+    Four    type;
+
+    type = PAGE_BUF;
+    tableSize = HASHTABLESIZE(type);
+    while (tableSize > 0){
+        tableSize--;
+        BI_HASHTABLEENTRY(type, tableSize) = NIL;
+    }
 
 
     return(eNOERROR);

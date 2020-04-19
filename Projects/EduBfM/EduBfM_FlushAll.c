@@ -80,13 +80,31 @@
  */
 Four EduBfM_FlushAll(void)
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+	/* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     Four        e;                      /* error */
     Two         i;                      /* index */
     Four        type;                   /* buffer type */
 
-    
+    // Step 1. Flush all pages : PAGE_BUF
+    type = PAGE_BUF;
+    i = BI_NBUFS(type) - 1;
+    //printf("MY LETTER PAGE : BI_NBUFS - 1 : %d\n", i);
+    while(i>=0){
+        e = edubfm_FlushTrain( &(BI_KEY(type, i)) , type);
+        if(e<0) ERR(e);
+        i--;
+    }
 
+    // Step 2. Flush all Trains : LOT_LEAF_BUF
+    type = LOT_LEAF_BUF;
+    i = BI_NBUFS(type) - 1;
+    //printf("MY LETTER TRAIN : BI_NBUFS - 1 : %d\n", i);
+    while(i>=0){
+        edubfm_FlushTrain( &(BI_KEY(type, i)) , type);
+        if(e<0) ERR(e);
+        i--;
+    }
+    
     return( eNOERROR );
     
 }  /* EduBfM_FlushAll() */

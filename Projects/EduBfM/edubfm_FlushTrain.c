@@ -56,13 +56,10 @@
  *  Four edubfm_FlushTrain(TrainID *, Four)
  */
 
-
 #include "EduBfM_common.h"
+#include "EduBfM_Internal.h"
 #include "RDsM.h"
 #include "RM.h"
-#include "EduBfM_Internal.h"
-
-
 
 /*@================================
  * edubfm_FlushTrain()
@@ -85,19 +82,27 @@
  *    some errors caused by function calls
  */
 Four edubfm_FlushTrain(
-    TrainID 			*trainId,		/* IN train to be flushed */
-    Four   			type)			/* IN buffer type */
+    TrainID *trainId, /* IN train to be flushed */
+    Four type)        /* IN buffer type */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four 			e;			/* for errors */
-    Four 			index;			/* for an index */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;     /* for errors */
+    Four index; /* for an index */
 
+    /* Error check whether using not supported functionality by EduBfM */
+    if (RM_IS_ROLLBACK_REQUIRED()) ERR(eNOTSUPPORTED_EDUBFM);
 
-	/* Error check whether using not supported functionality by EduBfM */
-	if (RM_IS_ROLLBACK_REQUIRED()) ERR(eNOTSUPPORTED_EDUBFM);
+    index = edubfm_LookUp(trainId, type);
+    if(index < 0) return(eNOTFOUND_BFM);
 
+    if(BI_BITS(type, index) & DIRTY != 0){
+        e = RDsM_WriteTrain(BI_BUFFER(type, index), trainId, BI_BUFSIZE(type));
+        if (e < 0) ERR(e);
+        BI_BITS(type,index) &= (~DIRTY);
+    }
+    
+    
 
-	
-    return( eNOERROR );
+    return (eNOERROR);
 
-}  /* edubfm_FlushTrain */
+} /* edubfm_FlushTrain */

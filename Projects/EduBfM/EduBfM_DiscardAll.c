@@ -79,12 +79,30 @@
  */
 Four EduBfM_DiscardAll(void)
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+	/* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     Four 	e;			/* error */
     Two 	i;			/* index */
     Four 	type;			/* buffer type */
 
+    // Step 1. Flush all pages : PAGE_BUF
+    type = PAGE_BUF;
+    i = BI_NBUFS(type) - 1;
+    while(i>=0){
+        BI_KEY(type, i).pageNo = NIL;
+        BI_BITS(type, i) = ALL_0;
+        i--;
+    }
 
+    // Step 2. Flush all trains : LOT_LEAF_BUF
+    type = LOT_LEAF_BUF;
+    i = BI_NBUFS(type) - 1;
+    while(i>=0){
+        BI_KEY(type, i).pageNo = NIL;
+        BI_BITS(type, i) = ALL_0;
+        i--;
+    }
+
+    edubfm_DeleteAll();
 
     return(eNOERROR);
 

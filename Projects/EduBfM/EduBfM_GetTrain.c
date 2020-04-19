@@ -56,11 +56,8 @@
  *  Four EduBfM_GetTrain(TrainID *, char **, Four)
  */
 
-
 #include "EduBfM_common.h"
 #include "EduBfM_Internal.h"
-
-
 
 /*@================================
  * EduBfM_GetTrain()
@@ -92,24 +89,48 @@
  *     pointer to buffer holding the disk train indicated by `trainId'
  */
 Four EduBfM_GetTrain(
-    TrainID             *trainId,               /* IN train to be used */
-    char                **retBuf,               /* OUT pointer to the returned buffer */
-    Four                type )                  /* IN buffer type */
+    TrainID *trainId, /* IN train to be used */
+    char **retBuf,    /* OUT pointer to the returned buffer */
+    Four type)        /* IN buffer type */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                e;                      /* for error */
-    Four                index;                  /* index of the buffer pool */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;     /* for error */
+    Four index; /* index of the buffer pool */
 
     /*@ Check the validity of given parameters */
     /* Some restrictions may be added         */
-    if(retBuf == NULL) ERR(eBADBUFFER_BFM);
+    if (retBuf == NULL) ERR(eBADBUFFER_BFM);
 
     /* Is the buffer type valid? */
-    if(IS_BAD_BUFFERTYPE(type)) ERR(eBADBUFFERTYPE_BFM);	
+    if (IS_BAD_BUFFERTYPE(type)) ERR(eBADBUFFERTYPE_BFM);
+    
+    index = edubfm_LookUp(trainId, type);
+    //printf("$$$ LookUp PASS\n");
+    if(index<0){
+        //printf("$$$ CAME TO ALLOC\n");
+        index = edubfm_AllocTrain(type);
+        //printf("$$$ ALLOCTRAIN PASS index: %d\n", index);
+        if(index < 0) ERR(index);
+        e = edubfm_ReadTrain(trainId, BI_BUFFER(type, index), type);
+        //printf("$$$ READTRAIN PASS\n");
+        if(e <0) ERR(e);
 
+        BI_KEY(type, index).volNo = trainId->volNo;
+        BI_KEY(type, index).pageNo = trainId->pageNo;
+        BI_FIXED(type, index) = 1;
 
+        e = edubfm_Insert(trainId, index, type);
+        //printf("$$$ INSERT PASS\n");
+        if(e < 0) ERR(e);
+    } else {
+        BI_FIXED(type, index) += 1;
+    }
+    BI_BITS(type, index) |= REFER;
+    //printf("$$$ SET REFER BIT TO 1 PASS\n");
+    *retBuf = BI_BUFFER(type, index);
+    //printf("$$$ retBuf Setted: %p\n", *retBuf);
+    //printf("BUFFER POSITION : %p\n", BI_BUFFERPOOL(type));
 
-    return(eNOERROR);   /* No error */
+    return (eNOERROR); /* No error */
 
-}  /* EduBfM_GetTrain() */
+} /* EduBfM_GetTrain() */

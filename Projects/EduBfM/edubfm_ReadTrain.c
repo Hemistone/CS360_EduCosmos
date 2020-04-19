@@ -56,13 +56,10 @@
  *  edubfm_ReadTrain()
  */
 
-
 #include "EduBfM_common.h"
-#include "RDsM.h"
-#include "RM.h"                 /* YKL05MAR97 */
 #include "EduBfM_Internal.h"
-
-
+#include "RDsM.h"
+#include "RM.h" /* YKL05MAR97 */
 
 /*@================================
  * edubfm_ReadTrain()
@@ -89,19 +86,18 @@
  *     a buffer specified by 'aTrain' is filled with a disk content
  */
 Four edubfm_ReadTrain(
-    TrainID *trainId,		/* IN which train? */
-    char    *aTrain,		/* OUT a pointer to buffer */
-    Four    type )		/* IN buffer type */
+    TrainID *trainId, /* IN which train? */
+    char *aTrain,     /* OUT a pointer to buffer */
+    Four type)        /* IN buffer type */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four e;			/* for error */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e; /* for error */
 
+    /* Error check whether using not supported functionality by EduBfM */
+    if (RM_IS_ROLLBACK_REQUIRED()) ERR(eNOTSUPPORTED_EDUBFM);
+    e = RDsM_ReadTrain(trainId, aTrain, BI_BUFSIZE(type));
+    if (e < 0) ERR(e);
 
-	/* Error check whether using not supported functionality by EduBfM */
-	if (RM_IS_ROLLBACK_REQUIRED()) ERR(eNOTSUPPORTED_EDUBFM);
+    return (eNOERROR);
 
-
-
-    return( eNOERROR );
-
-}  /* edubfm_ReadTrain */
+} /* edubfm_ReadTrain */

@@ -49,7 +49,6 @@
 #ifndef _EDUBFM_TESTMODULE_H_
 #define _EDUBFM_TESTMODULE_H_
 
-
 /*
  * Common Definition
  */
@@ -57,7 +56,6 @@
 #define FALSE 0
 #define PAGESIZE2 1
 #define CONSTANT_CASTING_TYPE int
-
 
 /*
  * Definition for EduBfM Test Module
@@ -67,17 +65,17 @@
 #define PAGE_BUFS_CLOCKALG 14
 #define MAX_DEVICES_IN_VOLUME 20
 
-#define BI_BUFTABLE_ENTRY(type, idx) (((BufferTable*)bufInfo[type].bufTable)[idx]) 
+#define BI_BUFTABLE_ENTRY(type, idx) (((BufferTable *)bufInfo[type].bufTable)[idx])
 
 /***************************************************************************/
 /* For API function that you want to test, define it TRUE.                 */
 /* Otherwise, define it FALSE so that the solution API function is called. */
 
-#define _EDUBFM_GETTRAIN_		TRUE
-#define _EDUBFM_FREETRAIN_		TRUE
-#define _EDUBFM_SETDIRTY_		TRUE
-#define _EDUBFM_FLUSHALL_		TRUE
-#define _EDUBFM_DISCARDALL_		TRUE
+#define _EDUBFM_GETTRAIN_ TRUE
+#define _EDUBFM_FREETRAIN_ TRUE
+#define _EDUBFM_SETDIRTY_ TRUE
+#define _EDUBFM_FLUSHALL_ TRUE
+#define _EDUBFM_DISCARDALL_ TRUE
 
 /***************************************************************************/
 
@@ -101,61 +99,62 @@
 #define EduBfM_DiscardAll(args...) BfM_DiscardAll(args)
 #endif
 
-
 /*
  * Type Definition of Page
  */
 typedef struct Lsn_T_tag {
-    UFour offset;               /* byte position in a log volume */
-    UFour wrapCount;            /* # of wrapping around a log volume */
+    UFour offset;    /* byte position in a log volume */
+    UFour wrapCount; /* # of wrapping around a log volume */
 } Lsn_T;
 
 typedef struct PageHdr_T_tag {
-    PageID pid;                 /* page id of this page */
+    PageID pid; /* page id of this page */
     Four flags;
     Four reserved;
-    PageID fidOrIid;            /* file id or index id containing this page */
-    Lsn_T lsn;                  /* page lsn */
-    Four logRecLen;             /* log record length */
+    PageID fidOrIid; /* file id or index id containing this page */
+    Lsn_T lsn;       /* page lsn */
+    Four logRecLen;  /* log record length */
 } PageHdr;
 
 typedef struct Page_tag {
     PageHdr header;
-    char data[PAGESIZE-sizeof(PageHdr)];
+    char data[PAGESIZE - sizeof(PageHdr)];
 } Page;
-
 
 /*
  * Type Definition about transaction
  */
-typedef struct {        /* 8 byte unsigned integer */
+typedef struct { /* 8 byte unsigned integer */
     UFour high;
     UFour low;
 } XactID;
 
-typedef enum { X_BROWSE_BROWSE, X_CS_BROWSE, X_CS_CS, X_RR_BROWSE, X_RR_CS, X_RR_RR } ConcurrencyLevel; /* isolation degree */
-
+typedef enum { X_BROWSE_BROWSE,
+               X_CS_BROWSE,
+               X_CS_CS,
+               X_RR_BROWSE,
+               X_RR_CS,
+               X_RR_RR } ConcurrencyLevel; /* isolation degree */
 
 /*@
  * Function Prototypes
  */
 /* Interface Function Prototypes */
 Four LRDS_Init(void);
-Four LRDS_AllocHandle(Four*);
-Four LRDS_FormatDataVolume(Four, char**, char*, Four, Two, Four*, Four);
-Four LRDS_Mount(Four, char**, Four*);
-Four LRDS_BeginTransaction(XactID*, ConcurrencyLevel); /* COOKIE09NOV1999 */
-Four LRDS_CommitTransaction(XactID*);
-Four LRDS_AbortTransaction(XactID*);
+Four LRDS_AllocHandle(Four *);
+Four LRDS_FormatDataVolume(Four, char **, char *, Four, Two, Four *, Four);
+Four LRDS_Mount(Four, char **, Four *);
+Four LRDS_BeginTransaction(XactID *, ConcurrencyLevel); /* COOKIE09NOV1999 */
+Four LRDS_CommitTransaction(XactID *);
+Four LRDS_AbortTransaction(XactID *);
 Four LRDS_Dismount(Four);
 Four LRDS_FreeHandle(Four);
 Four LRDS_Final(void);
 
-Four RDsM_CreateSetment(Four, Four*);
-Four RDsM_ExtNoToPageId(Four, Four, PageID*);
+Four RDsM_CreateSetment(Four, Four *);
+Four RDsM_ExtNoToPageId(Four, Four, PageID *);
 Four RDsM_AllocTrains(Four, Four, PageID *, Two, Four, Two, PageID *);
 
 Four EduBfM_Test(Four);
-
 
 #endif /* _EDUBFM_TESTMODULE_H_ */
