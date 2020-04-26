@@ -49,7 +49,6 @@
 #ifndef _EDUOM_TESTMODULE_H_
 #define _EDUOM_TESTMODULE_H_
 
-
 #include "BfM.h"
 #include "Util_pool.h"
 
@@ -62,18 +61,18 @@
 #define FIRST_PAGE_OBJECT 84
 #define THIRD_PAGE_OBJECT 170
 #define ARRAYINDEX 0
-#define SET_DUMP_PAGE(oid)  (dumpPage.volNo = oid.volNo, dumpPage.pageNo = oid.pageNo)
+#define SET_DUMP_PAGE(oid) (dumpPage.volNo = oid.volNo, dumpPage.pageNo = oid.pageNo)
 
 /***************************************************************************/
 /* For API function that you want to test, define it TRUE.                 */
 /* Otherwise, define it FALSE so that the solution API function is called. */
 
-#define _EDUOM_CREATEOBJECT_ 	TRUE
-#define _EDUOM_DESTROYOBJECT_ 	TRUE
-#define _EDUOM_COMPACTPAGE_		TRUE
-#define _EDUOM_READOBJECT_		TRUE
-#define _EDUOM_NEXTOBJECT_		TRUE
-#define _EDUOM_PREVOBJECT_		TRUE
+#define _EDUOM_CREATEOBJECT_ TRUE
+#define _EDUOM_DESTROYOBJECT_ FALSE
+#define _EDUOM_COMPACTPAGE_ FALSE
+#define _EDUOM_READOBJECT_ TRUE
+#define _EDUOM_NEXTOBJECT_ FALSE
+#define _EDUOM_PREVOBJECT_ FALSE
 
 /***************************************************************************/
 
@@ -101,33 +100,35 @@
 #define EduOM_PrevObject(args...) OM_PrevObject(args)
 #endif
 
-
 DeallocListElem dlHead;
 extern Pool dlPool;
-
 
 /*
  * Type Definition about transaction
  */
-typedef struct {        /* 8 byte unsigned integer */
+typedef struct { /* 8 byte unsigned integer */
     UFour high;
     UFour low;
 } XactID;
 
-typedef enum { X_BROWSE_BROWSE, X_CS_BROWSE, X_CS_CS, X_RR_BROWSE, X_RR_CS, X_RR_RR } ConcurrencyLevel; /* isolation degree */
-
+typedef enum { X_BROWSE_BROWSE,
+               X_CS_BROWSE,
+               X_CS_CS,
+               X_RR_BROWSE,
+               X_RR_CS,
+               X_RR_RR } ConcurrencyLevel; /* isolation degree */
 
 /*@
  * Function Prototypes
  */
 /* Interface Function Prototypes */
 Four LRDS_Init(void);
-Four LRDS_AllocHandle(Four*);
-Four LRDS_FormatDataVolume(Four, char**, char*, Four, Two, Four*, Four);
-Four LRDS_Mount(Four, char**, Four*);
-Four LRDS_BeginTransaction(XactID*, ConcurrencyLevel); /* COOKIE09NOV1999 */
-Four LRDS_CommitTransaction(XactID*);
-Four LRDS_AbortTransaction(XactID*);
+Four LRDS_AllocHandle(Four *);
+Four LRDS_FormatDataVolume(Four, char **, char *, Four, Two, Four *, Four);
+Four LRDS_Mount(Four, char **, Four *);
+Four LRDS_BeginTransaction(XactID *, ConcurrencyLevel); /* COOKIE09NOV1999 */
+Four LRDS_CommitTransaction(XactID *);
+Four LRDS_AbortTransaction(XactID *);
 Four LRDS_Dismount(Four);
 Four LRDS_FreeHandle(Four);
 Four LRDS_Final(void);
@@ -135,6 +136,5 @@ Four LRDS_Final(void);
 Four RDsM_AllocTrains(Four, Four, PageID *, Two, Four, Two, PageID *);
 
 Four EduOM_Test(Four, Four);
-
 
 #endif /* _EDUOM_TESTMODULE_H_ */

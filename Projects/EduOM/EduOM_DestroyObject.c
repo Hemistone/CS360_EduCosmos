@@ -56,11 +56,24 @@
  *  Four EduOM_DestroyObject(ObjectID*, ObjectID*, Pool*, DeallocListElem*)
  */
 
+// ORIGINAL ORDER::
+// #include "EduOM_common.h"
+// #include "Util.h"		/* to get Pool */
+// #include "RDsM.h"
+// #include "BfM.h"		/* for the buffer manager call */
+// #include "LOT.h"		/* for the large object manager call */
+// #include "EduOM_Internal.h"
+
 #include "EduOM_common.h"
-#include "Util.h"		/* to get Pool */
+// IntelliSense padding
+#include "Util.h" /* to get Pool */
+// IntelliSense padding
 #include "RDsM.h"
-#include "BfM.h"		/* for the buffer manager call */
-#include "LOT.h"		/* for the large object manager call */
+// IntelliSense padding
+#include "BfM.h" /* for the buffer manager call */
+// IntelliSense padding
+#include "LOT.h" /* for the large object manager call */
+// IntelliSense padding
 #include "EduOM_Internal.h"
 
 /*@================================
@@ -102,35 +115,31 @@
  *    some errors caused by function calls
  */
 Four EduOM_DestroyObject(
-    ObjectID *catObjForFile,	/* IN file containing the object */
-    ObjectID *oid,		/* IN object to destroy */
-    Pool     *dlPool,		/* INOUT pool of dealloc list elements */
-    DeallocListElem *dlHead)	/* INOUT head of dealloc list */
+    ObjectID *catObjForFile, /* IN file containing the object */
+    ObjectID *oid,           /* IN object to destroy */
+    Pool *dlPool,            /* INOUT pool of dealloc list elements */
+    DeallocListElem *dlHead) /* INOUT head of dealloc list */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four        e;		/* error number */
-    Two         i;		/* temporary variable */
-    FileID      fid;		/* ID of file where the object was placed */
-    PageID	pid;		/* page on which the object resides */
-    SlottedPage *apage;		/* pointer to the buffer holding the page */
-    Four        offset;		/* start offset of object in data area */
-    Object      *obj;		/* points to the object in data area */
-    Four        alignedLen;	/* aligned length of object */
-    Boolean     last;		/* indicates the object is the last one */
-    SlottedPage *catPage;	/* buffer page containing the catalog object */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                         /* error number */
+    Two i;                          /* temporary variable */
+    FileID fid;                     /* ID of file where the object was placed */
+    PageID pid;                     /* page on which the object resides */
+    SlottedPage *apage;             /* pointer to the buffer holding the page */
+    Four offset;                    /* start offset of object in data area */
+    Object *obj;                    /* points to the object in data area */
+    Four alignedLen;                /* aligned length of object */
+    Boolean last;                   /* indicates the object is the last one */
+    SlottedPage *catPage;           /* buffer page containing the catalog object */
     sm_CatOverlayForData *catEntry; /* overlay structure for catalog object access */
-    DeallocListElem *dlElem;	/* pointer to element of dealloc list */
-    PhysicalFileID pFid;	/* physical ID of file */
-    
-    
+    DeallocListElem *dlElem;        /* pointer to element of dealloc list */
+    PhysicalFileID pFid;            /* physical ID of file */
 
     /*@ Check parameters. */
     if (catObjForFile == NULL) ERR(eBADCATALOGOBJECT_OM);
 
     if (oid == NULL) ERR(eBADOBJECTID_OM);
 
+    return (eNOERROR);
 
-    
-    return(eNOERROR);
-    
 } /* EduOM_DestroyObject() */

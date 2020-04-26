@@ -58,13 +58,18 @@
  *  Four EduOM_CompactPage(SlottedPage*, Two)
  */
 
+// ORIGINAL ORDER
+// #include <string.h>
+// #include "EduOM_common.h"
+// #include "LOT.h"
+// #include "EduOM_Internal.h"
 
 #include <string.h>
+
 #include "EduOM_common.h"
-#include "LOT.h"
+// IntelliSense padding
 #include "EduOM_Internal.h"
-
-
+#include "LOT.h"
 
 /*@================================
  * EduOM_CompactPage()
@@ -101,19 +106,28 @@
  *  The slotted page is reorganized to comact the space.
  */
 Four EduOM_CompactPage(
-    SlottedPage	*apage,		/* IN slotted page to compact */
-    Two         slotNo)		/* IN slotNo to go to the end */
+    SlottedPage *apage, /* IN slotted page to compact */
+    Two slotNo)         /* IN slotNo to go to the end */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    SlottedPage	tpage;		/* temporay page used to save the given page */
-    Object *obj;		/* pointer to the object in the data area */
-    Two    apageDataOffset;	/* where the next object is to be moved */
-    Four   len;			/* length of object + length of ObjectHdr */
-    Two    lastSlot;		/* last non empty slot */
-    Two    i;			/* index variable */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    SlottedPage tpage;   /* temporay page used to save the given page */
+    Object *obj;         /* pointer to the object in the data area */
+    Two apageDataOffset; /* where the next object is to be moved */
+    Four len;            /* length of object + length of ObjectHdr */
+    Two lastSlot;        /* last non empty slot */
+    Two i;               /* index variable */
 
-    
+    tpage = *apage;
 
-    return(eNOERROR);
-    
+    if (slotNo != NIL) {
+        // if slotNo is not NIL
+        tpage.slot[-slotNo + 1];
+    } else {
+        // if slotNo is NIL
+    }
+
+    // Update Page Header
+
+    return (eNOERROR);
+
 } /* EduOM_CompactPage */

@@ -1,0 +1,1536 @@
+****************************** TEST#1, EduOM_CreateObject and EduOM_DestroyObject ******************************
+*Test 1_1 : Test for EduOM_CreateObject() when a near object is NULL
+->Insert a new object into a empty page
+
+The object ( 208, 0 )  is inserted into the page
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 1           free = 40            unused = 0      |
+| FREE = 3992           CFREE = 3992                         |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = -1                 prevPage = -1                |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        29 EduOM_TestModule_OBJECT_NUM_0                |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+*Test 1_2 : Test for EduOM_CreateObject() when a near object is not NULL
+->Insert new objects into the page until the page is full
+
+The object ( 208, 1 )  is inserted into the page
+The object ( 208, 2 )  is inserted into the page
+The object ( 208, 3 )  is inserted into the page
+The object ( 208, 4 )  is inserted into the page
+The object ( 208, 5 )  is inserted into the page
+The object ( 208, 6 )  is inserted into the page
+The object ( 208, 7 )  is inserted into the page
+The object ( 208, 8 )  is inserted into the page
+The object ( 208, 9 )  is inserted into the page
+The object ( 208, 10 )  is inserted into the page
+The object ( 208, 11 )  is inserted into the page
+The object ( 208, 12 )  is inserted into the page
+The object ( 208, 13 )  is inserted into the page
+The object ( 208, 14 )  is inserted into the page
+The object ( 208, 15 )  is inserted into the page
+The object ( 208, 16 )  is inserted into the page
+The object ( 208, 17 )  is inserted into the page
+The object ( 208, 18 )  is inserted into the page
+The object ( 208, 19 )  is inserted into the page
+The object ( 208, 20 )  is inserted into the page
+The object ( 208, 21 )  is inserted into the page
+The object ( 208, 22 )  is inserted into the page
+The object ( 208, 23 )  is inserted into the page
+The object ( 208, 24 )  is inserted into the page
+The object ( 208, 25 )  is inserted into the page
+The object ( 208, 26 )  is inserted into the page
+The object ( 208, 27 )  is inserted into the page
+The object ( 208, 28 )  is inserted into the page
+The object ( 208, 29 )  is inserted into the page
+The object ( 208, 30 )  is inserted into the page
+The object ( 208, 31 )  is inserted into the page
+The object ( 208, 32 )  is inserted into the page
+The object ( 208, 33 )  is inserted into the page
+The object ( 208, 34 )  is inserted into the page
+The object ( 208, 35 )  is inserted into the page
+The object ( 208, 36 )  is inserted into the page
+The object ( 208, 37 )  is inserted into the page
+The object ( 208, 38 )  is inserted into the page
+The object ( 208, 39 )  is inserted into the page
+The object ( 208, 40 )  is inserted into the page
+The object ( 208, 41 )  is inserted into the page
+The object ( 208, 42 )  is inserted into the page
+The object ( 208, 43 )  is inserted into the page
+The object ( 208, 44 )  is inserted into the page
+The object ( 208, 45 )  is inserted into the page
+The object ( 208, 46 )  is inserted into the page
+The object ( 208, 47 )  is inserted into the page
+The object ( 208, 48 )  is inserted into the page
+The object ( 208, 49 )  is inserted into the page
+The object ( 208, 50 )  is inserted into the page
+The object ( 208, 51 )  is inserted into the page
+The object ( 208, 52 )  is inserted into the page
+The object ( 208, 53 )  is inserted into the page
+The object ( 208, 54 )  is inserted into the page
+The object ( 208, 55 )  is inserted into the page
+The object ( 208, 56 )  is inserted into the page
+The object ( 208, 57 )  is inserted into the page
+The object ( 208, 58 )  is inserted into the page
+The object ( 208, 59 )  is inserted into the page
+The object ( 208, 60 )  is inserted into the page
+The object ( 208, 61 )  is inserted into the page
+The object ( 208, 62 )  is inserted into the page
+The object ( 208, 63 )  is inserted into the page
+The object ( 208, 64 )  is inserted into the page
+The object ( 208, 65 )  is inserted into the page
+The object ( 208, 66 )  is inserted into the page
+The object ( 208, 67 )  is inserted into the page
+The object ( 208, 68 )  is inserted into the page
+The object ( 208, 69 )  is inserted into the page
+The object ( 208, 70 )  is inserted into the page
+The object ( 208, 71 )  is inserted into the page
+The object ( 208, 72 )  is inserted into the page
+The object ( 208, 73 )  is inserted into the page
+The object ( 208, 74 )  is inserted into the page
+The object ( 208, 75 )  is inserted into the page
+The object ( 208, 76 )  is inserted into the page
+The object ( 208, 77 )  is inserted into the page
+The object ( 208, 78 )  is inserted into the page
+The object ( 208, 79 )  is inserted into the page
+The object ( 208, 80 )  is inserted into the page
+The object ( 208, 81 )  is inserted into the page
+The object ( 208, 82 )  is inserted into the page
+The object ( 208, 83 )  is inserted into the page
+Press enter key to continue...
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3360          unused = 0      |
+| FREE = 8              CFREE = 8                            |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = -1                 prevPage = -1                |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        29 EduOM_TestModule_OBJECT_NUM_0                |
+|  1|        29 EduOM_TestModule_OBJECT_NUM_1                |
+|  2|        29 EduOM_TestModule_OBJECT_NUM_2                |
+|  3|        29 EduOM_TestModule_OBJECT_NUM_3                |
+|  4|        29 EduOM_TestModule_OBJECT_NUM_4                |
+|  5|        29 EduOM_TestModule_OBJECT_NUM_5                |
+|  6|        29 EduOM_TestModule_OBJECT_NUM_6                |
+|  7|        29 EduOM_TestModule_OBJECT_NUM_7                |
+|  8|        29 EduOM_TestModule_OBJECT_NUM_8                |
+|  9|        29 EduOM_TestModule_OBJECT_NUM_9                |
+| 10|        30 EduOM_TestModule_OBJECT_NUM_10               |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_11               |
+| 12|        30 EduOM_TestModule_OBJECT_NUM_12               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_13               |
+| 14|        30 EduOM_TestModule_OBJECT_NUM_14               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_15               |
+| 16|        30 EduOM_TestModule_OBJECT_NUM_16               |
+| 17|        30 EduOM_TestModule_OBJECT_NUM_17               |
+| 18|        30 EduOM_TestModule_OBJECT_NUM_18               |
+| 19|        30 EduOM_TestModule_OBJECT_NUM_19               |
+| 20|        30 EduOM_TestModule_OBJECT_NUM_20               |
+| 21|        30 EduOM_TestModule_OBJECT_NUM_21               |
+| 22|        30 EduOM_TestModule_OBJECT_NUM_22               |
+| 23|        30 EduOM_TestModule_OBJECT_NUM_23               |
+| 24|        30 EduOM_TestModule_OBJECT_NUM_24               |
+| 25|        30 EduOM_TestModule_OBJECT_NUM_25               |
+| 26|        30 EduOM_TestModule_OBJECT_NUM_26               |
+| 27|        30 EduOM_TestModule_OBJECT_NUM_27               |
+| 28|        30 EduOM_TestModule_OBJECT_NUM_28               |
+| 29|        30 EduOM_TestModule_OBJECT_NUM_29               |
+| 30|        30 EduOM_TestModule_OBJECT_NUM_30               |
+| 31|        30 EduOM_TestModule_OBJECT_NUM_31               |
+| 32|        30 EduOM_TestModule_OBJECT_NUM_32               |
+| 33|        30 EduOM_TestModule_OBJECT_NUM_33               |
+| 34|        30 EduOM_TestModule_OBJECT_NUM_34               |
+| 35|        30 EduOM_TestModule_OBJECT_NUM_35               |
+| 36|        30 EduOM_TestModule_OBJECT_NUM_36               |
+| 37|        30 EduOM_TestModule_OBJECT_NUM_37               |
+| 38|        30 EduOM_TestModule_OBJECT_NUM_38               |
+| 39|        30 EduOM_TestModule_OBJECT_NUM_39               |
+| 40|        30 EduOM_TestModule_OBJECT_NUM_40               |
+| 41|        30 EduOM_TestModule_OBJECT_NUM_41               |
+| 42|        30 EduOM_TestModule_OBJECT_NUM_42               |
+| 43|        30 EduOM_TestModule_OBJECT_NUM_43               |
+| 44|        30 EduOM_TestModule_OBJECT_NUM_44               |
+| 45|        30 EduOM_TestModule_OBJECT_NUM_45               |
+| 46|        30 EduOM_TestModule_OBJECT_NUM_46               |
+| 47|        30 EduOM_TestModule_OBJECT_NUM_47               |
+| 48|        30 EduOM_TestModule_OBJECT_NUM_48               |
+| 49|        30 EduOM_TestModule_OBJECT_NUM_49               |
+| 50|        30 EduOM_TestModule_OBJECT_NUM_50               |
+| 51|        30 EduOM_TestModule_OBJECT_NUM_51               |
+| 52|        30 EduOM_TestModule_OBJECT_NUM_52               |
+| 53|        30 EduOM_TestModule_OBJECT_NUM_53               |
+| 54|        30 EduOM_TestModule_OBJECT_NUM_54               |
+| 55|        30 EduOM_TestModule_OBJECT_NUM_55               |
+| 56|        30 EduOM_TestModule_OBJECT_NUM_56               |
+| 57|        30 EduOM_TestModule_OBJECT_NUM_57               |
+| 58|        30 EduOM_TestModule_OBJECT_NUM_58               |
+| 59|        30 EduOM_TestModule_OBJECT_NUM_59               |
+| 60|        30 EduOM_TestModule_OBJECT_NUM_60               |
+| 61|        30 EduOM_TestModule_OBJECT_NUM_61               |
+| 62|        30 EduOM_TestModule_OBJECT_NUM_62               |
+| 63|        30 EduOM_TestModule_OBJECT_NUM_63               |
+| 64|        30 EduOM_TestModule_OBJECT_NUM_64               |
+| 65|        30 EduOM_TestModule_OBJECT_NUM_65               |
+| 66|        30 EduOM_TestModule_OBJECT_NUM_66               |
+| 67|        30 EduOM_TestModule_OBJECT_NUM_67               |
+| 68|        30 EduOM_TestModule_OBJECT_NUM_68               |
+| 69|        30 EduOM_TestModule_OBJECT_NUM_69               |
+| 70|        30 EduOM_TestModule_OBJECT_NUM_70               |
+| 71|        30 EduOM_TestModule_OBJECT_NUM_71               |
+| 72|        30 EduOM_TestModule_OBJECT_NUM_72               |
+| 73|        30 EduOM_TestModule_OBJECT_NUM_73               |
+| 74|        30 EduOM_TestModule_OBJECT_NUM_74               |
+| 75|        30 EduOM_TestModule_OBJECT_NUM_75               |
+| 76|        30 EduOM_TestModule_OBJECT_NUM_76               |
+| 77|        30 EduOM_TestModule_OBJECT_NUM_77               |
+| 78|        30 EduOM_TestModule_OBJECT_NUM_78               |
+| 79|        30 EduOM_TestModule_OBJECT_NUM_79               |
+| 80|        30 EduOM_TestModule_OBJECT_NUM_80               |
+| 81|        30 EduOM_TestModule_OBJECT_NUM_81               |
+| 82|        30 EduOM_TestModule_OBJECT_NUM_82               |
+| 83|        30 EduOM_TestModule_OBJECT_NUM_83               |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+*Test 1_3 : Test for EduOM_CreateObeject() until a new page is needed
+->Insert new objects into the page until the 2nd object of 3rd page is created
+
+The object ( 209, 0 )  is inserted into the page
+The object ( 209, 1 )  is inserted into the page
+The object ( 209, 2 )  is inserted into the page
+The object ( 209, 3 )  is inserted into the page
+The object ( 209, 4 )  is inserted into the page
+The object ( 209, 5 )  is inserted into the page
+The object ( 209, 6 )  is inserted into the page
+The object ( 209, 7 )  is inserted into the page
+The object ( 209, 8 )  is inserted into the page
+The object ( 209, 9 )  is inserted into the page
+The object ( 209, 10 )  is inserted into the page
+The object ( 209, 11 )  is inserted into the page
+The object ( 209, 12 )  is inserted into the page
+The object ( 209, 13 )  is inserted into the page
+The object ( 209, 14 )  is inserted into the page
+The object ( 209, 15 )  is inserted into the page
+The object ( 209, 16 )  is inserted into the page
+The object ( 209, 17 )  is inserted into the page
+The object ( 209, 18 )  is inserted into the page
+The object ( 209, 19 )  is inserted into the page
+The object ( 209, 20 )  is inserted into the page
+The object ( 209, 21 )  is inserted into the page
+The object ( 209, 22 )  is inserted into the page
+The object ( 209, 23 )  is inserted into the page
+The object ( 209, 24 )  is inserted into the page
+The object ( 209, 25 )  is inserted into the page
+The object ( 209, 26 )  is inserted into the page
+The object ( 209, 27 )  is inserted into the page
+The object ( 209, 28 )  is inserted into the page
+The object ( 209, 29 )  is inserted into the page
+The object ( 209, 30 )  is inserted into the page
+The object ( 209, 31 )  is inserted into the page
+The object ( 209, 32 )  is inserted into the page
+The object ( 209, 33 )  is inserted into the page
+The object ( 209, 34 )  is inserted into the page
+The object ( 209, 35 )  is inserted into the page
+The object ( 209, 36 )  is inserted into the page
+The object ( 209, 37 )  is inserted into the page
+The object ( 209, 38 )  is inserted into the page
+The object ( 209, 39 )  is inserted into the page
+The object ( 209, 40 )  is inserted into the page
+The object ( 209, 41 )  is inserted into the page
+The object ( 209, 42 )  is inserted into the page
+The object ( 209, 43 )  is inserted into the page
+The object ( 209, 44 )  is inserted into the page
+The object ( 209, 45 )  is inserted into the page
+The object ( 209, 46 )  is inserted into the page
+The object ( 209, 47 )  is inserted into the page
+The object ( 209, 48 )  is inserted into the page
+The object ( 209, 49 )  is inserted into the page
+The object ( 209, 50 )  is inserted into the page
+The object ( 209, 51 )  is inserted into the page
+The object ( 209, 52 )  is inserted into the page
+The object ( 209, 53 )  is inserted into the page
+The object ( 209, 54 )  is inserted into the page
+The object ( 209, 55 )  is inserted into the page
+The object ( 209, 56 )  is inserted into the page
+The object ( 209, 57 )  is inserted into the page
+The object ( 209, 58 )  is inserted into the page
+The object ( 209, 59 )  is inserted into the page
+The object ( 209, 60 )  is inserted into the page
+The object ( 209, 61 )  is inserted into the page
+The object ( 209, 62 )  is inserted into the page
+The object ( 209, 63 )  is inserted into the page
+The object ( 209, 64 )  is inserted into the page
+The object ( 209, 65 )  is inserted into the page
+The object ( 209, 66 )  is inserted into the page
+The object ( 209, 67 )  is inserted into the page
+The object ( 209, 68 )  is inserted into the page
+The object ( 209, 69 )  is inserted into the page
+The object ( 209, 70 )  is inserted into the page
+The object ( 209, 71 )  is inserted into the page
+The object ( 209, 72 )  is inserted into the page
+The object ( 209, 73 )  is inserted into the page
+The object ( 209, 74 )  is inserted into the page
+The object ( 209, 75 )  is inserted into the page
+The object ( 209, 76 )  is inserted into the page
+The object ( 209, 77 )  is inserted into the page
+The object ( 209, 78 )  is inserted into the page
+The object ( 209, 79 )  is inserted into the page
+The object ( 209, 80 )  is inserted into the page
+The object ( 209, 81 )  is inserted into the page
+The object ( 209, 82 )  is inserted into the page
+The object ( 209, 83 )  is inserted into the page
+The object ( 210, 0 )  is inserted into the page
+The object ( 210, 1 )  is inserted into the page
+Press enter key to continue...
+
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3360          unused = 0      |
+| FREE = 8              CFREE = 8                            |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = 209                prevPage = -1                |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        29 EduOM_TestModule_OBJECT_NUM_0                |
+|  1|        29 EduOM_TestModule_OBJECT_NUM_1                |
+|  2|        29 EduOM_TestModule_OBJECT_NUM_2                |
+|  3|        29 EduOM_TestModule_OBJECT_NUM_3                |
+|  4|        29 EduOM_TestModule_OBJECT_NUM_4                |
+|  5|        29 EduOM_TestModule_OBJECT_NUM_5                |
+|  6|        29 EduOM_TestModule_OBJECT_NUM_6                |
+|  7|        29 EduOM_TestModule_OBJECT_NUM_7                |
+|  8|        29 EduOM_TestModule_OBJECT_NUM_8                |
+|  9|        29 EduOM_TestModule_OBJECT_NUM_9                |
+| 10|        30 EduOM_TestModule_OBJECT_NUM_10               |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_11               |
+| 12|        30 EduOM_TestModule_OBJECT_NUM_12               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_13               |
+| 14|        30 EduOM_TestModule_OBJECT_NUM_14               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_15               |
+| 16|        30 EduOM_TestModule_OBJECT_NUM_16               |
+| 17|        30 EduOM_TestModule_OBJECT_NUM_17               |
+| 18|        30 EduOM_TestModule_OBJECT_NUM_18               |
+| 19|        30 EduOM_TestModule_OBJECT_NUM_19               |
+| 20|        30 EduOM_TestModule_OBJECT_NUM_20               |
+| 21|        30 EduOM_TestModule_OBJECT_NUM_21               |
+| 22|        30 EduOM_TestModule_OBJECT_NUM_22               |
+| 23|        30 EduOM_TestModule_OBJECT_NUM_23               |
+| 24|        30 EduOM_TestModule_OBJECT_NUM_24               |
+| 25|        30 EduOM_TestModule_OBJECT_NUM_25               |
+| 26|        30 EduOM_TestModule_OBJECT_NUM_26               |
+| 27|        30 EduOM_TestModule_OBJECT_NUM_27               |
+| 28|        30 EduOM_TestModule_OBJECT_NUM_28               |
+| 29|        30 EduOM_TestModule_OBJECT_NUM_29               |
+| 30|        30 EduOM_TestModule_OBJECT_NUM_30               |
+| 31|        30 EduOM_TestModule_OBJECT_NUM_31               |
+| 32|        30 EduOM_TestModule_OBJECT_NUM_32               |
+| 33|        30 EduOM_TestModule_OBJECT_NUM_33               |
+| 34|        30 EduOM_TestModule_OBJECT_NUM_34               |
+| 35|        30 EduOM_TestModule_OBJECT_NUM_35               |
+| 36|        30 EduOM_TestModule_OBJECT_NUM_36               |
+| 37|        30 EduOM_TestModule_OBJECT_NUM_37               |
+| 38|        30 EduOM_TestModule_OBJECT_NUM_38               |
+| 39|        30 EduOM_TestModule_OBJECT_NUM_39               |
+| 40|        30 EduOM_TestModule_OBJECT_NUM_40               |
+| 41|        30 EduOM_TestModule_OBJECT_NUM_41               |
+| 42|        30 EduOM_TestModule_OBJECT_NUM_42               |
+| 43|        30 EduOM_TestModule_OBJECT_NUM_43               |
+| 44|        30 EduOM_TestModule_OBJECT_NUM_44               |
+| 45|        30 EduOM_TestModule_OBJECT_NUM_45               |
+| 46|        30 EduOM_TestModule_OBJECT_NUM_46               |
+| 47|        30 EduOM_TestModule_OBJECT_NUM_47               |
+| 48|        30 EduOM_TestModule_OBJECT_NUM_48               |
+| 49|        30 EduOM_TestModule_OBJECT_NUM_49               |
+| 50|        30 EduOM_TestModule_OBJECT_NUM_50               |
+| 51|        30 EduOM_TestModule_OBJECT_NUM_51               |
+| 52|        30 EduOM_TestModule_OBJECT_NUM_52               |
+| 53|        30 EduOM_TestModule_OBJECT_NUM_53               |
+| 54|        30 EduOM_TestModule_OBJECT_NUM_54               |
+| 55|        30 EduOM_TestModule_OBJECT_NUM_55               |
+| 56|        30 EduOM_TestModule_OBJECT_NUM_56               |
+| 57|        30 EduOM_TestModule_OBJECT_NUM_57               |
+| 58|        30 EduOM_TestModule_OBJECT_NUM_58               |
+| 59|        30 EduOM_TestModule_OBJECT_NUM_59               |
+| 60|        30 EduOM_TestModule_OBJECT_NUM_60               |
+| 61|        30 EduOM_TestModule_OBJECT_NUM_61               |
+| 62|        30 EduOM_TestModule_OBJECT_NUM_62               |
+| 63|        30 EduOM_TestModule_OBJECT_NUM_63               |
+| 64|        30 EduOM_TestModule_OBJECT_NUM_64               |
+| 65|        30 EduOM_TestModule_OBJECT_NUM_65               |
+| 66|        30 EduOM_TestModule_OBJECT_NUM_66               |
+| 67|        30 EduOM_TestModule_OBJECT_NUM_67               |
+| 68|        30 EduOM_TestModule_OBJECT_NUM_68               |
+| 69|        30 EduOM_TestModule_OBJECT_NUM_69               |
+| 70|        30 EduOM_TestModule_OBJECT_NUM_70               |
+| 71|        30 EduOM_TestModule_OBJECT_NUM_71               |
+| 72|        30 EduOM_TestModule_OBJECT_NUM_72               |
+| 73|        30 EduOM_TestModule_OBJECT_NUM_73               |
+| 74|        30 EduOM_TestModule_OBJECT_NUM_74               |
+| 75|        30 EduOM_TestModule_OBJECT_NUM_75               |
+| 76|        30 EduOM_TestModule_OBJECT_NUM_76               |
+| 77|        30 EduOM_TestModule_OBJECT_NUM_77               |
+| 78|        30 EduOM_TestModule_OBJECT_NUM_78               |
+| 79|        30 EduOM_TestModule_OBJECT_NUM_79               |
+| 80|        30 EduOM_TestModule_OBJECT_NUM_80               |
+| 81|        30 EduOM_TestModule_OBJECT_NUM_81               |
+| 82|        30 EduOM_TestModule_OBJECT_NUM_82               |
+| 83|        30 EduOM_TestModule_OBJECT_NUM_83               |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
++------------------------------------------------------------+
+|                 PageID = (1000,  209)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3360          unused = 0      |
+| FREE = 8              CFREE = 8                            |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = 210                prevPage = 208               |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        30 EduOM_TestModule_OBJECT_NUM_84               |
+|  1|        30 EduOM_TestModule_OBJECT_NUM_85               |
+|  2|        30 EduOM_TestModule_OBJECT_NUM_86               |
+|  3|        30 EduOM_TestModule_OBJECT_NUM_87               |
+|  4|        30 EduOM_TestModule_OBJECT_NUM_88               |
+|  5|        30 EduOM_TestModule_OBJECT_NUM_89               |
+|  6|        30 EduOM_TestModule_OBJECT_NUM_90               |
+|  7|        30 EduOM_TestModule_OBJECT_NUM_91               |
+|  8|        30 EduOM_TestModule_OBJECT_NUM_92               |
+|  9|        30 EduOM_TestModule_OBJECT_NUM_93               |
+| 10|        30 EduOM_TestModule_OBJECT_NUM_94               |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_95               |
+| 12|        30 EduOM_TestModule_OBJECT_NUM_96               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_97               |
+| 14|        30 EduOM_TestModule_OBJECT_NUM_98               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_99               |
+| 16|        31 EduOM_TestModule_OBJECT_NUM_100              |
+| 17|        31 EduOM_TestModule_OBJECT_NUM_101              |
+| 18|        31 EduOM_TestModule_OBJECT_NUM_102              |
+| 19|        31 EduOM_TestModule_OBJECT_NUM_103              |
+| 20|        31 EduOM_TestModule_OBJECT_NUM_104              |
+| 21|        31 EduOM_TestModule_OBJECT_NUM_105              |
+| 22|        31 EduOM_TestModule_OBJECT_NUM_106              |
+| 23|        31 EduOM_TestModule_OBJECT_NUM_107              |
+| 24|        31 EduOM_TestModule_OBJECT_NUM_108              |
+| 25|        31 EduOM_TestModule_OBJECT_NUM_109              |
+| 26|        31 EduOM_TestModule_OBJECT_NUM_110              |
+| 27|        31 EduOM_TestModule_OBJECT_NUM_111              |
+| 28|        31 EduOM_TestModule_OBJECT_NUM_112              |
+| 29|        31 EduOM_TestModule_OBJECT_NUM_113              |
+| 30|        31 EduOM_TestModule_OBJECT_NUM_114              |
+| 31|        31 EduOM_TestModule_OBJECT_NUM_115              |
+| 32|        31 EduOM_TestModule_OBJECT_NUM_116              |
+| 33|        31 EduOM_TestModule_OBJECT_NUM_117              |
+| 34|        31 EduOM_TestModule_OBJECT_NUM_118              |
+| 35|        31 EduOM_TestModule_OBJECT_NUM_119              |
+| 36|        31 EduOM_TestModule_OBJECT_NUM_120              |
+| 37|        31 EduOM_TestModule_OBJECT_NUM_121              |
+| 38|        31 EduOM_TestModule_OBJECT_NUM_122              |
+| 39|        31 EduOM_TestModule_OBJECT_NUM_123              |
+| 40|        31 EduOM_TestModule_OBJECT_NUM_124              |
+| 41|        31 EduOM_TestModule_OBJECT_NUM_125              |
+| 42|        31 EduOM_TestModule_OBJECT_NUM_126              |
+| 43|        31 EduOM_TestModule_OBJECT_NUM_127              |
+| 44|        31 EduOM_TestModule_OBJECT_NUM_128              |
+| 45|        31 EduOM_TestModule_OBJECT_NUM_129              |
+| 46|        31 EduOM_TestModule_OBJECT_NUM_130              |
+| 47|        31 EduOM_TestModule_OBJECT_NUM_131              |
+| 48|        31 EduOM_TestModule_OBJECT_NUM_132              |
+| 49|        31 EduOM_TestModule_OBJECT_NUM_133              |
+| 50|        31 EduOM_TestModule_OBJECT_NUM_134              |
+| 51|        31 EduOM_TestModule_OBJECT_NUM_135              |
+| 52|        31 EduOM_TestModule_OBJECT_NUM_136              |
+| 53|        31 EduOM_TestModule_OBJECT_NUM_137              |
+| 54|        31 EduOM_TestModule_OBJECT_NUM_138              |
+| 55|        31 EduOM_TestModule_OBJECT_NUM_139              |
+| 56|        31 EduOM_TestModule_OBJECT_NUM_140              |
+| 57|        31 EduOM_TestModule_OBJECT_NUM_141              |
+| 58|        31 EduOM_TestModule_OBJECT_NUM_142              |
+| 59|        31 EduOM_TestModule_OBJECT_NUM_143              |
+| 60|        31 EduOM_TestModule_OBJECT_NUM_144              |
+| 61|        31 EduOM_TestModule_OBJECT_NUM_145              |
+| 62|        31 EduOM_TestModule_OBJECT_NUM_146              |
+| 63|        31 EduOM_TestModule_OBJECT_NUM_147              |
+| 64|        31 EduOM_TestModule_OBJECT_NUM_148              |
+| 65|        31 EduOM_TestModule_OBJECT_NUM_149              |
+| 66|        31 EduOM_TestModule_OBJECT_NUM_150              |
+| 67|        31 EduOM_TestModule_OBJECT_NUM_151              |
+| 68|        31 EduOM_TestModule_OBJECT_NUM_152              |
+| 69|        31 EduOM_TestModule_OBJECT_NUM_153              |
+| 70|        31 EduOM_TestModule_OBJECT_NUM_154              |
+| 71|        31 EduOM_TestModule_OBJECT_NUM_155              |
+| 72|        31 EduOM_TestModule_OBJECT_NUM_156              |
+| 73|        31 EduOM_TestModule_OBJECT_NUM_157              |
+| 74|        31 EduOM_TestModule_OBJECT_NUM_158              |
+| 75|        31 EduOM_TestModule_OBJECT_NUM_159              |
+| 76|        31 EduOM_TestModule_OBJECT_NUM_160              |
+| 77|        31 EduOM_TestModule_OBJECT_NUM_161              |
+| 78|        31 EduOM_TestModule_OBJECT_NUM_162              |
+| 79|        31 EduOM_TestModule_OBJECT_NUM_163              |
+| 80|        31 EduOM_TestModule_OBJECT_NUM_164              |
+| 81|        31 EduOM_TestModule_OBJECT_NUM_165              |
+| 82|        31 EduOM_TestModule_OBJECT_NUM_166              |
+| 83|        31 EduOM_TestModule_OBJECT_NUM_167              |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
++------------------------------------------------------------+
+|                 PageID = (1000,  210)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 2           free = 80            unused = 0      |
+| FREE = 3944           CFREE = 3944                         |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = -1                 prevPage = 209               |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        31 EduOM_TestModule_OBJECT_NUM_168              |
+|  1|        31 EduOM_TestModule_OBJECT_NUM_169              |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+*Test 1_4 : Test for EduOM_DestroyObject() when destroying object is not last object in the page
+->Destroy ten objects from the page.
+
+The object ( 208, 2 )  is destroyed from the page
+The object ( 208, 4 )  is destroyed from the page
+The object ( 208, 6 )  is destroyed from the page
+The object ( 208, 8 )  is destroyed from the page
+The object ( 208, 10 )  is destroyed from the page
+The object ( 208, 12 )  is destroyed from the page
+The object ( 208, 14 )  is destroyed from the page
+The object ( 208, 16 )  is destroyed from the page
+The object ( 208, 18 )  is destroyed from the page
+The object ( 208, 20 )  is destroyed from the page
+Press enter key to continue...
+
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3360          unused = 400    |
+| FREE = 408            CFREE = 8                            |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = 209                prevPage = -1                |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        29 EduOM_TestModule_OBJECT_NUM_0                |
+|  1|        29 EduOM_TestModule_OBJECT_NUM_1                |
+|  3|        29 EduOM_TestModule_OBJECT_NUM_3                |
+|  5|        29 EduOM_TestModule_OBJECT_NUM_5                |
+|  7|        29 EduOM_TestModule_OBJECT_NUM_7                |
+|  9|        29 EduOM_TestModule_OBJECT_NUM_9                |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_11               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_13               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_15               |
+| 17|        30 EduOM_TestModule_OBJECT_NUM_17               |
+| 19|        30 EduOM_TestModule_OBJECT_NUM_19               |
+| 21|        30 EduOM_TestModule_OBJECT_NUM_21               |
+| 22|        30 EduOM_TestModule_OBJECT_NUM_22               |
+| 23|        30 EduOM_TestModule_OBJECT_NUM_23               |
+| 24|        30 EduOM_TestModule_OBJECT_NUM_24               |
+| 25|        30 EduOM_TestModule_OBJECT_NUM_25               |
+| 26|        30 EduOM_TestModule_OBJECT_NUM_26               |
+| 27|        30 EduOM_TestModule_OBJECT_NUM_27               |
+| 28|        30 EduOM_TestModule_OBJECT_NUM_28               |
+| 29|        30 EduOM_TestModule_OBJECT_NUM_29               |
+| 30|        30 EduOM_TestModule_OBJECT_NUM_30               |
+| 31|        30 EduOM_TestModule_OBJECT_NUM_31               |
+| 32|        30 EduOM_TestModule_OBJECT_NUM_32               |
+| 33|        30 EduOM_TestModule_OBJECT_NUM_33               |
+| 34|        30 EduOM_TestModule_OBJECT_NUM_34               |
+| 35|        30 EduOM_TestModule_OBJECT_NUM_35               |
+| 36|        30 EduOM_TestModule_OBJECT_NUM_36               |
+| 37|        30 EduOM_TestModule_OBJECT_NUM_37               |
+| 38|        30 EduOM_TestModule_OBJECT_NUM_38               |
+| 39|        30 EduOM_TestModule_OBJECT_NUM_39               |
+| 40|        30 EduOM_TestModule_OBJECT_NUM_40               |
+| 41|        30 EduOM_TestModule_OBJECT_NUM_41               |
+| 42|        30 EduOM_TestModule_OBJECT_NUM_42               |
+| 43|        30 EduOM_TestModule_OBJECT_NUM_43               |
+| 44|        30 EduOM_TestModule_OBJECT_NUM_44               |
+| 45|        30 EduOM_TestModule_OBJECT_NUM_45               |
+| 46|        30 EduOM_TestModule_OBJECT_NUM_46               |
+| 47|        30 EduOM_TestModule_OBJECT_NUM_47               |
+| 48|        30 EduOM_TestModule_OBJECT_NUM_48               |
+| 49|        30 EduOM_TestModule_OBJECT_NUM_49               |
+| 50|        30 EduOM_TestModule_OBJECT_NUM_50               |
+| 51|        30 EduOM_TestModule_OBJECT_NUM_51               |
+| 52|        30 EduOM_TestModule_OBJECT_NUM_52               |
+| 53|        30 EduOM_TestModule_OBJECT_NUM_53               |
+| 54|        30 EduOM_TestModule_OBJECT_NUM_54               |
+| 55|        30 EduOM_TestModule_OBJECT_NUM_55               |
+| 56|        30 EduOM_TestModule_OBJECT_NUM_56               |
+| 57|        30 EduOM_TestModule_OBJECT_NUM_57               |
+| 58|        30 EduOM_TestModule_OBJECT_NUM_58               |
+| 59|        30 EduOM_TestModule_OBJECT_NUM_59               |
+| 60|        30 EduOM_TestModule_OBJECT_NUM_60               |
+| 61|        30 EduOM_TestModule_OBJECT_NUM_61               |
+| 62|        30 EduOM_TestModule_OBJECT_NUM_62               |
+| 63|        30 EduOM_TestModule_OBJECT_NUM_63               |
+| 64|        30 EduOM_TestModule_OBJECT_NUM_64               |
+| 65|        30 EduOM_TestModule_OBJECT_NUM_65               |
+| 66|        30 EduOM_TestModule_OBJECT_NUM_66               |
+| 67|        30 EduOM_TestModule_OBJECT_NUM_67               |
+| 68|        30 EduOM_TestModule_OBJECT_NUM_68               |
+| 69|        30 EduOM_TestModule_OBJECT_NUM_69               |
+| 70|        30 EduOM_TestModule_OBJECT_NUM_70               |
+| 71|        30 EduOM_TestModule_OBJECT_NUM_71               |
+| 72|        30 EduOM_TestModule_OBJECT_NUM_72               |
+| 73|        30 EduOM_TestModule_OBJECT_NUM_73               |
+| 74|        30 EduOM_TestModule_OBJECT_NUM_74               |
+| 75|        30 EduOM_TestModule_OBJECT_NUM_75               |
+| 76|        30 EduOM_TestModule_OBJECT_NUM_76               |
+| 77|        30 EduOM_TestModule_OBJECT_NUM_77               |
+| 78|        30 EduOM_TestModule_OBJECT_NUM_78               |
+| 79|        30 EduOM_TestModule_OBJECT_NUM_79               |
+| 80|        30 EduOM_TestModule_OBJECT_NUM_80               |
+| 81|        30 EduOM_TestModule_OBJECT_NUM_81               |
+| 82|        30 EduOM_TestModule_OBJECT_NUM_82               |
+| 83|        30 EduOM_TestModule_OBJECT_NUM_83               |
++------------------------------------------------------------+
+*Test 1_5 : Test for EduOM_CreateObject() when needing page compact
+->Insert a new object into the page which needs page compact
+
+The object ( 208, 2 )  is inserted into the page
+Press enter key to continue...
+
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3000          unused = 0      |
+| FREE = 368            CFREE = 368                          |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = 209                prevPage = -1                |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        29 EduOM_TestModule_OBJECT_NUM_0                |
+|  1|        29 EduOM_TestModule_OBJECT_NUM_1                |
+|  2|        29 EduOM_OBJECT_FOR_COMPACT_TEST                |
+|  3|        29 EduOM_TestModule_OBJECT_NUM_3                |
+|  5|        29 EduOM_TestModule_OBJECT_NUM_5                |
+|  7|        29 EduOM_TestModule_OBJECT_NUM_7                |
+|  9|        29 EduOM_TestModule_OBJECT_NUM_9                |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_11               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_13               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_15               |
+| 17|        30 EduOM_TestModule_OBJECT_NUM_17               |
+| 19|        30 EduOM_TestModule_OBJECT_NUM_19               |
+| 21|        30 EduOM_TestModule_OBJECT_NUM_21               |
+| 22|        30 EduOM_TestModule_OBJECT_NUM_22               |
+| 23|        30 EduOM_TestModule_OBJECT_NUM_23               |
+| 24|        30 EduOM_TestModule_OBJECT_NUM_24               |
+| 25|        30 EduOM_TestModule_OBJECT_NUM_25               |
+| 26|        30 EduOM_TestModule_OBJECT_NUM_26               |
+| 27|        30 EduOM_TestModule_OBJECT_NUM_27               |
+| 28|        30 EduOM_TestModule_OBJECT_NUM_28               |
+| 29|        30 EduOM_TestModule_OBJECT_NUM_29               |
+| 30|        30 EduOM_TestModule_OBJECT_NUM_30               |
+| 31|        30 EduOM_TestModule_OBJECT_NUM_31               |
+| 32|        30 EduOM_TestModule_OBJECT_NUM_32               |
+| 33|        30 EduOM_TestModule_OBJECT_NUM_33               |
+| 34|        30 EduOM_TestModule_OBJECT_NUM_34               |
+| 35|        30 EduOM_TestModule_OBJECT_NUM_35               |
+| 36|        30 EduOM_TestModule_OBJECT_NUM_36               |
+| 37|        30 EduOM_TestModule_OBJECT_NUM_37               |
+| 38|        30 EduOM_TestModule_OBJECT_NUM_38               |
+| 39|        30 EduOM_TestModule_OBJECT_NUM_39               |
+| 40|        30 EduOM_TestModule_OBJECT_NUM_40               |
+| 41|        30 EduOM_TestModule_OBJECT_NUM_41               |
+| 42|        30 EduOM_TestModule_OBJECT_NUM_42               |
+| 43|        30 EduOM_TestModule_OBJECT_NUM_43               |
+| 44|        30 EduOM_TestModule_OBJECT_NUM_44               |
+| 45|        30 EduOM_TestModule_OBJECT_NUM_45               |
+| 46|        30 EduOM_TestModule_OBJECT_NUM_46               |
+| 47|        30 EduOM_TestModule_OBJECT_NUM_47               |
+| 48|        30 EduOM_TestModule_OBJECT_NUM_48               |
+| 49|        30 EduOM_TestModule_OBJECT_NUM_49               |
+| 50|        30 EduOM_TestModule_OBJECT_NUM_50               |
+| 51|        30 EduOM_TestModule_OBJECT_NUM_51               |
+| 52|        30 EduOM_TestModule_OBJECT_NUM_52               |
+| 53|        30 EduOM_TestModule_OBJECT_NUM_53               |
+| 54|        30 EduOM_TestModule_OBJECT_NUM_54               |
+| 55|        30 EduOM_TestModule_OBJECT_NUM_55               |
+| 56|        30 EduOM_TestModule_OBJECT_NUM_56               |
+| 57|        30 EduOM_TestModule_OBJECT_NUM_57               |
+| 58|        30 EduOM_TestModule_OBJECT_NUM_58               |
+| 59|        30 EduOM_TestModule_OBJECT_NUM_59               |
+| 60|        30 EduOM_TestModule_OBJECT_NUM_60               |
+| 61|        30 EduOM_TestModule_OBJECT_NUM_61               |
+| 62|        30 EduOM_TestModule_OBJECT_NUM_62               |
+| 63|        30 EduOM_TestModule_OBJECT_NUM_63               |
+| 64|        30 EduOM_TestModule_OBJECT_NUM_64               |
+| 65|        30 EduOM_TestModule_OBJECT_NUM_65               |
+| 66|        30 EduOM_TestModule_OBJECT_NUM_66               |
+| 67|        30 EduOM_TestModule_OBJECT_NUM_67               |
+| 68|        30 EduOM_TestModule_OBJECT_NUM_68               |
+| 69|        30 EduOM_TestModule_OBJECT_NUM_69               |
+| 70|        30 EduOM_TestModule_OBJECT_NUM_70               |
+| 71|        30 EduOM_TestModule_OBJECT_NUM_71               |
+| 72|        30 EduOM_TestModule_OBJECT_NUM_72               |
+| 73|        30 EduOM_TestModule_OBJECT_NUM_73               |
+| 74|        30 EduOM_TestModule_OBJECT_NUM_74               |
+| 75|        30 EduOM_TestModule_OBJECT_NUM_75               |
+| 76|        30 EduOM_TestModule_OBJECT_NUM_76               |
+| 77|        30 EduOM_TestModule_OBJECT_NUM_77               |
+| 78|        30 EduOM_TestModule_OBJECT_NUM_78               |
+| 79|        30 EduOM_TestModule_OBJECT_NUM_79               |
+| 80|        30 EduOM_TestModule_OBJECT_NUM_80               |
+| 81|        30 EduOM_TestModule_OBJECT_NUM_81               |
+| 82|        30 EduOM_TestModule_OBJECT_NUM_82               |
+| 83|        30 EduOM_TestModule_OBJECT_NUM_83               |
++------------------------------------------------------------+
+*Test 1_6 : Test for EduOM_DestroyObject() when the object is last object in the page
+->Destroy the last object form the 3rd page
+
+The object ( 210, 1 )  is destroyed from the page
+Press enter key to continue...
+
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  210)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 1           free = 40            unused = 0      |
+| FREE = 3992           CFREE = 3992                         |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = -1                 prevPage = 209               |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        31 EduOM_TestModule_OBJECT_NUM_168              |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+*Test 1_7 : Test for EduOM_DestroyObject() when the object is unique object in the page
+->Destroy objects until destroying object is last object form the 3rd page
+
+The object ( 210, 0 )  is destroyed from the page
+Press enter key to continue...
+
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  209)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3360          unused = 0      |
+| FREE = 8              CFREE = 8                            |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = -1                 prevPage = 208               |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        30 EduOM_TestModule_OBJECT_NUM_84               |
+|  1|        30 EduOM_TestModule_OBJECT_NUM_85               |
+|  2|        30 EduOM_TestModule_OBJECT_NUM_86               |
+|  3|        30 EduOM_TestModule_OBJECT_NUM_87               |
+|  4|        30 EduOM_TestModule_OBJECT_NUM_88               |
+|  5|        30 EduOM_TestModule_OBJECT_NUM_89               |
+|  6|        30 EduOM_TestModule_OBJECT_NUM_90               |
+|  7|        30 EduOM_TestModule_OBJECT_NUM_91               |
+|  8|        30 EduOM_TestModule_OBJECT_NUM_92               |
+|  9|        30 EduOM_TestModule_OBJECT_NUM_93               |
+| 10|        30 EduOM_TestModule_OBJECT_NUM_94               |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_95               |
+| 12|        30 EduOM_TestModule_OBJECT_NUM_96               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_97               |
+| 14|        30 EduOM_TestModule_OBJECT_NUM_98               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_99               |
+| 16|        31 EduOM_TestModule_OBJECT_NUM_100              |
+| 17|        31 EduOM_TestModule_OBJECT_NUM_101              |
+| 18|        31 EduOM_TestModule_OBJECT_NUM_102              |
+| 19|        31 EduOM_TestModule_OBJECT_NUM_103              |
+| 20|        31 EduOM_TestModule_OBJECT_NUM_104              |
+| 21|        31 EduOM_TestModule_OBJECT_NUM_105              |
+| 22|        31 EduOM_TestModule_OBJECT_NUM_106              |
+| 23|        31 EduOM_TestModule_OBJECT_NUM_107              |
+| 24|        31 EduOM_TestModule_OBJECT_NUM_108              |
+| 25|        31 EduOM_TestModule_OBJECT_NUM_109              |
+| 26|        31 EduOM_TestModule_OBJECT_NUM_110              |
+| 27|        31 EduOM_TestModule_OBJECT_NUM_111              |
+| 28|        31 EduOM_TestModule_OBJECT_NUM_112              |
+| 29|        31 EduOM_TestModule_OBJECT_NUM_113              |
+| 30|        31 EduOM_TestModule_OBJECT_NUM_114              |
+| 31|        31 EduOM_TestModule_OBJECT_NUM_115              |
+| 32|        31 EduOM_TestModule_OBJECT_NUM_116              |
+| 33|        31 EduOM_TestModule_OBJECT_NUM_117              |
+| 34|        31 EduOM_TestModule_OBJECT_NUM_118              |
+| 35|        31 EduOM_TestModule_OBJECT_NUM_119              |
+| 36|        31 EduOM_TestModule_OBJECT_NUM_120              |
+| 37|        31 EduOM_TestModule_OBJECT_NUM_121              |
+| 38|        31 EduOM_TestModule_OBJECT_NUM_122              |
+| 39|        31 EduOM_TestModule_OBJECT_NUM_123              |
+| 40|        31 EduOM_TestModule_OBJECT_NUM_124              |
+| 41|        31 EduOM_TestModule_OBJECT_NUM_125              |
+| 42|        31 EduOM_TestModule_OBJECT_NUM_126              |
+| 43|        31 EduOM_TestModule_OBJECT_NUM_127              |
+| 44|        31 EduOM_TestModule_OBJECT_NUM_128              |
+| 45|        31 EduOM_TestModule_OBJECT_NUM_129              |
+| 46|        31 EduOM_TestModule_OBJECT_NUM_130              |
+| 47|        31 EduOM_TestModule_OBJECT_NUM_131              |
+| 48|        31 EduOM_TestModule_OBJECT_NUM_132              |
+| 49|        31 EduOM_TestModule_OBJECT_NUM_133              |
+| 50|        31 EduOM_TestModule_OBJECT_NUM_134              |
+| 51|        31 EduOM_TestModule_OBJECT_NUM_135              |
+| 52|        31 EduOM_TestModule_OBJECT_NUM_136              |
+| 53|        31 EduOM_TestModule_OBJECT_NUM_137              |
+| 54|        31 EduOM_TestModule_OBJECT_NUM_138              |
+| 55|        31 EduOM_TestModule_OBJECT_NUM_139              |
+| 56|        31 EduOM_TestModule_OBJECT_NUM_140              |
+| 57|        31 EduOM_TestModule_OBJECT_NUM_141              |
+| 58|        31 EduOM_TestModule_OBJECT_NUM_142              |
+| 59|        31 EduOM_TestModule_OBJECT_NUM_143              |
+| 60|        31 EduOM_TestModule_OBJECT_NUM_144              |
+| 61|        31 EduOM_TestModule_OBJECT_NUM_145              |
+| 62|        31 EduOM_TestModule_OBJECT_NUM_146              |
+| 63|        31 EduOM_TestModule_OBJECT_NUM_147              |
+| 64|        31 EduOM_TestModule_OBJECT_NUM_148              |
+| 65|        31 EduOM_TestModule_OBJECT_NUM_149              |
+| 66|        31 EduOM_TestModule_OBJECT_NUM_150              |
+| 67|        31 EduOM_TestModule_OBJECT_NUM_151              |
+| 68|        31 EduOM_TestModule_OBJECT_NUM_152              |
+| 69|        31 EduOM_TestModule_OBJECT_NUM_153              |
+| 70|        31 EduOM_TestModule_OBJECT_NUM_154              |
+| 71|        31 EduOM_TestModule_OBJECT_NUM_155              |
+| 72|        31 EduOM_TestModule_OBJECT_NUM_156              |
+| 73|        31 EduOM_TestModule_OBJECT_NUM_157              |
+| 74|        31 EduOM_TestModule_OBJECT_NUM_158              |
+| 75|        31 EduOM_TestModule_OBJECT_NUM_159              |
+| 76|        31 EduOM_TestModule_OBJECT_NUM_160              |
+| 77|        31 EduOM_TestModule_OBJECT_NUM_161              |
+| 78|        31 EduOM_TestModule_OBJECT_NUM_162              |
+| 79|        31 EduOM_TestModule_OBJECT_NUM_163              |
+| 80|        31 EduOM_TestModule_OBJECT_NUM_164              |
+| 81|        31 EduOM_TestModule_OBJECT_NUM_165              |
+| 82|        31 EduOM_TestModule_OBJECT_NUM_166              |
+| 83|        31 EduOM_TestModule_OBJECT_NUM_167              |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+****************************** TEST#1, EduOM_CreateObject and EduOM_DestroyObject  ******************************
+****************************** TEST#2, EduOM_ReadObject. ******************************
+*Test 2_1 : Test for EduOM_ReadObject() when condition is part
+->Read object from 7th to 15th
+
+Read data of the first object in the first page from 7th character to 15th character
+---------------------------------- Result ----------------------------------
+estModule_OBJEC
+Press enter key to continue...
+
+
+*Test 2_2 : Test for EduOM_ReadObject() when condition is full
+->Read a full data of object
+
+Read full data of the first object in first page
+---------------------------------- Result ----------------------------------
+EduOM_TestModule_OBJECT_NUM_0
+Press enter key to continue...
+
+
+****************************** TEST#2, EduOM_ReadObject. ******************************
+****************************** TEST#3, EduOM_PrevObject. ******************************
+*Test 3_1 : Test for EduOM_PrevObject() when parameter curOID is NULL.
+->Get a last object identifier
+
+Press enter key to continue...
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  209)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3360          unused = 0      |
+| FREE = 8              CFREE = 8                            |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = -1                 prevPage = 208               |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        30 EduOM_TestModule_OBJECT_NUM_84               |
+|  1|        30 EduOM_TestModule_OBJECT_NUM_85               |
+|  2|        30 EduOM_TestModule_OBJECT_NUM_86               |
+|  3|        30 EduOM_TestModule_OBJECT_NUM_87               |
+|  4|        30 EduOM_TestModule_OBJECT_NUM_88               |
+|  5|        30 EduOM_TestModule_OBJECT_NUM_89               |
+|  6|        30 EduOM_TestModule_OBJECT_NUM_90               |
+|  7|        30 EduOM_TestModule_OBJECT_NUM_91               |
+|  8|        30 EduOM_TestModule_OBJECT_NUM_92               |
+|  9|        30 EduOM_TestModule_OBJECT_NUM_93               |
+| 10|        30 EduOM_TestModule_OBJECT_NUM_94               |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_95               |
+| 12|        30 EduOM_TestModule_OBJECT_NUM_96               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_97               |
+| 14|        30 EduOM_TestModule_OBJECT_NUM_98               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_99               |
+| 16|        31 EduOM_TestModule_OBJECT_NUM_100              |
+| 17|        31 EduOM_TestModule_OBJECT_NUM_101              |
+| 18|        31 EduOM_TestModule_OBJECT_NUM_102              |
+| 19|        31 EduOM_TestModule_OBJECT_NUM_103              |
+| 20|        31 EduOM_TestModule_OBJECT_NUM_104              |
+| 21|        31 EduOM_TestModule_OBJECT_NUM_105              |
+| 22|        31 EduOM_TestModule_OBJECT_NUM_106              |
+| 23|        31 EduOM_TestModule_OBJECT_NUM_107              |
+| 24|        31 EduOM_TestModule_OBJECT_NUM_108              |
+| 25|        31 EduOM_TestModule_OBJECT_NUM_109              |
+| 26|        31 EduOM_TestModule_OBJECT_NUM_110              |
+| 27|        31 EduOM_TestModule_OBJECT_NUM_111              |
+| 28|        31 EduOM_TestModule_OBJECT_NUM_112              |
+| 29|        31 EduOM_TestModule_OBJECT_NUM_113              |
+| 30|        31 EduOM_TestModule_OBJECT_NUM_114              |
+| 31|        31 EduOM_TestModule_OBJECT_NUM_115              |
+| 32|        31 EduOM_TestModule_OBJECT_NUM_116              |
+| 33|        31 EduOM_TestModule_OBJECT_NUM_117              |
+| 34|        31 EduOM_TestModule_OBJECT_NUM_118              |
+| 35|        31 EduOM_TestModule_OBJECT_NUM_119              |
+| 36|        31 EduOM_TestModule_OBJECT_NUM_120              |
+| 37|        31 EduOM_TestModule_OBJECT_NUM_121              |
+| 38|        31 EduOM_TestModule_OBJECT_NUM_122              |
+| 39|        31 EduOM_TestModule_OBJECT_NUM_123              |
+| 40|        31 EduOM_TestModule_OBJECT_NUM_124              |
+| 41|        31 EduOM_TestModule_OBJECT_NUM_125              |
+| 42|        31 EduOM_TestModule_OBJECT_NUM_126              |
+| 43|        31 EduOM_TestModule_OBJECT_NUM_127              |
+| 44|        31 EduOM_TestModule_OBJECT_NUM_128              |
+| 45|        31 EduOM_TestModule_OBJECT_NUM_129              |
+| 46|        31 EduOM_TestModule_OBJECT_NUM_130              |
+| 47|        31 EduOM_TestModule_OBJECT_NUM_131              |
+| 48|        31 EduOM_TestModule_OBJECT_NUM_132              |
+| 49|        31 EduOM_TestModule_OBJECT_NUM_133              |
+| 50|        31 EduOM_TestModule_OBJECT_NUM_134              |
+| 51|        31 EduOM_TestModule_OBJECT_NUM_135              |
+| 52|        31 EduOM_TestModule_OBJECT_NUM_136              |
+| 53|        31 EduOM_TestModule_OBJECT_NUM_137              |
+| 54|        31 EduOM_TestModule_OBJECT_NUM_138              |
+| 55|        31 EduOM_TestModule_OBJECT_NUM_139              |
+| 56|        31 EduOM_TestModule_OBJECT_NUM_140              |
+| 57|        31 EduOM_TestModule_OBJECT_NUM_141              |
+| 58|        31 EduOM_TestModule_OBJECT_NUM_142              |
+| 59|        31 EduOM_TestModule_OBJECT_NUM_143              |
+| 60|        31 EduOM_TestModule_OBJECT_NUM_144              |
+| 61|        31 EduOM_TestModule_OBJECT_NUM_145              |
+| 62|        31 EduOM_TestModule_OBJECT_NUM_146              |
+| 63|        31 EduOM_TestModule_OBJECT_NUM_147              |
+| 64|        31 EduOM_TestModule_OBJECT_NUM_148              |
+| 65|        31 EduOM_TestModule_OBJECT_NUM_149              |
+| 66|        31 EduOM_TestModule_OBJECT_NUM_150              |
+| 67|        31 EduOM_TestModule_OBJECT_NUM_151              |
+| 68|        31 EduOM_TestModule_OBJECT_NUM_152              |
+| 69|        31 EduOM_TestModule_OBJECT_NUM_153              |
+| 70|        31 EduOM_TestModule_OBJECT_NUM_154              |
+| 71|        31 EduOM_TestModule_OBJECT_NUM_155              |
+| 72|        31 EduOM_TestModule_OBJECT_NUM_156              |
+| 73|        31 EduOM_TestModule_OBJECT_NUM_157              |
+| 74|        31 EduOM_TestModule_OBJECT_NUM_158              |
+| 75|        31 EduOM_TestModule_OBJECT_NUM_159              |
+| 76|        31 EduOM_TestModule_OBJECT_NUM_160              |
+| 77|        31 EduOM_TestModule_OBJECT_NUM_161              |
+| 78|        31 EduOM_TestModule_OBJECT_NUM_162              |
+| 79|        31 EduOM_TestModule_OBJECT_NUM_163              |
+| 80|        31 EduOM_TestModule_OBJECT_NUM_164              |
+| 81|        31 EduOM_TestModule_OBJECT_NUM_165              |
+| 82|        31 EduOM_TestModule_OBJECT_NUM_166              |
+| 83|        31 EduOM_TestModule_OBJECT_NUM_167              |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+[ObjectID] : (1000, 209, 83, 183)
+[PROPERTIES] : PLAIN 
+[TAG] : 0
+[LENGTH] : 31
+[DATA] : EduOM_TestModule_OBJECT_NUM_167
+Press enter key to continue...
+
+
+*Test 3_2 : Test for EduOM_PrevObject() when parameter curOID is not NULL.
+->Get a identifier of previous object of a last object
+
+Press enter key to continue...
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  209)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3360          unused = 0      |
+| FREE = 8              CFREE = 8                            |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = -1                 prevPage = 208               |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        30 EduOM_TestModule_OBJECT_NUM_84               |
+|  1|        30 EduOM_TestModule_OBJECT_NUM_85               |
+|  2|        30 EduOM_TestModule_OBJECT_NUM_86               |
+|  3|        30 EduOM_TestModule_OBJECT_NUM_87               |
+|  4|        30 EduOM_TestModule_OBJECT_NUM_88               |
+|  5|        30 EduOM_TestModule_OBJECT_NUM_89               |
+|  6|        30 EduOM_TestModule_OBJECT_NUM_90               |
+|  7|        30 EduOM_TestModule_OBJECT_NUM_91               |
+|  8|        30 EduOM_TestModule_OBJECT_NUM_92               |
+|  9|        30 EduOM_TestModule_OBJECT_NUM_93               |
+| 10|        30 EduOM_TestModule_OBJECT_NUM_94               |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_95               |
+| 12|        30 EduOM_TestModule_OBJECT_NUM_96               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_97               |
+| 14|        30 EduOM_TestModule_OBJECT_NUM_98               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_99               |
+| 16|        31 EduOM_TestModule_OBJECT_NUM_100              |
+| 17|        31 EduOM_TestModule_OBJECT_NUM_101              |
+| 18|        31 EduOM_TestModule_OBJECT_NUM_102              |
+| 19|        31 EduOM_TestModule_OBJECT_NUM_103              |
+| 20|        31 EduOM_TestModule_OBJECT_NUM_104              |
+| 21|        31 EduOM_TestModule_OBJECT_NUM_105              |
+| 22|        31 EduOM_TestModule_OBJECT_NUM_106              |
+| 23|        31 EduOM_TestModule_OBJECT_NUM_107              |
+| 24|        31 EduOM_TestModule_OBJECT_NUM_108              |
+| 25|        31 EduOM_TestModule_OBJECT_NUM_109              |
+| 26|        31 EduOM_TestModule_OBJECT_NUM_110              |
+| 27|        31 EduOM_TestModule_OBJECT_NUM_111              |
+| 28|        31 EduOM_TestModule_OBJECT_NUM_112              |
+| 29|        31 EduOM_TestModule_OBJECT_NUM_113              |
+| 30|        31 EduOM_TestModule_OBJECT_NUM_114              |
+| 31|        31 EduOM_TestModule_OBJECT_NUM_115              |
+| 32|        31 EduOM_TestModule_OBJECT_NUM_116              |
+| 33|        31 EduOM_TestModule_OBJECT_NUM_117              |
+| 34|        31 EduOM_TestModule_OBJECT_NUM_118              |
+| 35|        31 EduOM_TestModule_OBJECT_NUM_119              |
+| 36|        31 EduOM_TestModule_OBJECT_NUM_120              |
+| 37|        31 EduOM_TestModule_OBJECT_NUM_121              |
+| 38|        31 EduOM_TestModule_OBJECT_NUM_122              |
+| 39|        31 EduOM_TestModule_OBJECT_NUM_123              |
+| 40|        31 EduOM_TestModule_OBJECT_NUM_124              |
+| 41|        31 EduOM_TestModule_OBJECT_NUM_125              |
+| 42|        31 EduOM_TestModule_OBJECT_NUM_126              |
+| 43|        31 EduOM_TestModule_OBJECT_NUM_127              |
+| 44|        31 EduOM_TestModule_OBJECT_NUM_128              |
+| 45|        31 EduOM_TestModule_OBJECT_NUM_129              |
+| 46|        31 EduOM_TestModule_OBJECT_NUM_130              |
+| 47|        31 EduOM_TestModule_OBJECT_NUM_131              |
+| 48|        31 EduOM_TestModule_OBJECT_NUM_132              |
+| 49|        31 EduOM_TestModule_OBJECT_NUM_133              |
+| 50|        31 EduOM_TestModule_OBJECT_NUM_134              |
+| 51|        31 EduOM_TestModule_OBJECT_NUM_135              |
+| 52|        31 EduOM_TestModule_OBJECT_NUM_136              |
+| 53|        31 EduOM_TestModule_OBJECT_NUM_137              |
+| 54|        31 EduOM_TestModule_OBJECT_NUM_138              |
+| 55|        31 EduOM_TestModule_OBJECT_NUM_139              |
+| 56|        31 EduOM_TestModule_OBJECT_NUM_140              |
+| 57|        31 EduOM_TestModule_OBJECT_NUM_141              |
+| 58|        31 EduOM_TestModule_OBJECT_NUM_142              |
+| 59|        31 EduOM_TestModule_OBJECT_NUM_143              |
+| 60|        31 EduOM_TestModule_OBJECT_NUM_144              |
+| 61|        31 EduOM_TestModule_OBJECT_NUM_145              |
+| 62|        31 EduOM_TestModule_OBJECT_NUM_146              |
+| 63|        31 EduOM_TestModule_OBJECT_NUM_147              |
+| 64|        31 EduOM_TestModule_OBJECT_NUM_148              |
+| 65|        31 EduOM_TestModule_OBJECT_NUM_149              |
+| 66|        31 EduOM_TestModule_OBJECT_NUM_150              |
+| 67|        31 EduOM_TestModule_OBJECT_NUM_151              |
+| 68|        31 EduOM_TestModule_OBJECT_NUM_152              |
+| 69|        31 EduOM_TestModule_OBJECT_NUM_153              |
+| 70|        31 EduOM_TestModule_OBJECT_NUM_154              |
+| 71|        31 EduOM_TestModule_OBJECT_NUM_155              |
+| 72|        31 EduOM_TestModule_OBJECT_NUM_156              |
+| 73|        31 EduOM_TestModule_OBJECT_NUM_157              |
+| 74|        31 EduOM_TestModule_OBJECT_NUM_158              |
+| 75|        31 EduOM_TestModule_OBJECT_NUM_159              |
+| 76|        31 EduOM_TestModule_OBJECT_NUM_160              |
+| 77|        31 EduOM_TestModule_OBJECT_NUM_161              |
+| 78|        31 EduOM_TestModule_OBJECT_NUM_162              |
+| 79|        31 EduOM_TestModule_OBJECT_NUM_163              |
+| 80|        31 EduOM_TestModule_OBJECT_NUM_164              |
+| 81|        31 EduOM_TestModule_OBJECT_NUM_165              |
+| 82|        31 EduOM_TestModule_OBJECT_NUM_166              |
+| 83|        31 EduOM_TestModule_OBJECT_NUM_167              |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+[ObjectID] : (1000, 209, 82, 182)
+[PROPERTIES] : PLAIN 
+[TAG] : 0
+[LENGTH] : 31
+[DATA] : EduOM_TestModule_OBJECT_NUM_166
+Press enter key to continue...
+
+
+*Test 3_3 : Test for EduOM_PrevObjeect when object whose objectID is parameter curOID is first object in the page
+->Get a last object of a previous page of a last page
+
+Press enter key to continue...
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3000          unused = 0      |
+| FREE = 368            CFREE = 368                          |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = 209                prevPage = -1                |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        29 EduOM_TestModule_OBJECT_NUM_0                |
+|  1|        29 EduOM_TestModule_OBJECT_NUM_1                |
+|  2|        29 EduOM_OBJECT_FOR_COMPACT_TEST                |
+|  3|        29 EduOM_TestModule_OBJECT_NUM_3                |
+|  5|        29 EduOM_TestModule_OBJECT_NUM_5                |
+|  7|        29 EduOM_TestModule_OBJECT_NUM_7                |
+|  9|        29 EduOM_TestModule_OBJECT_NUM_9                |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_11               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_13               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_15               |
+| 17|        30 EduOM_TestModule_OBJECT_NUM_17               |
+| 19|        30 EduOM_TestModule_OBJECT_NUM_19               |
+| 21|        30 EduOM_TestModule_OBJECT_NUM_21               |
+| 22|        30 EduOM_TestModule_OBJECT_NUM_22               |
+| 23|        30 EduOM_TestModule_OBJECT_NUM_23               |
+| 24|        30 EduOM_TestModule_OBJECT_NUM_24               |
+| 25|        30 EduOM_TestModule_OBJECT_NUM_25               |
+| 26|        30 EduOM_TestModule_OBJECT_NUM_26               |
+| 27|        30 EduOM_TestModule_OBJECT_NUM_27               |
+| 28|        30 EduOM_TestModule_OBJECT_NUM_28               |
+| 29|        30 EduOM_TestModule_OBJECT_NUM_29               |
+| 30|        30 EduOM_TestModule_OBJECT_NUM_30               |
+| 31|        30 EduOM_TestModule_OBJECT_NUM_31               |
+| 32|        30 EduOM_TestModule_OBJECT_NUM_32               |
+| 33|        30 EduOM_TestModule_OBJECT_NUM_33               |
+| 34|        30 EduOM_TestModule_OBJECT_NUM_34               |
+| 35|        30 EduOM_TestModule_OBJECT_NUM_35               |
+| 36|        30 EduOM_TestModule_OBJECT_NUM_36               |
+| 37|        30 EduOM_TestModule_OBJECT_NUM_37               |
+| 38|        30 EduOM_TestModule_OBJECT_NUM_38               |
+| 39|        30 EduOM_TestModule_OBJECT_NUM_39               |
+| 40|        30 EduOM_TestModule_OBJECT_NUM_40               |
+| 41|        30 EduOM_TestModule_OBJECT_NUM_41               |
+| 42|        30 EduOM_TestModule_OBJECT_NUM_42               |
+| 43|        30 EduOM_TestModule_OBJECT_NUM_43               |
+| 44|        30 EduOM_TestModule_OBJECT_NUM_44               |
+| 45|        30 EduOM_TestModule_OBJECT_NUM_45               |
+| 46|        30 EduOM_TestModule_OBJECT_NUM_46               |
+| 47|        30 EduOM_TestModule_OBJECT_NUM_47               |
+| 48|        30 EduOM_TestModule_OBJECT_NUM_48               |
+| 49|        30 EduOM_TestModule_OBJECT_NUM_49               |
+| 50|        30 EduOM_TestModule_OBJECT_NUM_50               |
+| 51|        30 EduOM_TestModule_OBJECT_NUM_51               |
+| 52|        30 EduOM_TestModule_OBJECT_NUM_52               |
+| 53|        30 EduOM_TestModule_OBJECT_NUM_53               |
+| 54|        30 EduOM_TestModule_OBJECT_NUM_54               |
+| 55|        30 EduOM_TestModule_OBJECT_NUM_55               |
+| 56|        30 EduOM_TestModule_OBJECT_NUM_56               |
+| 57|        30 EduOM_TestModule_OBJECT_NUM_57               |
+| 58|        30 EduOM_TestModule_OBJECT_NUM_58               |
+| 59|        30 EduOM_TestModule_OBJECT_NUM_59               |
+| 60|        30 EduOM_TestModule_OBJECT_NUM_60               |
+| 61|        30 EduOM_TestModule_OBJECT_NUM_61               |
+| 62|        30 EduOM_TestModule_OBJECT_NUM_62               |
+| 63|        30 EduOM_TestModule_OBJECT_NUM_63               |
+| 64|        30 EduOM_TestModule_OBJECT_NUM_64               |
+| 65|        30 EduOM_TestModule_OBJECT_NUM_65               |
+| 66|        30 EduOM_TestModule_OBJECT_NUM_66               |
+| 67|        30 EduOM_TestModule_OBJECT_NUM_67               |
+| 68|        30 EduOM_TestModule_OBJECT_NUM_68               |
+| 69|        30 EduOM_TestModule_OBJECT_NUM_69               |
+| 70|        30 EduOM_TestModule_OBJECT_NUM_70               |
+| 71|        30 EduOM_TestModule_OBJECT_NUM_71               |
+| 72|        30 EduOM_TestModule_OBJECT_NUM_72               |
+| 73|        30 EduOM_TestModule_OBJECT_NUM_73               |
+| 74|        30 EduOM_TestModule_OBJECT_NUM_74               |
+| 75|        30 EduOM_TestModule_OBJECT_NUM_75               |
+| 76|        30 EduOM_TestModule_OBJECT_NUM_76               |
+| 77|        30 EduOM_TestModule_OBJECT_NUM_77               |
+| 78|        30 EduOM_TestModule_OBJECT_NUM_78               |
+| 79|        30 EduOM_TestModule_OBJECT_NUM_79               |
+| 80|        30 EduOM_TestModule_OBJECT_NUM_80               |
+| 81|        30 EduOM_TestModule_OBJECT_NUM_81               |
+| 82|        30 EduOM_TestModule_OBJECT_NUM_82               |
+| 83|        30 EduOM_TestModule_OBJECT_NUM_83               |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+[ObjectID] : (1000, 208, 83, 83)
+[PROPERTIES] : PLAIN 
+[TAG] : 0
+[LENGTH] : 30
+[DATA] : EduOM_TestModule_OBJECT_NUM_83
+Press enter key to continue...
+
+
+****************************** TEST#3, EduOM_PrevObject. ******************************
+****************************** TEST#4, EduOM_NextObject. ******************************
+*Test 4_1 : Test for EduOM_NextObject() when parameter curOID is NULL.
+->Get a first object identifier
+
+Press enter key to continue...
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3000          unused = 0      |
+| FREE = 368            CFREE = 368                          |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = 209                prevPage = -1                |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        29 EduOM_TestModule_OBJECT_NUM_0                |
+|  1|        29 EduOM_TestModule_OBJECT_NUM_1                |
+|  2|        29 EduOM_OBJECT_FOR_COMPACT_TEST                |
+|  3|        29 EduOM_TestModule_OBJECT_NUM_3                |
+|  5|        29 EduOM_TestModule_OBJECT_NUM_5                |
+|  7|        29 EduOM_TestModule_OBJECT_NUM_7                |
+|  9|        29 EduOM_TestModule_OBJECT_NUM_9                |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_11               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_13               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_15               |
+| 17|        30 EduOM_TestModule_OBJECT_NUM_17               |
+| 19|        30 EduOM_TestModule_OBJECT_NUM_19               |
+| 21|        30 EduOM_TestModule_OBJECT_NUM_21               |
+| 22|        30 EduOM_TestModule_OBJECT_NUM_22               |
+| 23|        30 EduOM_TestModule_OBJECT_NUM_23               |
+| 24|        30 EduOM_TestModule_OBJECT_NUM_24               |
+| 25|        30 EduOM_TestModule_OBJECT_NUM_25               |
+| 26|        30 EduOM_TestModule_OBJECT_NUM_26               |
+| 27|        30 EduOM_TestModule_OBJECT_NUM_27               |
+| 28|        30 EduOM_TestModule_OBJECT_NUM_28               |
+| 29|        30 EduOM_TestModule_OBJECT_NUM_29               |
+| 30|        30 EduOM_TestModule_OBJECT_NUM_30               |
+| 31|        30 EduOM_TestModule_OBJECT_NUM_31               |
+| 32|        30 EduOM_TestModule_OBJECT_NUM_32               |
+| 33|        30 EduOM_TestModule_OBJECT_NUM_33               |
+| 34|        30 EduOM_TestModule_OBJECT_NUM_34               |
+| 35|        30 EduOM_TestModule_OBJECT_NUM_35               |
+| 36|        30 EduOM_TestModule_OBJECT_NUM_36               |
+| 37|        30 EduOM_TestModule_OBJECT_NUM_37               |
+| 38|        30 EduOM_TestModule_OBJECT_NUM_38               |
+| 39|        30 EduOM_TestModule_OBJECT_NUM_39               |
+| 40|        30 EduOM_TestModule_OBJECT_NUM_40               |
+| 41|        30 EduOM_TestModule_OBJECT_NUM_41               |
+| 42|        30 EduOM_TestModule_OBJECT_NUM_42               |
+| 43|        30 EduOM_TestModule_OBJECT_NUM_43               |
+| 44|        30 EduOM_TestModule_OBJECT_NUM_44               |
+| 45|        30 EduOM_TestModule_OBJECT_NUM_45               |
+| 46|        30 EduOM_TestModule_OBJECT_NUM_46               |
+| 47|        30 EduOM_TestModule_OBJECT_NUM_47               |
+| 48|        30 EduOM_TestModule_OBJECT_NUM_48               |
+| 49|        30 EduOM_TestModule_OBJECT_NUM_49               |
+| 50|        30 EduOM_TestModule_OBJECT_NUM_50               |
+| 51|        30 EduOM_TestModule_OBJECT_NUM_51               |
+| 52|        30 EduOM_TestModule_OBJECT_NUM_52               |
+| 53|        30 EduOM_TestModule_OBJECT_NUM_53               |
+| 54|        30 EduOM_TestModule_OBJECT_NUM_54               |
+| 55|        30 EduOM_TestModule_OBJECT_NUM_55               |
+| 56|        30 EduOM_TestModule_OBJECT_NUM_56               |
+| 57|        30 EduOM_TestModule_OBJECT_NUM_57               |
+| 58|        30 EduOM_TestModule_OBJECT_NUM_58               |
+| 59|        30 EduOM_TestModule_OBJECT_NUM_59               |
+| 60|        30 EduOM_TestModule_OBJECT_NUM_60               |
+| 61|        30 EduOM_TestModule_OBJECT_NUM_61               |
+| 62|        30 EduOM_TestModule_OBJECT_NUM_62               |
+| 63|        30 EduOM_TestModule_OBJECT_NUM_63               |
+| 64|        30 EduOM_TestModule_OBJECT_NUM_64               |
+| 65|        30 EduOM_TestModule_OBJECT_NUM_65               |
+| 66|        30 EduOM_TestModule_OBJECT_NUM_66               |
+| 67|        30 EduOM_TestModule_OBJECT_NUM_67               |
+| 68|        30 EduOM_TestModule_OBJECT_NUM_68               |
+| 69|        30 EduOM_TestModule_OBJECT_NUM_69               |
+| 70|        30 EduOM_TestModule_OBJECT_NUM_70               |
+| 71|        30 EduOM_TestModule_OBJECT_NUM_71               |
+| 72|        30 EduOM_TestModule_OBJECT_NUM_72               |
+| 73|        30 EduOM_TestModule_OBJECT_NUM_73               |
+| 74|        30 EduOM_TestModule_OBJECT_NUM_74               |
+| 75|        30 EduOM_TestModule_OBJECT_NUM_75               |
+| 76|        30 EduOM_TestModule_OBJECT_NUM_76               |
+| 77|        30 EduOM_TestModule_OBJECT_NUM_77               |
+| 78|        30 EduOM_TestModule_OBJECT_NUM_78               |
+| 79|        30 EduOM_TestModule_OBJECT_NUM_79               |
+| 80|        30 EduOM_TestModule_OBJECT_NUM_80               |
+| 81|        30 EduOM_TestModule_OBJECT_NUM_81               |
+| 82|        30 EduOM_TestModule_OBJECT_NUM_82               |
+| 83|        30 EduOM_TestModule_OBJECT_NUM_83               |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+[ObjectID] : (1000, 208, 0, 0)
+[PROPERTIES] : PLAIN 
+[TAG] : 0
+[LENGTH] : 29
+[DATA] : EduOM_TestModule_OBJECT_NUM_0
+Press enter key to continue...
+
+
+*Test 4_2 : Test for EduOM_NextObject() when parameter curOID is not NULL.
+->Get a identifier of next object of a first object
+
+Press enter key to continue...
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  208)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3000          unused = 0      |
+| FREE = 368            CFREE = 368                          |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = 209                prevPage = -1                |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        29 EduOM_TestModule_OBJECT_NUM_0                |
+|  1|        29 EduOM_TestModule_OBJECT_NUM_1                |
+|  2|        29 EduOM_OBJECT_FOR_COMPACT_TEST                |
+|  3|        29 EduOM_TestModule_OBJECT_NUM_3                |
+|  5|        29 EduOM_TestModule_OBJECT_NUM_5                |
+|  7|        29 EduOM_TestModule_OBJECT_NUM_7                |
+|  9|        29 EduOM_TestModule_OBJECT_NUM_9                |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_11               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_13               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_15               |
+| 17|        30 EduOM_TestModule_OBJECT_NUM_17               |
+| 19|        30 EduOM_TestModule_OBJECT_NUM_19               |
+| 21|        30 EduOM_TestModule_OBJECT_NUM_21               |
+| 22|        30 EduOM_TestModule_OBJECT_NUM_22               |
+| 23|        30 EduOM_TestModule_OBJECT_NUM_23               |
+| 24|        30 EduOM_TestModule_OBJECT_NUM_24               |
+| 25|        30 EduOM_TestModule_OBJECT_NUM_25               |
+| 26|        30 EduOM_TestModule_OBJECT_NUM_26               |
+| 27|        30 EduOM_TestModule_OBJECT_NUM_27               |
+| 28|        30 EduOM_TestModule_OBJECT_NUM_28               |
+| 29|        30 EduOM_TestModule_OBJECT_NUM_29               |
+| 30|        30 EduOM_TestModule_OBJECT_NUM_30               |
+| 31|        30 EduOM_TestModule_OBJECT_NUM_31               |
+| 32|        30 EduOM_TestModule_OBJECT_NUM_32               |
+| 33|        30 EduOM_TestModule_OBJECT_NUM_33               |
+| 34|        30 EduOM_TestModule_OBJECT_NUM_34               |
+| 35|        30 EduOM_TestModule_OBJECT_NUM_35               |
+| 36|        30 EduOM_TestModule_OBJECT_NUM_36               |
+| 37|        30 EduOM_TestModule_OBJECT_NUM_37               |
+| 38|        30 EduOM_TestModule_OBJECT_NUM_38               |
+| 39|        30 EduOM_TestModule_OBJECT_NUM_39               |
+| 40|        30 EduOM_TestModule_OBJECT_NUM_40               |
+| 41|        30 EduOM_TestModule_OBJECT_NUM_41               |
+| 42|        30 EduOM_TestModule_OBJECT_NUM_42               |
+| 43|        30 EduOM_TestModule_OBJECT_NUM_43               |
+| 44|        30 EduOM_TestModule_OBJECT_NUM_44               |
+| 45|        30 EduOM_TestModule_OBJECT_NUM_45               |
+| 46|        30 EduOM_TestModule_OBJECT_NUM_46               |
+| 47|        30 EduOM_TestModule_OBJECT_NUM_47               |
+| 48|        30 EduOM_TestModule_OBJECT_NUM_48               |
+| 49|        30 EduOM_TestModule_OBJECT_NUM_49               |
+| 50|        30 EduOM_TestModule_OBJECT_NUM_50               |
+| 51|        30 EduOM_TestModule_OBJECT_NUM_51               |
+| 52|        30 EduOM_TestModule_OBJECT_NUM_52               |
+| 53|        30 EduOM_TestModule_OBJECT_NUM_53               |
+| 54|        30 EduOM_TestModule_OBJECT_NUM_54               |
+| 55|        30 EduOM_TestModule_OBJECT_NUM_55               |
+| 56|        30 EduOM_TestModule_OBJECT_NUM_56               |
+| 57|        30 EduOM_TestModule_OBJECT_NUM_57               |
+| 58|        30 EduOM_TestModule_OBJECT_NUM_58               |
+| 59|        30 EduOM_TestModule_OBJECT_NUM_59               |
+| 60|        30 EduOM_TestModule_OBJECT_NUM_60               |
+| 61|        30 EduOM_TestModule_OBJECT_NUM_61               |
+| 62|        30 EduOM_TestModule_OBJECT_NUM_62               |
+| 63|        30 EduOM_TestModule_OBJECT_NUM_63               |
+| 64|        30 EduOM_TestModule_OBJECT_NUM_64               |
+| 65|        30 EduOM_TestModule_OBJECT_NUM_65               |
+| 66|        30 EduOM_TestModule_OBJECT_NUM_66               |
+| 67|        30 EduOM_TestModule_OBJECT_NUM_67               |
+| 68|        30 EduOM_TestModule_OBJECT_NUM_68               |
+| 69|        30 EduOM_TestModule_OBJECT_NUM_69               |
+| 70|        30 EduOM_TestModule_OBJECT_NUM_70               |
+| 71|        30 EduOM_TestModule_OBJECT_NUM_71               |
+| 72|        30 EduOM_TestModule_OBJECT_NUM_72               |
+| 73|        30 EduOM_TestModule_OBJECT_NUM_73               |
+| 74|        30 EduOM_TestModule_OBJECT_NUM_74               |
+| 75|        30 EduOM_TestModule_OBJECT_NUM_75               |
+| 76|        30 EduOM_TestModule_OBJECT_NUM_76               |
+| 77|        30 EduOM_TestModule_OBJECT_NUM_77               |
+| 78|        30 EduOM_TestModule_OBJECT_NUM_78               |
+| 79|        30 EduOM_TestModule_OBJECT_NUM_79               |
+| 80|        30 EduOM_TestModule_OBJECT_NUM_80               |
+| 81|        30 EduOM_TestModule_OBJECT_NUM_81               |
+| 82|        30 EduOM_TestModule_OBJECT_NUM_82               |
+| 83|        30 EduOM_TestModule_OBJECT_NUM_83               |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+[ObjectID] : (1000, 208, 1, 1)
+[PROPERTIES] : PLAIN 
+[TAG] : 0
+[LENGTH] : 29
+[DATA] : EduOM_TestModule_OBJECT_NUM_1
+Press enter key to continue...
+
+
+*Test 4_3 : Test for EduOM_NextObjeect when object whose objectID is parameter curOID is last object in the page
+->Get a first object of a next page of a first page
+
+Press enter key to continue...
+
+
+---------------------------------- Result ----------------------------------
++------------------------------------------------------------+
+|                 PageID = (1000,  209)                      |
++------------------------------------------------------------+
++------------------------------------------------------------+
+|  nSlots = 84          free = 3360          unused = 0      |
+| FREE = 8              CFREE = 8                            |
++------------------------------------------------------------+
+| fid = (1000,   12)                                         |
+| nextPage = -1                 prevPage = 208               |
+| spaceListPrev = -1            spaceListNext = -1           |
++------------------------------------------------------------+
+|  0|        30 EduOM_TestModule_OBJECT_NUM_84               |
+|  1|        30 EduOM_TestModule_OBJECT_NUM_85               |
+|  2|        30 EduOM_TestModule_OBJECT_NUM_86               |
+|  3|        30 EduOM_TestModule_OBJECT_NUM_87               |
+|  4|        30 EduOM_TestModule_OBJECT_NUM_88               |
+|  5|        30 EduOM_TestModule_OBJECT_NUM_89               |
+|  6|        30 EduOM_TestModule_OBJECT_NUM_90               |
+|  7|        30 EduOM_TestModule_OBJECT_NUM_91               |
+|  8|        30 EduOM_TestModule_OBJECT_NUM_92               |
+|  9|        30 EduOM_TestModule_OBJECT_NUM_93               |
+| 10|        30 EduOM_TestModule_OBJECT_NUM_94               |
+| 11|        30 EduOM_TestModule_OBJECT_NUM_95               |
+| 12|        30 EduOM_TestModule_OBJECT_NUM_96               |
+| 13|        30 EduOM_TestModule_OBJECT_NUM_97               |
+| 14|        30 EduOM_TestModule_OBJECT_NUM_98               |
+| 15|        30 EduOM_TestModule_OBJECT_NUM_99               |
+| 16|        31 EduOM_TestModule_OBJECT_NUM_100              |
+| 17|        31 EduOM_TestModule_OBJECT_NUM_101              |
+| 18|        31 EduOM_TestModule_OBJECT_NUM_102              |
+| 19|        31 EduOM_TestModule_OBJECT_NUM_103              |
+| 20|        31 EduOM_TestModule_OBJECT_NUM_104              |
+| 21|        31 EduOM_TestModule_OBJECT_NUM_105              |
+| 22|        31 EduOM_TestModule_OBJECT_NUM_106              |
+| 23|        31 EduOM_TestModule_OBJECT_NUM_107              |
+| 24|        31 EduOM_TestModule_OBJECT_NUM_108              |
+| 25|        31 EduOM_TestModule_OBJECT_NUM_109              |
+| 26|        31 EduOM_TestModule_OBJECT_NUM_110              |
+| 27|        31 EduOM_TestModule_OBJECT_NUM_111              |
+| 28|        31 EduOM_TestModule_OBJECT_NUM_112              |
+| 29|        31 EduOM_TestModule_OBJECT_NUM_113              |
+| 30|        31 EduOM_TestModule_OBJECT_NUM_114              |
+| 31|        31 EduOM_TestModule_OBJECT_NUM_115              |
+| 32|        31 EduOM_TestModule_OBJECT_NUM_116              |
+| 33|        31 EduOM_TestModule_OBJECT_NUM_117              |
+| 34|        31 EduOM_TestModule_OBJECT_NUM_118              |
+| 35|        31 EduOM_TestModule_OBJECT_NUM_119              |
+| 36|        31 EduOM_TestModule_OBJECT_NUM_120              |
+| 37|        31 EduOM_TestModule_OBJECT_NUM_121              |
+| 38|        31 EduOM_TestModule_OBJECT_NUM_122              |
+| 39|        31 EduOM_TestModule_OBJECT_NUM_123              |
+| 40|        31 EduOM_TestModule_OBJECT_NUM_124              |
+| 41|        31 EduOM_TestModule_OBJECT_NUM_125              |
+| 42|        31 EduOM_TestModule_OBJECT_NUM_126              |
+| 43|        31 EduOM_TestModule_OBJECT_NUM_127              |
+| 44|        31 EduOM_TestModule_OBJECT_NUM_128              |
+| 45|        31 EduOM_TestModule_OBJECT_NUM_129              |
+| 46|        31 EduOM_TestModule_OBJECT_NUM_130              |
+| 47|        31 EduOM_TestModule_OBJECT_NUM_131              |
+| 48|        31 EduOM_TestModule_OBJECT_NUM_132              |
+| 49|        31 EduOM_TestModule_OBJECT_NUM_133              |
+| 50|        31 EduOM_TestModule_OBJECT_NUM_134              |
+| 51|        31 EduOM_TestModule_OBJECT_NUM_135              |
+| 52|        31 EduOM_TestModule_OBJECT_NUM_136              |
+| 53|        31 EduOM_TestModule_OBJECT_NUM_137              |
+| 54|        31 EduOM_TestModule_OBJECT_NUM_138              |
+| 55|        31 EduOM_TestModule_OBJECT_NUM_139              |
+| 56|        31 EduOM_TestModule_OBJECT_NUM_140              |
+| 57|        31 EduOM_TestModule_OBJECT_NUM_141              |
+| 58|        31 EduOM_TestModule_OBJECT_NUM_142              |
+| 59|        31 EduOM_TestModule_OBJECT_NUM_143              |
+| 60|        31 EduOM_TestModule_OBJECT_NUM_144              |
+| 61|        31 EduOM_TestModule_OBJECT_NUM_145              |
+| 62|        31 EduOM_TestModule_OBJECT_NUM_146              |
+| 63|        31 EduOM_TestModule_OBJECT_NUM_147              |
+| 64|        31 EduOM_TestModule_OBJECT_NUM_148              |
+| 65|        31 EduOM_TestModule_OBJECT_NUM_149              |
+| 66|        31 EduOM_TestModule_OBJECT_NUM_150              |
+| 67|        31 EduOM_TestModule_OBJECT_NUM_151              |
+| 68|        31 EduOM_TestModule_OBJECT_NUM_152              |
+| 69|        31 EduOM_TestModule_OBJECT_NUM_153              |
+| 70|        31 EduOM_TestModule_OBJECT_NUM_154              |
+| 71|        31 EduOM_TestModule_OBJECT_NUM_155              |
+| 72|        31 EduOM_TestModule_OBJECT_NUM_156              |
+| 73|        31 EduOM_TestModule_OBJECT_NUM_157              |
+| 74|        31 EduOM_TestModule_OBJECT_NUM_158              |
+| 75|        31 EduOM_TestModule_OBJECT_NUM_159              |
+| 76|        31 EduOM_TestModule_OBJECT_NUM_160              |
+| 77|        31 EduOM_TestModule_OBJECT_NUM_161              |
+| 78|        31 EduOM_TestModule_OBJECT_NUM_162              |
+| 79|        31 EduOM_TestModule_OBJECT_NUM_163              |
+| 80|        31 EduOM_TestModule_OBJECT_NUM_164              |
+| 81|        31 EduOM_TestModule_OBJECT_NUM_165              |
+| 82|        31 EduOM_TestModule_OBJECT_NUM_166              |
+| 83|        31 EduOM_TestModule_OBJECT_NUM_167              |
++------------------------------------------------------------+
+Press enter key to continue...
+
+
+[ObjectID] : (1000, 209, 0, 100)
+[PROPERTIES] : PLAIN 
+[TAG] : 0
+[LENGTH] : 30
+[DATA] : EduOM_TestModule_OBJECT_NUM_84
+Press enter key to continue...
+
+
+****************************** TEST#4, EduOM_NextObject. ******************************

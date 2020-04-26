@@ -56,11 +56,9 @@
  *  Four EduOM_CreateObject(ObjectID*, ObjectID*, ObjectHdr*, Four, char*, ObjectID*)
  */
 
-
 #include "EduOM_common.h"
+// IntelliSense padding
 #include "EduOM_Internal.h"
-
-
 
 /*@================================
  * EduOM_CreateObject()
@@ -106,30 +104,31 @@
  *     'oid' is set to the ObjectID of the newly created object.
  */
 Four EduOM_CreateObject(
-    ObjectID  *catObjForFile,	/* IN file in which object is to be placed */
-    ObjectID  *nearObj,		/* IN create the new object near this object */
-    ObjectHdr *objHdr,		/* IN from which tag is to be set */
-    Four      length,		/* IN amount of data */
-    char      *data,		/* IN the initial data for the object */
-    ObjectID  *oid)		/* OUT the object's ObjectID */
+    ObjectID *catObjForFile, /* IN file in which object is to be placed */
+    ObjectID *nearObj,       /* IN create the new object near this object */
+    ObjectHdr *objHdr,       /* IN from which tag is to be set */
+    Four length,             /* IN amount of data */
+    char *data,              /* IN the initial data for the object */
+    ObjectID *oid)           /* OUT the object's ObjectID */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four        e;		/* error number */
-    ObjectHdr   objectHdr;	/* ObjectHdr with tag set from parameter */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;              /* error number */
+    ObjectHdr objectHdr; /* ObjectHdr with tag set from parameter */
 
     /*@ parameter checking */
-    
+
     if (catObjForFile == NULL) ERR(eBADCATALOGOBJECT_OM);
-    
+
     if (length < 0) ERR(eBADLENGTH_OM);
 
-    if (length > 0 && data == NULL) return(eBADUSERBUF_OM);
+    if (length > 0 && data == NULL) return (eBADUSERBUF_OM);
 
-	/* Error check whether using not supported functionality by EduOM */
-	if(ALIGNED_LENGTH(length) > LRGOBJ_THRESHOLD) ERR(eNOTSUPPORTED_EDUOM);
-    
+    /* Error check whether using not supported functionality by EduOM */
+    if (ALIGNED_LENGTH(length) > LRGOBJ_THRESHOLD) ERR(eNOTSUPPORTED_EDUOM);
 
-    
-    return(eNOERROR);
+    objectHdr.properties = 0x0;
+    objectHdr.length = 0;
+    objectHdr.tag = (objHdr ? objHdr->tag : 0);
+    om_CreateObject(catObjForFile, nearObj, &objectHdr, length, data, oid);
+    return (eNOERROR);
 }

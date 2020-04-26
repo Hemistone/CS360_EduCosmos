@@ -57,14 +57,21 @@
  *  Four EduOM_ReadObject(ObjectID*, Four, Four, char*)
  */
 
+// ORIGINAL ORDER
+// #include <string.h>
+// #include "EduOM_common.h"
+// #include "BfM.h"		/* for the buffer manager call */
+// #include "LOT.h"		/* for the large object manager call */
+// #include "EduOM_Internal.h"
 
 #include <string.h>
+
 #include "EduOM_common.h"
-#include "BfM.h"		/* for the buffer manager call */
-#include "LOT.h"		/* for the large object manager call */
+// IntelliSense padding
+#include "BfM.h" /* for the buffer manager call */
+#include "LOT.h" /* for the large object manager call */
+// IntelliSense padding
 #include "EduOM_Internal.h"
-
-
 
 /*@================================
  * EduOM_ReadObject()
@@ -111,30 +118,45 @@
  *    some errors caused by function calls
  */
 Four EduOM_ReadObject(
-    ObjectID 	*oid,		/* IN object to read */
-    Four     	start,		/* IN starting offset of read */
-    Four     	length,		/* IN amount of data to read */
-    char     	*buf)		/* OUT user buffer to return the read data */
+    ObjectID *oid, /* IN object to read */
+    Four start,    /* IN starting offset of read */
+    Four length,   /* IN amount of data to read */
+    char *buf)     /* OUT user buffer to return the read data */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four     	e;              /* error code */
-    PageID 	pid;		/* page containing object specified by 'oid' */
-    SlottedPage	*apage;		/* pointer to the buffer of the page  */
-    Object	*obj;		/* pointer to the object in the slotted page */
-    Four	offset;		/* offset of the object in the page */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;             /* error code */
+    PageID pid;         /* page containing object specified by 'oid' */
+    SlottedPage *apage; /* pointer to the buffer of the page  */
+    Object *obj;        /* pointer to the object in the slotted page */
+    Four offset;        /* offset of the object in the page */
 
-    
-    
     /*@ check parameters */
 
     if (oid == NULL) ERR(eBADOBJECTID_OM);
 
     if (length < 0 && length != REMAINDER) ERR(eBADLENGTH_OM);
-    
+
     if (buf == NULL) ERR(eBADUSERBUF_OM);
 
-    
+    if (start < 0) ERR(eBADSTART_OM);  // Start must be start, not negative
 
-    return(length);
-    
+    MAKE_PAGEID(pid, oid->volNo, oid->pageNo);
+    e = BfM_GetTrain((TrainID *)&pid, (char **)&apage, PAGE_BUF);
+    if (e < 0) ERR(e);
+
+    offset = apage->slot[-(oid->slotNo)].offset;  // slot[] has negative index, starting from 1
+    obj = (Object *)&(apage->data[offset]);       // Access Data from offseted data Array
+
+    Four maxLength = obj->header.length;
+    if (maxLength < start + length) ERR(eBADLENGTH_OM);  // maxLength must be bigger then start+length
+    if (length == REMAINDER) {
+        length = maxLength - start;
+    }
+    memcpy(buf, &(obj->data[start]), length);  // Copy memory data[start, start+length]
+
+    e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);  // Free the buf Allocated to Read
+    if (e < 0) ERR(e);
+
+    return (length);
+
 } /* EduOM_ReadObject() */

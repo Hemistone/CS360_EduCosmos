@@ -1,0 +1,11 @@
+Script started on Tue 21 Apr 2020 02:33:51 AM KST
+]0;hemistone@anode2:~/CS360/hemistone/ODYSSEUS-EduCOSMOS/Projects/EduBfM[?1034h(base) [hemistone@anode2 EduBfM]$ .EduBfM_TestSolution_64bit
+bash: .EduBfM_TestSolution_64bit: command not found...
+]0;hemistone@anode2:~/CS360/hemistone/ODYSSEUS-EduCOSMOS/Projects/EduBfM(base) [hemistone@anode2 EduBfM]$ ./EduBfM_TestSolution_64bit
+bash: ./EduBfM_TestSolution_64bit: Permission denied
+]0;hemistone@anode2:~/CS360/hemistone/ODYSSEUS-EduCOSMOS/Projects/EduBfM(base) [hemistone@anode2 EduBfM]$ ./EduBfM_Testso[K[KSolution_32bit
+bash: ./EduBfM_TestSolution_32bit: Permission denied
+]0;hemistone@anode2:~/CS360/hemistone/ODYSSEUS-EduCOSMOS/Projects/EduBfM(base) [hemistone@anode2 EduBfM]$ d[Kexit
+exit
+
+Script done on Tue 21 Apr 2020 02:35:34 AM KST
