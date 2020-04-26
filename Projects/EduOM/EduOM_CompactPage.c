@@ -67,9 +67,9 @@
 #include <string.h>
 
 #include "EduOM_common.h"
+#include "LOT.h"
 // IntelliSense padding
 #include "EduOM_Internal.h"
-#include "LOT.h"
 
 /*@================================
  * EduOM_CompactPage()
@@ -110,24 +110,47 @@ Four EduOM_CompactPage(
     Two slotNo)         /* IN slotNo to go to the end */
 {
     /* These local variables are used in the solution code. However, you don��t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    SlottedPage tpage;   /* temporay page used to save the given page */
-    Object *obj;         /* pointer to the object in the data area */
-    Two apageDataOffset; /* where the next object is to be moved */
-    Four len;            /* length of object + length of ObjectHdr */
-    Two lastSlot;        /* last non empty slot */
-    Two i;               /* index variable */
-
-    tpage = *apage;
+    SlottedPage tpage = *apage;          /* temporay page used to save the given page */
+    Object *obj;                         /* pointer to the object in the data area */
+    Two apageDataOffset = 0;             /* where the next object is to be moved */
+    Four len;                            /* length of object + length of ObjectHdr */
+    Two lastSlot = apage->header.nSlots; /* last non empty slot */
+    Two i;                               /* index variable */
 
     if (slotNo != NIL) {
         // if slotNo is not NIL
-        tpage.slot[-slotNo + 1];
+        for (i = 0; i < lastSlot; i++) {
+            if (slotNo == i || tpage.slot[-i].offset == EMPTYSLOT) {
+                continue;  // Skip on slotNo turn or if is empty
+            }
+            obj = &(tpage.data[tpage.slot[-i].offset]);
+            len = ALIGNED_LENGTH(obj->header.length) + sizeof(obj->header);
+            memcpy(&(apage->data[apageDataOffset]), (char *)obj, len);  // Insert Information into apage
+            apage->slot[-i].offset = apageDataOffset;
+            apageDataOffset += len;
+        }
+        obj = &(tpage.data[tpage.slot[-slotNo].offset]);
+        len = ALIGNED_LENGTH(obj->header.length) + sizeof(obj->header);
+        memcpy(&(apage->data[apageDataOffset]), (char *)obj, len);  // Insert Information into apage
+        apage->slot[-slotNo].offset = apageDataOffset;
+        apageDataOffset += len;
     } else {
         // if slotNo is NIL
+        for (i = 0; i < lastSlot; i++) {
+            if (tpage.slot[-i].offset == EMPTYSLOT) {
+                continue;  // Skip on slotNo turn or if is empty
+            }
+            obj = &(tpage.data[tpage.slot[-i].offset]);
+            len = ALIGNED_LENGTH(obj->header.length) + sizeof(obj->header);
+            memcpy(&(apage->data[apageDataOffset]), (char *)obj, len);  // Insert Information into apage
+            apage->slot[-i].offset = apageDataOffset;
+            apageDataOffset += len;
+        }
     }
 
     // Update Page Header
-
+    apage->header.free = apageDataOffset;
+    apage->header.unused = 0;
     return (eNOERROR);
 
 } /* EduOM_CompactPage */
