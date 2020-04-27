@@ -4,7 +4,7 @@ API Functions
 - [ ] EduOM_DestoryObject()
 - [x] EduOM_CompactPage()
 - [x] EduOM_ReadObject()
-- [ ] EduOM_NextObject()
+- [x] EduOM_NextObject()
 - [ ] EduOM_PrevObject()
 
 Internal Functions

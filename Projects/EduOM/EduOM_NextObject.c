@@ -56,8 +56,8 @@
  *  Four EduOM_NextObject(ObjectID*, ObjectID*, ObjectID*, ObjectHdr*)
  */
 
-
 #include "EduOM_common.h"
+// Intellisense Padding
 #include "BfM.h"
 #include "EduOM_Internal.h"
 
@@ -89,34 +89,100 @@
  *     objHdr is filled with the next object's header
  */
 Four EduOM_NextObject(
-    ObjectID  *catObjForFile,	/* IN informations about a data file */
-    ObjectID  *curOID,		/* IN a ObjectID of the current Object */
-    ObjectID  *nextOID,		/* OUT the next Object of a current Object */
-    ObjectHdr *objHdr)		/* OUT the object header of next object */
+    ObjectID *catObjForFile, /* IN informations about a data file */
+    ObjectID *curOID,        /* IN a ObjectID of the current Object */
+    ObjectID *nextOID,       /* OUT the next Object of a current Object */
+    ObjectHdr *objHdr)       /* OUT the object header of next object */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four e;			/* error */
-    Two  i;			/* index */
-    Four offset;		/* starting offset of object within a page */
-    PageID pid;			/* a page identifier */
-    PageNo pageNo;		/* a temporary var for next page's PageNo */
-    SlottedPage *apage;		/* a pointer to the data page */
-    Object *obj;		/* a pointer to the Object */
-    PhysicalFileID pFid;	/* file in which the objects are located */
-    SlottedPage *catPage;	/* buffer page containing the catalog object */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                         /* error */
+    Two i;                          /* index */
+    Four offset;                    /* starting offset of object within a page */
+    PageID pid;                     /* a page identifier */
+    PageNo pageNo;                  /* a temporary var for next page's PageNo */
+    SlottedPage *apage;             /* a pointer to the data page */
+    Object *obj;                    /* a pointer to the Object */
+    PhysicalFileID pFid;            /* file in which the objects are located */
+    SlottedPage *catPage;           /* buffer page containing the catalog object */
     sm_CatOverlayForData *catEntry; /* data structure for catalog object access */
-
-
 
     /*@
      * parameter checking
      */
     if (catObjForFile == NULL) ERR(eBADCATALOGOBJECT_OM);
-    
+
     if (nextOID == NULL) ERR(eBADOBJECTID_OM);
 
+    // Get the sm_CatOverlayForData "catEntry" by searching catObjForFile objectID
+    e = BfM_GetTrain((TrainID *)catObjForFile, (char **)&catPage, PAGE_BUF);
+    if (e < 0) ERR(e);
+    offset = catPage->slot[-(catObjForFile->slotNo)].offset;
+    obj = (Object *)&(catPage->data[offset]);
+    catEntry = (sm_CatOverlayForData *)obj->data;
+    MAKE_PHYSICALFILEID(pFid, catEntry->fid.volNo, catEntry->firstPage);  // Get the File
 
+    if (curOID == NULL) {
+        pageNo = catEntry->firstPage;
+        while (pageNo != catEntry->lastPage) {
+            MAKE_PAGEID(pid, pFid.volNo, pageNo);
+            e = BfM_GetTrain((TrainID *)&pid, (char **)&apage, PAGE_BUF);
+            if (e < 0) ERR(e);
+            if (apage->header.nSlots) {
+                MAKE_OBJECTID(*nextOID, pid.volNo, pid.pageNo, 0, apage->slot[0].unique);
+                offset = apage->slot[0].offset;
+                obj = (Object *)&(apage->data[offset]);
+                objHdr = &(obj->header);
+                e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+                if (e < 0) ERR(e);
 
-    return(EOS);		/* end of scan */
-    
+                return (eNOERROR);
+            }
+            e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+            pageNo = apage->header.nextPage;
+        }
+        e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+        if (e < 0) ERR(e);
+
+        return (EOS);
+    } else {
+        // curOID is not NULL
+        MAKE_PAGEID(pid, curOID->volNo, curOID->pageNo);
+        e = BfM_GetTrain((TrainID *)&pid, (char **)&apage, PAGE_BUF);
+        if (e < 0) ERR(e);
+        if ((curOID->slotNo) + 1 == apage->header.nSlots) {
+            if (pid.pageNo == catEntry->lastPage) {
+                // Object is Last object in Last page
+                e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+                if (e < 0) ERR(e);
+
+                return (EOS);
+            }
+
+            // Get first object of next page
+            pageNo = apage->header.nextPage;
+            e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+            if (e < 0) ERR(e);
+            MAKE_PAGEID(pid, pFid.volNo, pageNo);
+            e = BfM_GetTrain((TrainID *)&pid, (char **)&apage, PAGE_BUF);
+            if (e < 0) ERR(e);
+            MAKE_OBJECTID(*nextOID, pid.volNo, pid.pageNo, 0, apage->slot[0].unique);
+        } else {
+            MAKE_OBJECTID(*nextOID, pid.volNo, pid.pageNo, (curOID->slotNo + 1), apage->slot[-nextOID->slotNo].unique);
+        }
+        offset = apage->slot[nextOID->slotNo].offset;
+        obj = (Object *)&(apage->data[offset]);
+        objHdr = &(obj->header);
+        e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+        if (e < 0) ERR(e);
+        e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+        if (e < 0) ERR(e);
+
+        return (eNOERROR);
+    }
+    /* end of scan */
+
 } /* EduOM_NextObject() */
