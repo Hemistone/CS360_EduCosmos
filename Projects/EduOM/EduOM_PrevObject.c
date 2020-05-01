@@ -56,8 +56,8 @@
  *  Four EduOM_PrevObject(ObjectID*, ObjectID*, ObjectID*, ObjectHdr*)
  */
 
-
 #include "EduOM_common.h"
+// Intellisense Padding
 #include "BfM.h"
 #include "EduOM_Internal.h"
 
@@ -89,31 +89,114 @@
  *     objHdr is filled with the previous object's header
  */
 Four EduOM_PrevObject(
-    ObjectID *catObjForFile,	/* IN informations about a data file */
-    ObjectID *curOID,		/* IN a ObjectID of the current object */
-    ObjectID *prevOID,		/* OUT the previous object of a current object */
-    ObjectHdr*objHdr)		/* OUT the object header of previous object */
+    ObjectID *catObjForFile, /* IN informations about a data file */
+    ObjectID *curOID,        /* IN a ObjectID of the current object */
+    ObjectID *prevOID,       /* OUT the previous object of a current object */
+    ObjectHdr *objHdr)       /* OUT the object header of previous object */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four e;			/* error */
-    Two  i;			/* index */
-    Four offset;		/* starting offset of object within a page */
-    PageID pid;			/* a page identifier */
-    PageNo pageNo;		/* a temporary var for previous page's PageNo */
-    SlottedPage *apage;		/* a pointer to the data page */
-    Object *obj;		/* a pointer to the Object */
-    SlottedPage *catPage;	/* buffer page containing the catalog object */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                         /* error */
+    Two i;                          /* index */
+    Four offset;                    /* starting offset of object within a page */
+    PageID pid;                     /* a page identifier */
+    PageNo pageNo;                  /* a temporary var for previous page's PageNo */
+    SlottedPage *apage;             /* a pointer to the data page */
+    Object *obj;                    /* a pointer to the Object */
+    SlottedPage *catPage;           /* buffer page containing the catalog object */
     sm_CatOverlayForData *catEntry; /* overlay structure for catalog object access */
 
-
+    PhysicalFileID pFid; /* file in which the objects are located */
 
     /*@ parameter checking */
     if (catObjForFile == NULL) ERR(eBADCATALOGOBJECT_OM);
-    
+
     if (prevOID == NULL) ERR(eBADOBJECTID_OM);
 
-    
+    // Get the sm_CatOverlayForData "catEntry" by searching catObjForFile objectID
+    e = BfM_GetTrain((TrainID *)catObjForFile, (char **)&catPage, PAGE_BUF);
+    if (e < 0) ERR(e);
+    offset = catPage->slot[-(catObjForFile->slotNo)].offset;
+    obj = (Object *)&(catPage->data[offset]);
+    catEntry = (sm_CatOverlayForData *)obj->data;
+    MAKE_PHYSICALFILEID(pFid, catEntry->fid.volNo, catEntry->firstPage);  // Get the File
 
-    return(EOS);
-    
+    if (curOID == NULL) {
+        pageNo = catEntry->lastPage;
+        while (pageNo != catEntry->firstPage) {
+            MAKE_PAGEID(pid, pFid.volNo, pageNo);
+            e = BfM_GetTrain((TrainID *)&pid, (char **)&apage, PAGE_BUF);
+            if (e < 0) ERR(e);
+            i = apage->header.nSlots - 1;  // new slotNo
+            if (i + 1) {
+                MAKE_OBJECTID(*prevOID, pid.volNo, pid.pageNo, i, apage->slot[-i].unique);
+                offset = apage->slot[-i].offset;
+                obj = (Object *)&(apage->data[offset]);
+                objHdr = &(obj->header);
+                e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+                if (e < 0) ERR(e);
+
+                return (eNOERROR);
+            }
+            e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+            pageNo = apage->header.prevPage;
+        }
+        e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+        if (e < 0) ERR(e);
+
+        return (EOS);
+    } else {
+        // curOID is not NULL
+        MAKE_PAGEID(pid, curOID->volNo, curOID->pageNo);
+        e = BfM_GetTrain((TrainID *)&pid, (char **)&apage, PAGE_BUF);
+        if (e < 0) ERR(e);
+
+        if ((curOID->slotNo) == 0) {
+            if (pid.pageNo == catEntry->firstPage) {
+                // Object is First object in First page
+                e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+                if (e < 0) ERR(e);
+
+                return (EOS);
+            }
+
+            // Get first object of next page
+            pageNo = apage->header.prevPage;
+            e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+            if (e < 0) ERR(e);
+            MAKE_PAGEID(pid, pFid.volNo, pageNo);
+            e = BfM_GetTrain((TrainID *)&pid, (char **)&apage, PAGE_BUF);
+            if (e < 0) ERR(e);
+
+            if (apage->header.nSlots == 0) {
+                // If previous page is empty
+                e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+                if (e < 0) ERR(e);
+
+                return (EOS);
+            }
+            i = apage->header.nSlots - 1;  // new slotNo
+            MAKE_OBJECTID(*prevOID, pid.volNo, pid.pageNo, i, apage->slot[-i].unique);
+        } else {
+            i = curOID->slotNo - 1;  // new slotNo
+            MAKE_OBJECTID(*prevOID, pid.volNo, pid.pageNo, i, apage->slot[-i].unique);
+        }
+        offset = apage->slot[-prevOID->slotNo].offset;
+        obj = (Object *)&(apage->data[offset]);
+        objHdr = &(obj->header);
+        e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+        if (e < 0) ERR(e);
+        e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+        if (e < 0) ERR(e);
+
+        return (eNOERROR);
+    }
+
+    return (EOS);
+
 } /* EduOM_PrevObject() */

@@ -129,6 +129,6 @@ Four EduOM_CreateObject(
     objectHdr.properties = 0x0;
     objectHdr.length = 0;
     objectHdr.tag = (objHdr ? objHdr->tag : 0);
-    om_CreateObject(catObjForFile, nearObj, &objectHdr, length, data, oid);
+    eduom_CreateObject(catObjForFile, nearObj, &objectHdr, length, data, oid);  // Has some errors in eduom_createObject...
     return (eNOERROR);
 }

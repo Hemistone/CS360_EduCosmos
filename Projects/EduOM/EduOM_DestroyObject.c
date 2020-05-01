@@ -140,6 +140,65 @@ Four EduOM_DestroyObject(
 
     if (oid == NULL) ERR(eBADOBJECTID_OM);
 
+    // Find Object
+    e = BfM_GetTrain((TrainID *)catObjForFile, (char **)&catPage, PAGE_BUF);
+    if (e < 0) ERR(e);
+    offset = catPage->slot[-(catObjForFile->slotNo)].offset;
+    obj = (Object *)&(catPage->data[offset]);
+    catEntry = (sm_CatOverlayForData *)obj->data;
+    MAKE_PHYSICALFILEID(pFid, catEntry->fid.volNo, catEntry->firstPage);
+
+    MAKE_PAGEID(pid, oid->volNo, oid->pageNo);
+    e = BfM_GetTrain((TrainID *)&pid, (char **)&apage, PAGE_BUF);
+    if (e < 0) ERR(e);
+
+    // Delete object saved page from available space list
+    e = om_RemoveFromAvailSpaceList(catObjForFile, &pid, apage);
+    if (e < 0) ERRB1(e, &pid, PAGE_BUF);
+
+    // set the corresponding slot of deleting object to EMPTY
+    i = oid->slotNo;  // slotNo
+    offset = apage->slot[-i].offset;
+    obj = (Object *)&(apage->data[offset]);
+    apage->slot[-i].offset = EMPTYSLOT;
+
+    // Update Page header
+    alignedLen = ALIGNED_LENGTH(obj->header.length);
+    if (apage->header.nSlots - 1 == i) {
+        apage->header.nSlots -= 1;
+        apage->header.free -= alignedLen + sizeof(obj->header);  // shift left the free offset as the size of deleted object
+    } else {
+        apage->header.unused += alignedLen + sizeof(obj->header);  // ???
+    }
+
+    // If deleted object is the only object in the page,
+    // which is not the first page of the file
+    if ((apage->header.nSlots == 0) && (pid.pageNo != catEntry->firstPage)) {
+        e = om_FileMapDeletePage(catObjForFile, &pid);
+        if (e < 0) ERRB1(e, &pid, PAGE_BUF);
+        e = Util_getElementFromPool(dlPool, &dlElem);
+        if (e < 0) ERR(e);
+
+        dlElem->type = DL_PAGE;
+        dlElem->elem.pid = pid;
+        dlElem->next = dlHead->next;
+        dlElem->next = dlElem;
+    } else {
+        // Else case
+        e = om_PutInAvailSpaceList(catObjForFile, &pid, apage);
+        if (e < 0) ERRB1(e, &pid, PAGE_BUF);
+    }
+
+    // SetDirty to realize that information has changed
+    e = BfM_SetDirty((TrainID *)&pid, PAGE_BUF);
+    if (e < 0) ERR(e);
+
+    // Free the allocated things
+    e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
+    if (e < 0) ERR(e);
+    e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+    if (e < 0) ERR(e);
+
     return (eNOERROR);
 
 } /* EduOM_DestroyObject() */

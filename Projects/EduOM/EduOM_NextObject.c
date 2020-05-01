@@ -171,9 +171,10 @@ Four EduOM_NextObject(
             if (e < 0) ERR(e);
             MAKE_OBJECTID(*nextOID, pid.volNo, pid.pageNo, 0, apage->slot[0].unique);
         } else {
-            MAKE_OBJECTID(*nextOID, pid.volNo, pid.pageNo, (curOID->slotNo + 1), apage->slot[-nextOID->slotNo].unique);
+            i = curOID->slotNo + 1;  // new SlotNo
+            MAKE_OBJECTID(*nextOID, pid.volNo, pid.pageNo, i, apage->slot[-i].unique);
         }
-        offset = apage->slot[nextOID->slotNo].offset;
+        offset = apage->slot[-nextOID->slotNo].offset;
         obj = (Object *)&(apage->data[offset]);
         objHdr = &(obj->header);
         e = BfM_FreeTrain((TrainID *)&pid, PAGE_BUF);
