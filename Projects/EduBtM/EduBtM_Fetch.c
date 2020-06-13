@@ -205,6 +205,39 @@ Four edubtm_Fetch(
     if (startCompOp <= 0)
         ERR(eBADCOMPOP_BTM);
 
+    if (startCompOp == SM_LT && stopCompOp == SM_GT)
+    {
+        if (edubtm_KeyCompare(kdesc, startKval, stopKval) != GREAT)
+        {
+            cursor->flag = CURSOR_EOS;
+            return 0;
+        }
+    }
+    else if (startCompOp == SM_LE && stopCompOp == SM_GT)
+    {
+        if (edubtm_KeyCompare(kdesc, startKval, stopKval) != GREAT)
+        {
+            cursor->flag = CURSOR_EOS;
+            return 0;
+        }
+    }
+    else if (startCompOp == SM_LT && stopCompOp == SM_GE)
+    {
+        if (edubtm_KeyCompare(kdesc, startKval, stopKval) != GREAT)
+        {
+            cursor->flag = CURSOR_EOS;
+            return 0;
+        }
+    }
+    else if (startCompOp == SM_LE && stopCompOp == SM_GE)
+    {
+        if (edubtm_KeyCompare(kdesc, startKval, stopKval) == LESS)
+        {
+            cursor->flag = CURSOR_EOS;
+            return 0;
+        }
+    }
+
     e = BfM_GetTrain((TrainID *)root, (char **)&apage, PAGE_BUF);
     if (e < 0)
         ERR(e);

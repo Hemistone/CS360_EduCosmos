@@ -95,7 +95,7 @@ Four EduBtM_FetchNext(
     BtreeCursor *current, /* IN current B+ tree cursor */
     BtreeCursor *next)    /* OUT next B+ tree cursor */
 {
-    /* These local variables are used in the solution code. However, you don��t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+
     int i;
     Four e;               /* error number */
     Four cmp;             /* comparison result */
@@ -150,8 +150,8 @@ Four EduBtM_FetchNext(
     // } BtreeLeaf;
 
     // No useful usage in this API function. Everything runs in the internal function
-    // e = edubtm_FetchNext(kdesc, kval, compOp, current, next);
-    e = btm_FetchNext(kdesc, kval, compOp, current, next);
+    e = edubtm_FetchNext(kdesc, kval, compOp, current, next);
+    // e = btm_FetchNext(kdesc, kval, compOp, current, next);
     if (e < 0)
         ERR(e);
 
@@ -185,7 +185,6 @@ Four edubtm_FetchNext(
     BtreeCursor *current, /* IN current cursor */
     BtreeCursor *next)    /* OUT next cursor */
 {
-    /* These local variables are used in the solution code. However, you don��t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     Four e;               /* error number */
     Four cmp;             /* comparison result */
     Two alignedKlen;      /* aligned length of a key length */
@@ -203,6 +202,155 @@ Four edubtm_FetchNext(
         if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
+
+    // Using Func : edubtm_KeyCompare(), BfM_GetTrain(), BfM_FreeTrain()
+    // Do not concerned about overflow
+    // Do not check about uniqueness of key since EduBtM does not admit same key when inserting
+
+    // typedef struct
+    // {
+    //     One flag;           /* state of the cursor */
+    //     ObjectID oid;       /* object pointed by the cursor */
+    //     KeyValue key;       /* what key value? */
+    //     PageID leaf;        /* which leaf page? */
+    //     PageID overflow;    /* which overflow page? */
+    //     Two slotNo;         /* which slot? */
+    //     Two oidArrayElemNo; /* which element of the object array? */
+    // } BtreeCursor;
+
+    // typedef struct
+    // {                                   /* Leaf Page */
+    //     BtreeLeafHdr hdr;               /* header of btree leaf page */
+    //     char data[PAGESIZE - BL_FIXED]; /* data area */
+    //     Two slot[1];                    /* the first slot */
+    // } BtreeLeaf;
+
+    // typedef struct
+    // {
+    //     PageID pid;           /* page id of this page, should be located on the beginning */
+    //     Four flags;           /* flag to store page information */
+    //     Four reserved;        /* reserved space to store page information */
+    //     One type;             /* Internal, Leaf, or Overflow */
+    //     Two nSlots;           /* # of entries in this page */
+    //     Two free;             /* starting point of the free space */
+    //     ShortPageID prevPage; /* Previous page */
+    //     ShortPageID nextPage; /* Next page */
+    //     Two unused;           /* number of unused bytes which are not part of the contiguous freespace */
+    // } BtreeLeafHdr;
+
+    ShortPageID NextPage;
+    ShortPageID PrevPage;
+    Two entryOffset;
+
+    *next = *current; // Firstly move non-using parameters (overflow, etc)
+
+    leaf = current->leaf;
+    e = BfM_GetTrain((TrainID *)&leaf, (char **)&apage, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    if (compOp == SM_LT || compOp == SM_LE || compOp == SM_EOF)
+    { // IF compOp is indexing in increasing order
+        next->slotNo += 1;
+        if (next->slotNo >= apage->hdr.nSlots)
+        { // Gained to the end of entries
+            NextPage = apage->hdr.nextPage;
+            if (NextPage == NIL) // If the page is last page
+            {
+                next->flag = CURSOR_EOS;
+                e = BfM_FreeTrain((TrainID *)&leaf, PAGE_BUF);
+                if (e < 0)
+                    ERR(e);
+                return (eNOERROR);
+            }
+            e = BfM_FreeTrain((TrainID *)&leaf, PAGE_BUF);
+            if (e < 0)
+                ERR(e);
+
+            // Update apage as NextPage
+            next->leaf.pageNo = NextPage;
+            MAKE_PAGEID(leaf, leaf.volNo, NextPage);
+            e = BfM_GetTrain((TrainID *)&leaf, (char **)&apage, PAGE_BUF);
+            if (e < 0)
+                ERR(e);
+
+            // Set next Entry as the first element of page
+            next->slotNo = 0;
+        }
+    }
+    else if (compOp == SM_GT || compOp == SM_GE || compOp == SM_BOF)
+    { // IF compOp is indexing in decrease order
+        next->slotNo -= 1;
+        if (next->slotNo < 0)
+        { // Gained to the beginning of entries
+            PrevPage = apage->hdr.prevPage;
+            if (PrevPage == NIL) // If the page is first page
+            {
+                next->flag = CURSOR_EOS;
+                e = BfM_FreeTrain((TrainID *)&leaf, PAGE_BUF);
+                if (e < 0)
+                    ERR(e);
+                return (eNOERROR);
+            }
+            e = BfM_FreeTrain((TrainID *)&leaf, PAGE_BUF);
+            if (e < 0)
+                ERR(e);
+
+            // Update apage as PrevPage
+            next->leaf.pageNo = PrevPage;
+            MAKE_PAGEID(leaf, leaf.volNo, PrevPage);
+            e = BfM_GetTrain((TrainID *)&leaf, (char **)&apage, PAGE_BUF);
+            if (e < 0)
+                ERR(e);
+
+            // Set next Entry as the last element of page
+            next->slotNo = (apage->hdr.nSlots - 1);
+        }
+    }
+    else if (compOp == SM_EQ)
+    { // IF compOp is SM_EQ or SM_NE - SM_EQ should not call this FetchNext function.
+        next->flag = CURSOR_EOS;
+        e = BfM_FreeTrain((TrainID *)&leaf, PAGE_BUF);
+        if (e < 0)
+            ERR(e);
+        return (eNOERROR);
+    }
+    // --------- End of changing slotNo / pageNo -------------
+
+    // Several Settings for next cursor
+    entryOffset = apage->slot[-(next->slotNo)];
+    entry = (btm_LeafEntry *)&apage->data[entryOffset];
+    alignedKlen = ((entry->klen + 3) >> 2) << 2;
+    oidArray = (ObjectID *)&(entry->kval[alignedKlen]);
+
+    next->oid = oidArray[0];
+    next->key = *(KeyValue *)&entry->klen;
+
+    if (compOp == SM_BOF || compOp == SM_EOF)
+    {
+        // Greatest or Least must have the value
+        next->flag = CURSOR_ON;
+    }
+    else
+    {
+        // For conditions, if the compare fails, it ends.
+        cmp = edubtm_KeyCompare(kdesc, kval, &next->key);
+        // cmp = EQUAL 0 || GREAT 1 || LESS 2
+        if (compOp == SM_LT && cmp == GREAT)
+            next->flag = CURSOR_ON;
+        else if (compOp == SM_LE && (cmp == GREAT || cmp == EQUAL))
+            next->flag = CURSOR_ON;
+        else if (compOp == SM_GT && cmp == LESS)
+            next->flag = CURSOR_ON;
+        else if (compOp == SM_GE && (cmp == LESS || cmp == EQUAL))
+            next->flag = CURSOR_ON;
+        else
+            next->flag = CURSOR_EOS;
+    }
+
+    e = BfM_FreeTrain((TrainID *)&leaf, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
 
     return (eNOERROR);
 

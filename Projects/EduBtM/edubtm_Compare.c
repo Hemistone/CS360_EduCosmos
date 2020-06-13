@@ -121,32 +121,33 @@ Four edubtm_KeyCompare(
             len1 = *((Two *)&(key1->val[kpartSize]));
             len2 = *((Two *)&(key2->val[kpartSize]));
             kpartSize += 2;
-            for (j = 0; j < len1 && j < len2; j++, kpartSize++)
+            for (j = 0; j < len1 && j < len2; j++)
             {
                 left = &(key1->val[kpartSize]);
                 right = &(key2->val[kpartSize]);
                 if (*left > *right)
                     return (GREAT);
-                if (*left < *right)
+                else if (*left < *right)
                     return (LESS);
+                kpartSize++;
             }
             if (len1 > len2)
                 return (GREAT);
-            if (len1 < len2)
+            else if (len1 < len2)
                 return (LESS);
         }
-        else if (kdesc->kpart[i].type == SM_INT && kdesc->kpart[i].length == SM_INT_SIZE)
+        else if (kdesc->kpart[i].type == SM_INT)
         {
             i1 = *((Four *)&(key1->val[kpartSize]));
             i2 = *((Four *)&(key2->val[kpartSize]));
             kpartSize += SM_INT_SIZE;
             if (i1 > i2)
                 return (GREAT);
-            if (i1 < i2)
+            else if (i1 < i2)
                 return (LESS);
         }
         else
-            ERR(eNOTSUPPORTED_EDUBTM);
+            ERR(eNOTFOUND_BTM);
     }
 
     return (EQUAL);

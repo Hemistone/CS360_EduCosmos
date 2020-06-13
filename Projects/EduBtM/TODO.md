@@ -3,8 +3,8 @@
 - [x] EduBtM_DropIndex
 - [ ] EduBtM_InsertObject
 - [ ] EduBtM_DeleteObject
-- [ ] EduBtM_Fetch
-- [ ] EduBtM_FetchNext
+- [x] EduBtM_Fetch
+- [x] EduBtM_FetchNext
 
 ### Internal Functions
 - [x] edubtm_InitLeaf
@@ -21,7 +21,7 @@
 - [ ] edubtm_CompactLeafPage
 - [ ] edubtm_CompactInternalPage
 - [x] edubtm_Fetch
-- [ ] edubtm_FetchNext
+- [x] edubtm_FetchNext
 - [x] edubtm_FirstObject
 - [x] edubtm_LastObject
 - [x] edubtm_BinarySearchLeaf
