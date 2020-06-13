@@ -56,13 +56,10 @@
  *  Four edubtm_FirstObject(PageID*, KeyDesc*, KeyValue*, Four, BtreeCursor*)
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "BfM.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_FirstObject()
@@ -88,34 +85,33 @@
  *             The first object's object identifier is also returned via this.
  */
 Four edubtm_FirstObject(
-    PageID  		*root,		/* IN The root of Btree */
-    KeyDesc 		*kdesc,		/* IN Btree key descriptor */
-    KeyValue 		*stopKval,	/* IN key value of stop condition */
-    Four     		stopCompOp,	/* IN comparison operator of stop condition */
-    BtreeCursor 	*cursor)	/* OUT The first ObjectID in the Btree */
+    PageID *root,        /* IN The root of Btree */
+    KeyDesc *kdesc,      /* IN Btree key descriptor */
+    KeyValue *stopKval,  /* IN key value of stop condition */
+    Four stopCompOp,     /* IN comparison operator of stop condition */
+    BtreeCursor *cursor) /* OUT The first ObjectID in the Btree */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    int			i;
-    Four 		e;		/* error */
-    Four 		cmp;		/* result of comparison */
-    PageID 		curPid;		/* PageID of the current page */
-    PageID 		child;		/* PageID of the child page */
-    BtreePage 		*apage;		/* a page pointer */
-    Two                 lEntryOffset;   /* starting offset of a leaf entry */
-    btm_LeafEntry 	*lEntry;	/* a leaf entry */
-    Two                 alignedKlen;    /* aligned length of the key length */
-    
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    int i;
+    Four e;                /* error */
+    Four cmp;              /* result of comparison */
+    PageID curPid;         /* PageID of the current page */
+    PageID child;          /* PageID of the child page */
+    BtreePage *apage;      /* a page pointer */
+    Two lEntryOffset;      /* starting offset of a leaf entry */
+    btm_LeafEntry *lEntry; /* a leaf entry */
+    Two alignedKlen;       /* aligned length of the key length */
 
-    if (root == NULL) ERR(eBADPAGE_BTM);
+    if (root == NULL)
+        ERR(eBADPAGE_BTM);
 
     /* Error check whether using not supported functionality by EduBtM */
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
-    
 
-    return(eNOERROR);
-    
+    return (eNOERROR);
+
 } /* edubtm_FirstObject() */

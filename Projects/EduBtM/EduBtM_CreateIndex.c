@@ -56,13 +56,10 @@
  *  Four EduBtM_CreateIndex(ObjectID*, PageID*)
  */
 
-
 #include "EduBtM_common.h"
 #include "EduBtM_Internal.h"
 #include "OM_Internal.h"
 #include "BfM.h"
-
-
 
 /*@================================
  * EduBtM_CreateIndex()
@@ -85,18 +82,58 @@
  *  The parameter rootPid is filled with the new root page's PageID. 
  */
 Four EduBtM_CreateIndex(
-    ObjectID *catObjForFile,	/* IN catalog object of B+ tree file */
-    PageID *rootPid)		/* OUT root page of the newly created B+tree */
+    ObjectID *catObjForFile, /* IN catalog object of B+ tree file */
+    PageID *rootPid)         /* OUT root page of the newly created B+tree */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four e;			/* error number */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e; /* error number */
     Boolean isTmp;
-    SlottedPage *catPage;	/* buffer page containing the catalog object */
+    SlottedPage *catPage;            /* buffer page containing the catalog object */
     sm_CatOverlayForBtree *catEntry; /* pointer to Btree file catalog information */
-    PhysicalFileID pFid;	/* physical file ID */
+    PhysicalFileID pFid;             /* physical file ID */
 
+    // Using Function : edubtm_InitLeaf(), btm_AllocPage(), BfM_GetTrain(), BfM_FreeTrain()
 
+    // typedef struct
+    // {
+    //     SlottedPageHdr header;          /* header of the slotted page */
+    //     char data[PAGESIZE - SP_FIXED]; /* data area */
+    //     SlottedPageSlot slot[1];        /* slot arrays, indexes backwards */
+    // } SlottedPage;
 
-    return(eNOERROR);
-    
+    // typedef struct
+    // {
+    //     FileID fid;            /* B+-tree file's file identifier */
+    //     Two eff;               /* B+-tree file's extent fill factor */
+    //     ShortPageID firstPage; /* B+-tree file's first page No */ - ShortPageID = pageNo
+    // } sm_CatOverlayForBtree;
+
+    e = BfM_GetTrain((TrainID *)catObjForFile, (char **)&catPage, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    GET_PTR_TO_CATENTRY_FOR_BTREE(catObjForFile, catPage, catEntry);
+    MAKE_PHYSICALFILEID(pFid, catEntry->fid.volNo, catEntry->firstPage);
+
+    /* Allocate a new page to be used as a B+ tree index page */
+    e = btm_AllocPage(catObjForFile, (PageID *)&pFid, rootPid);
+    if (e < 0)
+        ERR(e);
+
+    // Four edubtm_InitLeaf(
+    //     PageID * leaf, /* IN the PageID to be initialized */
+    //     Boolean root,  /* IN Is it root ? */
+    //     Boolean isTmp) /* IN Is it temporary ? */
+
+    // e = edubtm_InitLeaf(rootPid, TRUE, isTmp);
+    e = btm_InitLeaf(rootPid, TRUE, isTmp);
+    if (e < 0)
+        ERRB1(e, catObjForFile, PAGE_BUF);
+
+    e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    return (eNOERROR);
+
 } /* EduBtM_CreateIndex() */

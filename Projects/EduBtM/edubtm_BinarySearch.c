@@ -63,11 +63,8 @@
  *  Boolean edubtm_BinarySearchLeaf(BtreeLeaf*, KeyDesc*, KeyValue*, Two*)
  */
 
-
 #include "EduBtM_common.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_BinarySearchInternal()
@@ -92,31 +89,27 @@
  *                     
  */
 Boolean edubtm_BinarySearchInternal(
-    BtreeInternal 	*ipage,		/* IN Page Pointer to an internal page */
-    KeyDesc       	*kdesc,		/* IN key descriptor */
-    KeyValue      	*kval,		/* IN key value */
-    Two          	*idx)		/* OUT index to be returned */
+    BtreeInternal *ipage, /* IN Page Pointer to an internal page */
+    KeyDesc *kdesc,       /* IN key descriptor */
+    KeyValue *kval,       /* IN key value */
+    Two *idx)             /* OUT index to be returned */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Two  		low;		/* low index */
-    Two  		mid;		/* mid index */
-    Two  		high;		/* high index */
-    Four 		cmp;		/* result of comparison */
-    btm_InternalEntry 	*entry;	/* an internal entry */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Two low;                  /* low index */
+    Two mid;                  /* mid index */
+    Two high;                 /* high index */
+    Four cmp;                 /* result of comparison */
+    btm_InternalEntry *entry; /* an internal entry */
 
-    
     /* Error check whether using not supported functionality by EduBtM */
     int i;
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-    
 } /* edubtm_BinarySearchInternal() */
-
-
 
 /*@================================
  * edubtm_BinarySearchLeaf()
@@ -140,26 +133,24 @@ Boolean edubtm_BinarySearchInternal(
  *                    less than the given key value
  */
 Boolean edubtm_BinarySearchLeaf(
-    BtreeLeaf 		*lpage,		/* IN Page Pointer to a leaf page */
-    KeyDesc   		*kdesc,		/* IN key descriptor */
-    KeyValue  		*kval,		/* IN key value */
-    Two       		*idx)		/* OUT index to be returned */
+    BtreeLeaf *lpage, /* IN Page Pointer to a leaf page */
+    KeyDesc *kdesc,   /* IN key descriptor */
+    KeyValue *kval,   /* IN key value */
+    Two *idx)         /* OUT index to be returned */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Two  		low;		/* low index */
-    Two  		mid;		/* mid index */
-    Two  		high;		/* high index */
-    Four 		cmp;		/* result of comparison */
-    btm_LeafEntry 	*entry;		/* a leaf entry */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Two low;              /* low index */
+    Two mid;              /* mid index */
+    Two high;             /* high index */
+    Four cmp;             /* result of comparison */
+    btm_LeafEntry *entry; /* a leaf entry */
 
     /* Error check whether using not supported functionality by EduBtM */
     int i;
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-    
 } /* edubtm_BinarySearchLeaf() */

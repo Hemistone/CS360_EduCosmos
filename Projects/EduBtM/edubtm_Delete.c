@@ -78,20 +78,16 @@
  *
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "Util.h"
 #include "BfM.h"
-#include "OM_Internal.h"	/* for "SlottedPage" including catalog object */
+#include "OM_Internal.h" /* for "SlottedPage" including catalog object */
 #include "EduBtM_Internal.h"
 
-
 /*@ Internal Function Prototypes */
-Four edubtm_DeleteLeaf(PhysicalFileID*, PageID*, BtreeLeaf*, KeyDesc*, KeyValue*, ObjectID*,
-		    Boolean*, Boolean*, InternalItem*, Pool*, DeallocListElem*);
-
-
+Four edubtm_DeleteLeaf(PhysicalFileID *, PageID *, BtreeLeaf *, KeyDesc *, KeyValue *, ObjectID *,
+                       Boolean *, Boolean *, InternalItem *, Pool *, DeallocListElem *);
 
 /*@================================
  * edubtm_Delete()
@@ -116,54 +112,48 @@ Four edubtm_DeleteLeaf(PhysicalFileID*, PageID*, BtreeLeaf*, KeyDesc*, KeyValue*
  *  item : The internal item to be inserted into the parent if 'h' is TRUE.
  */
 Four edubtm_Delete(
-    ObjectID                    *catObjForFile, /* IN catalog object of B+ tree file */
-    PageID                      *root,          /* IN root page */
-    KeyDesc                     *kdesc,         /* IN a key descriptor */
-    KeyValue                    *kval,          /* IN key value */
-    ObjectID                    *oid,           /* IN Object IDentifier which will be deleted */
-    Boolean                     *f,             /* OUT whether the root page is half full */
-    Boolean                     *h,             /* OUT TRUE if it is spiltted. */
-    InternalItem                *item,          /* OUT The internal item to be returned */
-    Pool                        *dlPool,        /* INOUT pool of dealloc list elements */
-    DeallocListElem             *dlHead)        /* INOUT head of the dealloc list */
+    ObjectID *catObjForFile, /* IN catalog object of B+ tree file */
+    PageID *root,            /* IN root page */
+    KeyDesc *kdesc,          /* IN a key descriptor */
+    KeyValue *kval,          /* IN key value */
+    ObjectID *oid,           /* IN Object IDentifier which will be deleted */
+    Boolean *f,              /* OUT whether the root page is half full */
+    Boolean *h,              /* OUT TRUE if it is spiltted. */
+    InternalItem *item,      /* OUT The internal item to be returned */
+    Pool *dlPool,            /* INOUT pool of dealloc list elements */
+    DeallocListElem *dlHead) /* INOUT head of the dealloc list */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                        e;              /* error number */
-    Boolean                     lf;             /* TRUE if a page is not half full */
-    Boolean                     lh;             /* TRUE if a page is splitted */
-    Two                         idx;            /* the index by the binary search */
-    PageID                      child;          /* a child page when the root is an internal page */
-    KeyValue                    tKey;           /* a temporary key */
-    BtreePage                   *rpage;         /* for a root page */
-    InternalItem                litem;          /* local internal item */
-    btm_InternalEntry           *iEntry;        /* an internal entry */
-    SlottedPage                 *catPage;       /* buffer page containing the catalog object */
-    sm_CatOverlayForBtree       *catEntry;      /* pointer to Btree file catalog information */
-    PhysicalFileID              pFid;           /* B+-tree file's FileID */
-  
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                          /* error number */
+    Boolean lf;                      /* TRUE if a page is not half full */
+    Boolean lh;                      /* TRUE if a page is splitted */
+    Two idx;                         /* the index by the binary search */
+    PageID child;                    /* a child page when the root is an internal page */
+    KeyValue tKey;                   /* a temporary key */
+    BtreePage *rpage;                /* for a root page */
+    InternalItem litem;              /* local internal item */
+    btm_InternalEntry *iEntry;       /* an internal entry */
+    SlottedPage *catPage;            /* buffer page containing the catalog object */
+    sm_CatOverlayForBtree *catEntry; /* pointer to Btree file catalog information */
+    PhysicalFileID pFid;             /* B+-tree file's FileID */
 
     /* Error check whether using not supported functionality by EduBtM */
-	int i;
-    for(i=0; i<kdesc->nparts; i++)
+    int i;
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-        
     *h = *f = FALSE;
-    
-    
+
     /* Delete following 2 lines before implement this function */
     printf("Implementation of delete operation is optional (not compulsory),\n");
     printf("and delete operation has not been implemented yet.\n");
 
+    return (eNOERROR);
 
-    return(eNOERROR);
-    
-}   /* edubtm_Delete() */
-
-
+} /* edubtm_Delete() */
 
 /*@================================
  * edubtm_DeleteLeaf()
@@ -187,52 +177,49 @@ Four edubtm_Delete(
  *  f    : TRUE if the given root page is not half full.
  *  h    : TRUE if the given page is splitted.
  *  item : The internal item to be inserted into the parent if 'h' is TRUE.
- */ 
+ */
 Four edubtm_DeleteLeaf(
-    PhysicalFileID              *pFid,          /* IN FileID of the Btree file */
-    PageID                      *pid,           /* IN PageID of the leaf page */
-    BtreeLeaf                   *apage,         /* INOUT buffer for the Leaf Page */
-    KeyDesc                     *kdesc,         /* IN a key descriptor */
-    KeyValue                    *kval,          /* IN key value */
-    ObjectID                    *oid,           /* IN ObjectID which will be deleted */
-    Boolean                     *f,             /* OUT whether the root page is half full */
-    Boolean                     *h,             /* OUT TRUE if it is spiltted. */
-    InternalItem                *item,          /* OUT The internal item to be returned */
-    Pool                        *dlPool,        /* INOUT pool of dealloc list elements */
-    DeallocListElem             *dlHead)        /* INOUT head of a dealloc list */
+    PhysicalFileID *pFid,    /* IN FileID of the Btree file */
+    PageID *pid,             /* IN PageID of the leaf page */
+    BtreeLeaf *apage,        /* INOUT buffer for the Leaf Page */
+    KeyDesc *kdesc,          /* IN a key descriptor */
+    KeyValue *kval,          /* IN key value */
+    ObjectID *oid,           /* IN ObjectID which will be deleted */
+    Boolean *f,              /* OUT whether the root page is half full */
+    Boolean *h,              /* OUT TRUE if it is spiltted. */
+    InternalItem *item,      /* OUT The internal item to be returned */
+    Pool *dlPool,            /* INOUT pool of dealloc list elements */
+    DeallocListElem *dlHead) /* INOUT head of a dealloc list */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                        e;              /* error number */
-    Two                         i;              /* index */
-    Two                         of;             /* # of ObjectIDs of an overflow page when less than 1/4 */
-    Two                         idx;            /* the index by the binary search */
-    ObjectID                    tOid;           /* a Object IDentifier */
-    BtreeOverflow               *opage;         /* for a overflow page */
-    Boolean                     found;          /* Search Result */
-    Two                         lEntryOffset;   /* starting offset of a leaf entry */
-    btm_LeafEntry               *lEntry;        /* an entry in leaf page */
-    ObjectID                    *oidArray;      /* start position of the ObjectID array */
-    Two                         oidArrayElemNo; /* element number in the ObjectIDs array */
-    Two                         entryLen;       /* length of the old leaf entry */
-    Two                         newLen;         /* length of the new leaf entry */
-    Two                         alignedKlen;    /* aligned length of the key length */
-    PageID                      ovPid;          /* overflow page's PageID */
-    DeallocListElem             *dlElem;        /* an element of the dealloc list */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                  /* error number */
+    Two i;                   /* index */
+    Two of;                  /* # of ObjectIDs of an overflow page when less than 1/4 */
+    Two idx;                 /* the index by the binary search */
+    ObjectID tOid;           /* a Object IDentifier */
+    BtreeOverflow *opage;    /* for a overflow page */
+    Boolean found;           /* Search Result */
+    Two lEntryOffset;        /* starting offset of a leaf entry */
+    btm_LeafEntry *lEntry;   /* an entry in leaf page */
+    ObjectID *oidArray;      /* start position of the ObjectID array */
+    Two oidArrayElemNo;      /* element number in the ObjectIDs array */
+    Two entryLen;            /* length of the old leaf entry */
+    Two newLen;              /* length of the new leaf entry */
+    Two alignedKlen;         /* aligned length of the key length */
+    PageID ovPid;            /* overflow page's PageID */
+    DeallocListElem *dlElem; /* an element of the dealloc list */
 
     /* Error check whether using not supported functionality by EduBtM */
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
-
 
     /* Delete following 2 lines before implement this function */
     printf("Implementation of delete operation is optional (not compulsory),\n");
     printf("and delete operation has not been implemented yet.\n");
 
-	      
-    return(eNOERROR);
-    
+    return (eNOERROR);
+
 } /* edubtm_DeleteLeaf() */

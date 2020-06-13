@@ -49,7 +49,6 @@
 #ifndef _EDUBTM_TESTMODULE_H_
 #define _EDUBTM_TESTMODULE_H_
 
-
 #include "BfM.h"
 #include "Util_pool.h"
 
@@ -60,7 +59,7 @@
 #define FALSE 0
 #define MAX_DEVICES_IN_VOLUME 20
 #define ARRAYINDEX 0
-#define NUMOFINSERTEDOBJECT	200
+#define NUMOFINSERTEDOBJECT 200
 #define NUMOFPLAYER 1000
 #define MAXPLAYERNAME 60
 
@@ -68,17 +67,17 @@
 /* For API function that you want to test, define it TRUE.                 */
 /* Otherwise, define it FALSE so that the solution API function is called. */
 
-#define _EDUBTM_CREATEINDEX_	TRUE
-#define _EDUBTM_DROPINDEX_		TRUE
-#define _EDUBTM_INSERTOBJECT_	TRUE
-#define _EDUBTM_DELETEOBJECT_	TRUE
-#define _EDUBTM_FETCH_			TRUE
-#define _EDUBTM_FETCHNEXT_		TRUE
+#define _EDUBTM_CREATEINDEX_ TRUE
+#define _EDUBTM_DROPINDEX_ TRUE
+#define _EDUBTM_INSERTOBJECT_ FALSE
+#define _EDUBTM_DELETEOBJECT_ FALSE
+#define _EDUBTM_FETCH_ FALSE
+#define _EDUBTM_FETCHNEXT_ FALSE
 
 /***************************************************************************/
 
 #if !(_EDUBTM_CREATEINDEX_)
-#define EduBtM_CreateIndex(args...) BtM_CreateIndex(args) 
+#define EduBtM_CreateIndex(args...) BtM_CreateIndex(args)
 #endif
 
 #if !(_EDUBTM_DROPINDEX_)
@@ -86,11 +85,11 @@
 #endif
 
 #if !(_EDUBTM_INSERTOBJECT_)
-#define EduBtM_InsertObject(args...) BtM_InsertObject(args) 
+#define EduBtM_InsertObject(args...) BtM_InsertObject(args)
 #endif
 
 #if !(_EDUBTM_DELETEOBJECT_)
-#define EduBtM_DeleteObject(args...) BtM_DeleteObject(args) 
+#define EduBtM_DeleteObject(args...) BtM_DeleteObject(args)
 #endif
 
 #if !(_EDUBTM_FETCH_)
@@ -101,48 +100,53 @@
 #define EduBtM_FetchNext(args...) BtM_FetchNext(args)
 #endif
 
-
 DeallocListElem dlHead;
 extern Pool dlPool;
-
 
 /*
  * Type Definition about transaction
  */
-typedef struct {        /* 8 byte unsigned integer */
+typedef struct
+{ /* 8 byte unsigned integer */
     UFour high;
     UFour low;
 } XactID;
 
-typedef enum { X_BROWSE_BROWSE, X_CS_BROWSE, X_CS_CS, X_RR_BROWSE, X_RR_CS, X_RR_RR } ConcurrencyLevel; /* isolation degree */
+typedef enum
+{
+    X_BROWSE_BROWSE,
+    X_CS_BROWSE,
+    X_CS_CS,
+    X_RR_BROWSE,
+    X_RR_CS,
+    X_RR_RR
+} ConcurrencyLevel; /* isolation degree */
 
 /*
  *  Definition for Physical Index ID
  */
-typedef PageID  PhysicalIndexID;  /* use the root Page's PageID as the physical IndexID */
+typedef PageID PhysicalIndexID; /* use the root Page's PageID as the physical IndexID */
 
 /*
 ** Definition for Index ID
 */
 typedef LogicalID IndexID;
 
-
 /*@
  * Function Prototypes
  */
 /* Interface Function Prototypes */
 Four LRDS_Init(void);
-Four LRDS_AllocHandle(Four*);
-Four LRDS_FormatDataVolume(Four, char**, char*, Four, Two, Four*, Four);
-Four LRDS_Mount(Four, char**, Four*);
-Four LRDS_BeginTransaction(XactID*, ConcurrencyLevel); /* COOKIE09NOV1999 */
-Four LRDS_CommitTransaction(XactID*);
-Four LRDS_AbortTransaction(XactID*);
+Four LRDS_AllocHandle(Four *);
+Four LRDS_FormatDataVolume(Four, char **, char *, Four, Two, Four *, Four);
+Four LRDS_Mount(Four, char **, Four *);
+Four LRDS_BeginTransaction(XactID *, ConcurrencyLevel); /* COOKIE09NOV1999 */
+Four LRDS_CommitTransaction(XactID *);
+Four LRDS_AbortTransaction(XactID *);
 Four LRDS_Dismount(Four);
 Four LRDS_FreeHandle(Four);
 Four LRDS_Final(void);
 
 Four EduBtM_Test(Four, Four);
-
 
 #endif /* _EDUBTM_TESTMODULE_H_ */

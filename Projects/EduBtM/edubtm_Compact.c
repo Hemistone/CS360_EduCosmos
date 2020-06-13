@@ -58,12 +58,9 @@
  *  void edubtm_CompactLeafPage(BtreeLeaf*, Two)
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_CompactInternalPage()
@@ -87,21 +84,17 @@
  *  The leaf page is reorganized to compact the space.
  */
 void edubtm_CompactInternalPage(
-    BtreeInternal       *apage,                 /* INOUT internal page to compact */
-    Two                 slotNo)                 /* IN slot to go to the boundary of free space */
+    BtreeInternal *apage, /* INOUT internal page to compact */
+    Two slotNo)           /* IN slot to go to the boundary of free space */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    BtreeInternal       tpage;                  /* temporay page used to save the given page */
-    Two                 apageDataOffset;        /* where the next object is to be moved */
-    Two                 len;                    /* length of the leaf entry */
-    Two                 i;                      /* index variable */
-    btm_InternalEntry   *entry;                 /* an entry in leaf page */
-
-    
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    BtreeInternal tpage;      /* temporay page used to save the given page */
+    Two apageDataOffset;      /* where the next object is to be moved */
+    Two len;                  /* length of the leaf entry */
+    Two i;                    /* index variable */
+    btm_InternalEntry *entry; /* an entry in leaf page */
 
 } /* edubtm_CompactInternalPage() */
-
-
 
 /*@================================
  * edubtm_CompactLeafPage()
@@ -125,17 +118,15 @@ void edubtm_CompactInternalPage(
  *  The leaf page is reorganized to comact the space.
  */
 void edubtm_CompactLeafPage(
-    BtreeLeaf 		*apage,			/* INOUT leaf page to compact */
-    Two       		slotNo)			/* IN slot to go to the boundary of free space */
-{	
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    BtreeLeaf 		tpage;			/* temporay page used to save the given page */
-    Two                 apageDataOffset;        /* where the next object is to be moved */
-    Two                 len;                    /* length of the leaf entry */
-    Two                 i;                      /* index variable */
-    btm_LeafEntry 	*entry;			/* an entry in leaf page */
-    Two 		alignedKlen;		/* aligned length of the key length */
-
-    
+    BtreeLeaf *apage, /* INOUT leaf page to compact */
+    Two slotNo)       /* IN slot to go to the boundary of free space */
+{
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    BtreeLeaf tpage;      /* temporay page used to save the given page */
+    Two apageDataOffset;  /* where the next object is to be moved */
+    Two len;              /* length of the leaf entry */
+    Two i;                /* index variable */
+    btm_LeafEntry *entry; /* an entry in leaf page */
+    Two alignedKlen;      /* aligned length of the key length */
 
 } /* edubtm_CompactLeafPage() */

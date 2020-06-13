@@ -56,13 +56,10 @@
  *  Four edubtm_LastObject(PageID*, KeyDesc*, KeyValue*, Four, BtreeCursor*) 
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "BfM.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_LastObject()
@@ -87,39 +84,38 @@
  *  cursor : the last ObjectID and its position in the Btree
  */
 Four edubtm_LastObject(
-    PageID   		*root,		/* IN the root of Btree */
-    KeyDesc  		*kdesc,		/* IN key descriptor */
-    KeyValue 		*stopKval,	/* IN key value of stop condition */
-    Four     		stopCompOp,	/* IN comparison operator of stop condition */
-    BtreeCursor 	*cursor)	/* OUT the last BtreeCursor to be returned */
+    PageID *root,        /* IN the root of Btree */
+    KeyDesc *kdesc,      /* IN key descriptor */
+    KeyValue *stopKval,  /* IN key value of stop condition */
+    Four stopCompOp,     /* IN comparison operator of stop condition */
+    BtreeCursor *cursor) /* OUT the last BtreeCursor to be returned */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    int			i;
-    Four 		e;		/* error number */
-    Four 		cmp;		/* result of comparison */
-    BtreePage 		*apage;		/* pointer to the buffer holding current page */
-    BtreeOverflow 	*opage;		/* pointer to the buffer holding overflow page */
-    PageID 		curPid;		/* PageID of the current page */
-    PageID 		child;		/* PageID of the child page */
-    PageID 		ovPid;		/* PageID of the current overflow page */
-    PageID 		nextOvPid;	/* PageID of the next overflow page */
-    Two 		lEntryOffset;	/* starting offset of a leaf entry */
-    Two 		iEntryOffset;	/* starting offset of an internal entry */
-    btm_LeafEntry 	*lEntry;	/* a leaf entry */
-    btm_InternalEntry 	*iEntry;	/* an internal entry */
-    Four 		alignedKlen;	/* aligned length of the key length */
-        
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    int i;
+    Four e;                    /* error number */
+    Four cmp;                  /* result of comparison */
+    BtreePage *apage;          /* pointer to the buffer holding current page */
+    BtreeOverflow *opage;      /* pointer to the buffer holding overflow page */
+    PageID curPid;             /* PageID of the current page */
+    PageID child;              /* PageID of the child page */
+    PageID ovPid;              /* PageID of the current overflow page */
+    PageID nextOvPid;          /* PageID of the next overflow page */
+    Two lEntryOffset;          /* starting offset of a leaf entry */
+    Two iEntryOffset;          /* starting offset of an internal entry */
+    btm_LeafEntry *lEntry;     /* a leaf entry */
+    btm_InternalEntry *iEntry; /* an internal entry */
+    Four alignedKlen;          /* aligned length of the key length */
 
-    if (root == NULL) ERR(eBADPAGE_BTM);
+    if (root == NULL)
+        ERR(eBADPAGE_BTM);
 
     /* Error check whether using not supported functionality by EduBtM */
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
-    
 
-    return(eNOERROR);
-    
+    return (eNOERROR);
+
 } /* edubtm_LastObject() */

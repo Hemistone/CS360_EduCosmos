@@ -57,17 +57,13 @@
  *  Four EduBtM_FetchNext(PageID*, KeyDesc*, KeyValue*, Four, BtreeCursor*, BtreeCursor*)
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "BfM.h"
 #include "EduBtM_Internal.h"
 
-
 /*@ Internal Function Prototypes */
-Four edubtm_FetchNext(KeyDesc*, KeyValue*, Four, BtreeCursor*, BtreeCursor*);
-
-
+Four edubtm_FetchNext(KeyDesc *, KeyValue *, Four, BtreeCursor *, BtreeCursor *);
 
 /*@================================
  * EduBtM_FetchNext()
@@ -92,52 +88,76 @@ Four edubtm_FetchNext(KeyDesc*, KeyValue*, Four, BtreeCursor*, BtreeCursor*);
  *    some errors caused by function calls
  */
 Four EduBtM_FetchNext(
-    PageID                      *root,          /* IN root page's PageID */
-    KeyDesc                     *kdesc,         /* IN key descriptor */
-    KeyValue                    *kval,          /* IN key value of stop condition */
-    Four                        compOp,         /* IN comparison operator of stop condition */
-    BtreeCursor                 *current,       /* IN current B+ tree cursor */
-    BtreeCursor                 *next)          /* OUT next B+ tree cursor */
+    PageID *root,         /* IN root page's PageID */
+    KeyDesc *kdesc,       /* IN key descriptor */
+    KeyValue *kval,       /* IN key value of stop condition */
+    Four compOp,          /* IN comparison operator of stop condition */
+    BtreeCursor *current, /* IN current B+ tree cursor */
+    BtreeCursor *next)    /* OUT next B+ tree cursor */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    int							i;
-    Four                        e;              /* error number */
-    Four                        cmp;            /* comparison result */
-    Two                         slotNo;         /* slot no. of a leaf page */
-    Two                         oidArrayElemNo; /* element no. of the array of ObjectIDs */
-    Two                         alignedKlen;    /* aligned length of key length */
-    PageID                      overflow;       /* temporary PageID of an overflow page */
-    Boolean                     found;          /* search result */
-    ObjectID                    *oidArray;      /* array of ObjectIDs */
-    BtreeLeaf                   *apage;         /* pointer to a buffer holding a leaf page */
-    BtreeOverflow               *opage;         /* pointer to a buffer holding an overflow page */
-    btm_LeafEntry               *entry;         /* pointer to a leaf entry */
-    BtreeCursor                 tCursor;        /* a temporary Btree cursor */
-  
-    
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    int i;
+    Four e;               /* error number */
+    Four cmp;             /* comparison result */
+    Two slotNo;           /* slot no. of a leaf page */
+    Two oidArrayElemNo;   /* element no. of the array of ObjectIDs */
+    Two alignedKlen;      /* aligned length of key length */
+    PageID overflow;      /* temporary PageID of an overflow page */
+    Boolean found;        /* search result */
+    ObjectID *oidArray;   /* array of ObjectIDs */
+    BtreeLeaf *apage;     /* pointer to a buffer holding a leaf page */
+    BtreeOverflow *opage; /* pointer to a buffer holding an overflow page */
+    btm_LeafEntry *entry; /* pointer to a leaf entry */
+    BtreeCursor tCursor;  /* a temporary Btree cursor */
+
     /*@ check parameter */
     if (root == NULL || kdesc == NULL || kval == NULL || current == NULL || next == NULL)
-	ERR(eBADPARAMETER_BTM);
-    
+        ERR(eBADPARAMETER_BTM);
+
     /* Is the current cursor valid? */
     if (current->flag != CURSOR_ON && current->flag != CURSOR_EOS)
-		ERR(eBADCURSOR);
-    
-    if (current->flag == CURSOR_EOS) return(eNOERROR);
-    
+        ERR(eBADCURSOR);
+
+    if (current->flag == CURSOR_EOS)
+        return (eNOERROR);
+
     /* Error check whether using not supported functionality by EduBtM */
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-    
-    return(eNOERROR);
-    
+    // Using Function : edubtm_FetchNext()
+    // edubtm_KeyCompare(), BfM_GetTrain(),   BfM_FreeTrain() - Need not use...
+
+    // typedef struct
+    // {
+    //     One flag;           /* state of the cursor */
+    //     ObjectID oid;       /* object pointed by the cursor */
+    //     KeyValue key;       /* what key value? */
+    //     PageID leaf;        /* which leaf page? */
+    //     PageID overflow;    /* which overflow page? */
+    //     Two slotNo;         /* which slot? */
+    //     Two oidArrayElemNo; /* which element of the object array? */
+    // } BtreeCursor;
+
+    // typedef struct
+    // {                                   /* Leaf Page */
+    //     BtreeLeafHdr hdr;               /* header of btree leaf page */
+    //     char data[PAGESIZE - BL_FIXED]; /* data area */
+    //     Two slot[1];                    /* the first slot */
+    // } BtreeLeaf;
+
+    // No useful usage in this API function. Everything runs in the internal function
+    // e = edubtm_FetchNext(kdesc, kval, compOp, current, next);
+    e = btm_FetchNext(kdesc, kval, compOp, current, next);
+    if (e < 0)
+        ERR(e);
+
+    return (eNOERROR);
+
 } /* EduBtM_FetchNext() */
-
-
 
 /*@================================
  * edubtm_FetchNext()
@@ -159,33 +179,31 @@ Four EduBtM_FetchNext(
  *    some errors caused by function calls
  */
 Four edubtm_FetchNext(
-    KeyDesc  		*kdesc,		/* IN key descriptor */
-    KeyValue 		*kval,		/* IN key value of stop condition */
-    Four     		compOp,		/* IN comparison operator of stop condition */
-    BtreeCursor 	*current,	/* IN current cursor */
-    BtreeCursor 	*next)		/* OUT next cursor */
+    KeyDesc *kdesc,       /* IN key descriptor */
+    KeyValue *kval,       /* IN key value of stop condition */
+    Four compOp,          /* IN comparison operator of stop condition */
+    BtreeCursor *current, /* IN current cursor */
+    BtreeCursor *next)    /* OUT next cursor */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four 		e;		/* error number */
-    Four 		cmp;		/* comparison result */
-    Two 		alignedKlen;	/* aligned length of a key length */
-    PageID 		leaf;		/* temporary PageID of a leaf page */
-    PageID 		overflow;	/* temporary PageID of an overflow page */
-    ObjectID 		*oidArray;	/* array of ObjectIDs */
-    BtreeLeaf 		*apage;		/* pointer to a buffer holding a leaf page */
-    BtreeOverflow 	*opage;		/* pointer to a buffer holding an overflow page */
-    btm_LeafEntry 	*entry;		/* pointer to a leaf entry */    
-    
-    
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;               /* error number */
+    Four cmp;             /* comparison result */
+    Two alignedKlen;      /* aligned length of a key length */
+    PageID leaf;          /* temporary PageID of a leaf page */
+    PageID overflow;      /* temporary PageID of an overflow page */
+    ObjectID *oidArray;   /* array of ObjectIDs */
+    BtreeLeaf *apage;     /* pointer to a buffer holding a leaf page */
+    BtreeOverflow *opage; /* pointer to a buffer holding an overflow page */
+    btm_LeafEntry *entry; /* pointer to a leaf entry */
+
     /* Error check whether using not supported functionality by EduBtM */
     int i;
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-    
-    return(eNOERROR);
-    
+    return (eNOERROR);
+
 } /* edubtm_FetchNext() */

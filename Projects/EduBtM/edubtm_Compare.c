@@ -58,12 +58,9 @@
  *  Four edubtm_ObjectIdComp(ObjectID*, ObjectID*)
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_KeyCompare()
@@ -89,35 +86,33 @@
  *  User should check the KeyDesc is valid.
  */
 Four edubtm_KeyCompare(
-    KeyDesc                     *kdesc,		/* IN key descriptor for key1 and key2 */
-    KeyValue                    *key1,		/* IN the first key value */
-    KeyValue                    *key2)		/* IN the second key value */
+    KeyDesc *kdesc, /* IN key descriptor for key1 and key2 */
+    KeyValue *key1, /* IN the first key value */
+    KeyValue *key2) /* IN the second key value */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    register unsigned char      *left;          /* left key value */
-    register unsigned char      *right;         /* right key value */
-    Two                         i;              /* index for # of key parts */
-    Two                         j;              /* temporary variable */
-    Two                         kpartSize;      /* size of the current kpart */
-    Two                         len1, len2;	/* string length */
-    Two_Invariable              s1, s2;         /* 2-byte short values */
-    Four_Invariable             i1, i2;         /* 4-byte int values */
-    Four_Invariable             l1, l2;         /* 4-byte long values */
-    Eight_Invariable            ll1, ll2;       /* 8-byte long long values */
-    float                       f1, f2;         /* float values */
-    double                      d1, d2;		/* double values */
-    PageID                      pid1, pid2;	/* PageID values */
-    OID                         oid1, oid2;     /* OID values */
-    
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    register unsigned char *left;  /* left key value */
+    register unsigned char *right; /* right key value */
+    Two i;                         /* index for # of key parts */
+    Two j;                         /* temporary variable */
+    Two kpartSize;                 /* size of the current kpart */
+    Two len1, len2;                /* string length */
+    Two_Invariable s1, s2;         /* 2-byte short values */
+    Four_Invariable i1, i2;        /* 4-byte int values */
+    Four_Invariable l1, l2;        /* 4-byte long values */
+    Eight_Invariable ll1, ll2;     /* 8-byte long long values */
+    float f1, f2;                  /* float values */
+    double d1, d2;                 /* double values */
+    PageID pid1, pid2;             /* PageID values */
+    OID oid1, oid2;                /* OID values */
 
     /* Error check whether using not supported functionality by EduBtM */
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-        
-    return(EQUAL);
-    
-}   /* edubtm_KeyCompare() */
+    return (EQUAL);
+
+} /* edubtm_KeyCompare() */

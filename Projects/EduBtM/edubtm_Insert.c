@@ -67,14 +67,11 @@
  *                          Two, Boolean*, InternalItem*)
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "BfM.h"
-#include "OM_Internal.h"	/* for SlottedPage containing catalog object */
+#include "OM_Internal.h" /* for SlottedPage containing catalog object */
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_Insert()
@@ -106,48 +103,44 @@
  *    some errors caused by function calls
  */
 Four edubtm_Insert(
-    ObjectID                    *catObjForFile,         /* IN catalog object of B+-tree file */
-    PageID                      *root,                  /* IN the root of a Btree */
-    KeyDesc                     *kdesc,                 /* IN Btree key descriptor */
-    KeyValue                    *kval,                  /* IN key value */
-    ObjectID                    *oid,                   /* IN ObjectID which will be inserted */
-    Boolean                     *f,                     /* OUT whether it is merged by creating a new overflow page */
-    Boolean                     *h,                     /* OUT whether it is splitted */
-    InternalItem                *item,                  /* OUT Internal Item which will be inserted */
-                                                        /*     into its parent when 'h' is TRUE */
-    Pool                        *dlPool,                /* INOUT pool of dealloc list */
-    DeallocListElem             *dlHead)                /* INOUT head of the dealloc list */
+    ObjectID *catObjForFile, /* IN catalog object of B+-tree file */
+    PageID *root,            /* IN the root of a Btree */
+    KeyDesc *kdesc,          /* IN Btree key descriptor */
+    KeyValue *kval,          /* IN key value */
+    ObjectID *oid,           /* IN ObjectID which will be inserted */
+    Boolean *f,              /* OUT whether it is merged by creating a new overflow page */
+    Boolean *h,              /* OUT whether it is splitted */
+    InternalItem *item,      /* OUT Internal Item which will be inserted */
+                             /*     into its parent when 'h' is TRUE */
+    Pool *dlPool,            /* INOUT pool of dealloc list */
+    DeallocListElem *dlHead) /* INOUT head of the dealloc list */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                        e;                      /* error number */
-    Boolean                     lh;                     /* local 'h' */
-    Boolean                     lf;                     /* local 'f' */
-    Two                         idx;                    /* index for the given key value */
-    PageID                      newPid;                 /* a new PageID */
-    KeyValue                    tKey;                   /* a temporary key */
-    InternalItem                litem;                  /* a local internal item */
-    BtreePage                   *apage;                 /* a pointer to the root page */
-    btm_InternalEntry           *iEntry;                /* an internal entry */
-    Two                         iEntryOffset;           /* starting offset of an internal entry */
-    SlottedPage                 *catPage;               /* buffer page containing the catalog object */
-    sm_CatOverlayForBtree       *catEntry;              /* pointer to Btree file catalog information */
-    PhysicalFileID              pFid;                   /* B+-tree file's FileID */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                          /* error number */
+    Boolean lh;                      /* local 'h' */
+    Boolean lf;                      /* local 'f' */
+    Two idx;                         /* index for the given key value */
+    PageID newPid;                   /* a new PageID */
+    KeyValue tKey;                   /* a temporary key */
+    InternalItem litem;              /* a local internal item */
+    BtreePage *apage;                /* a pointer to the root page */
+    btm_InternalEntry *iEntry;       /* an internal entry */
+    Two iEntryOffset;                /* starting offset of an internal entry */
+    SlottedPage *catPage;            /* buffer page containing the catalog object */
+    sm_CatOverlayForBtree *catEntry; /* pointer to Btree file catalog information */
+    PhysicalFileID pFid;             /* B+-tree file's FileID */
 
     /* Error check whether using not supported functionality by EduBtM */
     int i;
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-    
-    return(eNOERROR);
-    
-}   /* edubtm_Insert() */
+    return (eNOERROR);
 
-
+} /* edubtm_Insert() */
 
 /*@================================
  * edubtm_InsertLeaf()
@@ -175,51 +168,45 @@ Four edubtm_Insert(
  *  3) item : item to be inserted into the parent
  */
 Four edubtm_InsertLeaf(
-    ObjectID                    *catObjForFile, /* IN catalog object of B+-tree file */
-    PageID                      *pid,           /* IN PageID of Leag Page */
-    BtreeLeaf                   *page,          /* INOUT pointer to buffer page of Leaf page */
-    KeyDesc                     *kdesc,         /* IN Btree key descriptor */
-    KeyValue                    *kval,          /* IN key value */
-    ObjectID                    *oid,           /* IN ObjectID which will be inserted */
-    Boolean                     *f,             /* OUT whether it is merged by creating */
-                                                /*     a new overflow page */
-    Boolean                     *h,             /* OUT whether it is splitted */
-    InternalItem                *item)          /* OUT Internal Item which will be inserted */
-                                                /*     into its parent when 'h' is TRUE */
+    ObjectID *catObjForFile, /* IN catalog object of B+-tree file */
+    PageID *pid,             /* IN PageID of Leag Page */
+    BtreeLeaf *page,         /* INOUT pointer to buffer page of Leaf page */
+    KeyDesc *kdesc,          /* IN Btree key descriptor */
+    KeyValue *kval,          /* IN key value */
+    ObjectID *oid,           /* IN ObjectID which will be inserted */
+    Boolean *f,              /* OUT whether it is merged by creating */
+                             /*     a new overflow page */
+    Boolean *h,              /* OUT whether it is splitted */
+    InternalItem *item)      /* OUT Internal Item which will be inserted */
+                             /*     into its parent when 'h' is TRUE */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                        e;              /* error number */
-    Two                         i;
-    Two                         idx;            /* index for the given key value */
-    LeafItem                    leaf;           /* a Leaf Item */
-    Boolean                     found;          /* search result */
-    btm_LeafEntry               *entry;         /* an entry in a leaf page */
-    Two                         entryOffset;    /* start position of an entry */
-    Two                         alignedKlen;    /* aligned length of the key length */
-    PageID                      ovPid;          /* PageID of an overflow page */
-    Two                         entryLen;       /* length of an entry */
-    ObjectID                    *oidArray;      /* an array of ObjectIDs */
-    Two                         oidArrayElemNo; /* an index for the ObjectID array */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e; /* error number */
+    Two i;
+    Two idx;              /* index for the given key value */
+    LeafItem leaf;        /* a Leaf Item */
+    Boolean found;        /* search result */
+    btm_LeafEntry *entry; /* an entry in a leaf page */
+    Two entryOffset;      /* start position of an entry */
+    Two alignedKlen;      /* aligned length of the key length */
+    PageID ovPid;         /* PageID of an overflow page */
+    Two entryLen;         /* length of an entry */
+    ObjectID *oidArray;   /* an array of ObjectIDs */
+    Two oidArrayElemNo;   /* an index for the ObjectID array */
 
     /* Error check whether using not supported functionality by EduBtM */
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-    
     /*@ Initially the flags are FALSE */
     *h = *f = FALSE;
-    
 
+    return (eNOERROR);
 
-    return(eNOERROR);
-    
 } /* edubtm_InsertLeaf() */
-
-
 
 /*@================================
  * edubtm_InsertInternal()
@@ -245,28 +232,23 @@ Four edubtm_InsertLeaf(
  *          if spliting occurs.
  */
 Four edubtm_InsertInternal(
-    ObjectID            *catObjForFile, /* IN catalog object of B+-tree file */
-    BtreeInternal       *page,          /* INOUT Page Pointer */
-    InternalItem        *item,          /* IN Iternal item which is inserted */
-    Two                 high,           /* IN index in the given page */
-    Boolean             *h,             /* OUT whether the given page is splitted */
-    InternalItem        *ritem)         /* OUT if the given page is splitted, the internal item may be returned by 'ritem'. */
+    ObjectID *catObjForFile, /* IN catalog object of B+-tree file */
+    BtreeInternal *page,     /* INOUT Page Pointer */
+    InternalItem *item,      /* IN Iternal item which is inserted */
+    Two high,                /* IN index in the given page */
+    Boolean *h,              /* OUT whether the given page is splitted */
+    InternalItem *ritem)     /* OUT if the given page is splitted, the internal item may be returned by 'ritem'. */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                e;              /* error number */
-    Two                 i;              /* index */
-    Two                 entryOffset;    /* starting offset of an internal entry */
-    Two                 entryLen;       /* length of the new entry */
-    btm_InternalEntry   *entry;         /* an internal entry of an internal page */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                   /* error number */
+    Two i;                    /* index */
+    Two entryOffset;          /* starting offset of an internal entry */
+    Two entryLen;             /* length of the new entry */
+    btm_InternalEntry *entry; /* an internal entry of an internal page */
 
-
-    
     /*@ Initially the flag are FALSE */
     *h = FALSE;
-    
-    
 
-    return(eNOERROR);
-    
+    return (eNOERROR);
+
 } /* edubtm_InsertInternal() */
-

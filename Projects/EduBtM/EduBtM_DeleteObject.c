@@ -56,13 +56,10 @@
  *  Four EduBtM_DeleteObject(ObjectID*, PageID*, KeyDesc*, KeyValue*, ObjectID*)
  */
 
-
 #include "EduBtM_common.h"
 #include "BfM.h"
 #include "OM_Internal.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * EduBtM_DeleteObject()
@@ -89,52 +86,79 @@
  *    some errors caused by fucntion calls
  */
 Four EduBtM_DeleteObject(
-    ObjectID *catObjForFile,	/* IN catalog object of B+-tree file */
-    PageID   *root,		/* IN root Page IDentifier */
-    KeyDesc  *kdesc,		/* IN a key descriptor */
-    KeyValue *kval,		/* IN key value */
-    ObjectID *oid,		/* IN Object IDentifier */
-    Pool     *dlPool,		/* INOUT pool of dealloc list elements */
+    ObjectID *catObjForFile, /* IN catalog object of B+-tree file */
+    PageID *root,            /* IN root Page IDentifier */
+    KeyDesc *kdesc,          /* IN a key descriptor */
+    KeyValue *kval,          /* IN key value */
+    ObjectID *oid,           /* IN Object IDentifier */
+    Pool *dlPool,            /* INOUT pool of dealloc list elements */
     DeallocListElem *dlHead) /* INOUT head of the dealloc list */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    int		i;
-    Four    e;			/* error number */
-    Boolean lf;			/* flag for merging */
-    Boolean lh;			/* flag for splitting */
-    InternalItem item;		/* Internal item */
-    SlottedPage *catPage;	/* buffer page containing the catalog object */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    int i;
+    Four e;                          /* error number */
+    Boolean lf;                      /* flag for merging */
+    Boolean lh;                      /* flag for splitting */
+    InternalItem item;               /* Internal item */
+    SlottedPage *catPage;            /* buffer page containing the catalog object */
     sm_CatOverlayForBtree *catEntry; /* pointer to Btree file catalog information */
-    PhysicalFileID pFid;        /* B+-tree file's FileID */
-
+    PhysicalFileID pFid;             /* B+-tree file's FileID */
 
     /*@ check parameters */
-    if (catObjForFile == NULL) ERR(eBADPARAMETER_BTM);
+    if (catObjForFile == NULL)
+        ERR(eBADPARAMETER_BTM);
 
-    if (root == NULL) ERR(eBADPARAMETER_BTM);
+    if (root == NULL)
+        ERR(eBADPARAMETER_BTM);
 
-    if (kdesc == NULL) ERR(eBADPARAMETER_BTM);
+    if (kdesc == NULL)
+        ERR(eBADPARAMETER_BTM);
 
-    if (kval == NULL) ERR(eBADPARAMETER_BTM);
+    if (kval == NULL)
+        ERR(eBADPARAMETER_BTM);
 
-    if (oid == NULL) ERR(eBADPARAMETER_BTM);
-    
-    if (dlPool == NULL || dlHead == NULL) ERR(eBADPARAMETER_BTM);
+    if (oid == NULL)
+        ERR(eBADPARAMETER_BTM);
+
+    if (dlPool == NULL || dlHead == NULL)
+        ERR(eBADPARAMETER_BTM);
 
     /* Error check whether using not supported functionality by EduBtM */
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
+    // Using Functions : edubtm_root_insert(), edubtm_Delete(), btm_root_delete(), BfM_GetTrain(), BfM_FreeTrain()
 
-	/* Delete following 3 lines before implement this function */
-	printf("Implementation of delete operation is optional (not compulsory),\n");
-	printf("and delete operation has not been implemented yet.\n");
-	return(eNOTSUPPORTED_EDUBTM);
+    // e = BfM_GetTrain((TrainID *)catObjForFile, (char **)&catPage, PAGE_BUF); // DONT KNOW WHY SHOULD I USE THIS FUNCION
+    // if (e < 0)
+    //     ERR(e);
 
-    
-    return(eNOERROR);
-    
-}   /* EduBtM_DeleteObject() */
+    // e = edubtm_Delete(catObjForFile, root, kdesc, kval, oid, &lf, &lh, &item, dlPool, dlHead);
+    e = btm_Delete(catObjForFile, root, kdesc, kval, oid, &lf, &lh, &item, dlPool, dlHead);
+    if (e < 0)
+        ERR(e);
+
+    if (lf) // if underflow has occurred in the root page
+    {
+        e = btm_root_delete(&pFid, root, dlPool, dlHead);
+        if (e < 0)
+            ERR(e);
+    }
+    if (lh) // if split has occurred in the root page
+    {
+        // e = edubtm_root_insert(catObjForFile, root, &item);
+        e = btm_root_insert(catObjForFile, root, &item);
+        if (e < 0)
+            ERR(e);
+    }
+
+    // e = BfM_FreeTrain((TrainID *)catObjForFile, PAGE_BUF); // DONT KNOW WHY SHOULD I USE THIS FUNCION
+    // if (e < 0)
+    //     ERR(e);
+
+    return (eNOERROR);
+
+} /* EduBtM_DeleteObject() */

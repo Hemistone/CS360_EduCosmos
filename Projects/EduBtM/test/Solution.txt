@@ -1,0 +1,685 @@
+Script started on Sat 13 Jun 2020 04:04:55 PM KST
+]0;hemistone@anode3:~/CS360/hemistone/ODYSSEUS-EduCOSMOS/Projects/EduBtM[?1034h(base) [hemistone@anode3 EduBtM]$ ./EduBtM_Test[4PTest[5Pmake./EduTestBtM_Test[4PTest[5Pmake./EduBtM_TestSolution_64bit
+Loading EduBtM_Test() complete...
+############################## Start EduBtM test for integer key value ##############################
+****************************** TEST#1, EduBtM_CreateIndex. ******************************
+*Test1_1 : Test for EduBtM_CreateIndex()
+->Create a root page
+Press enter key to continue...
+
+
+
+	|===============================================================================|
+	|               PageID = (1000, 224)            type = LEAF|ROOT                |
+	|===============================================================================|
+	|             free = 0    , unused = 0      nSlots = 0                          |
+	|             nextPage = -1        ,  prevPage = -1                             |
+	|-------------------------------------------------------------------------------|
+	|-------------------------------------------------------------------------------|
+Press enter key to continue...
+
+
+****************************** TEST#1, EduBtM_CreateIndex. ******************************
+****************************** TEST#2, EduBtM_InsertObject. ******************************
+*Test 2_1 : Test for EduBtM_InsertObject()
+200 integer objects are inserted into the B+ tree index
+Press enter key to continue...
+
+
+The object (key: 0 , OID: (1000,  777,    0,    0)) is inserted into the index.
+The object (key: 1 , OID: (1000,  777,    1,    1)) is inserted into the index.
+The object (key: 2 , OID: (1000,  777,    2,    2)) is inserted into the index.
+The object (key: 3 , OID: (1000,  777,    3,    3)) is inserted into the index.
+The object (key: 4 , OID: (1000,  777,    4,    4)) is inserted into the index.
+The object (key: 5 , OID: (1000,  777,    5,    5)) is inserted into the index.
+The object (key: 6 , OID: (1000,  777,    6,    6)) is inserted into the index.
+The object (key: 7 , OID: (1000,  777,    7,    7)) is inserted into the index.
+The object (key: 8 , OID: (1000,  777,    8,    8)) is inserted into the index.
+The object (key: 9 , OID: (1000,  777,    9,    9)) is inserted into the index.
+The object (key: 10 , OID: (1000,  777,   10,   10)) is inserted into the index.
+The object (key: 11 , OID: (1000,  777,   11,   11)) is inserted into the index.
+The object (key: 12 , OID: (1000,  777,   12,   12)) is inserted into the index.
+The object (key: 13 , OID: (1000,  777,   13,   13)) is inserted into the index.
+The object (key: 14 , OID: (1000,  777,   14,   14)) is inserted into the index.
+The object (key: 15 , OID: (1000,  777,   15,   15)) is inserted into the index.
+The object (key: 16 , OID: (1000,  777,   16,   16)) is inserted into the index.
+The object (key: 17 , OID: (1000,  777,   17,   17)) is inserted into the index.
+The object (key: 18 , OID: (1000,  777,   18,   18)) is inserted into the index.
+The object (key: 19 , OID: (1000,  777,   19,   19)) is inserted into the index.
+The object (key: 20 , OID: (1000,  777,   20,   20)) is inserted into the index.
+The object (key: 21 , OID: (1000,  777,   21,   21)) is inserted into the index.
+The object (key: 22 , OID: (1000,  777,   22,   22)) is inserted into the index.
+The object (key: 23 , OID: (1000,  777,   23,   23)) is inserted into the index.
+The object (key: 24 , OID: (1000,  777,   24,   24)) is inserted into the index.
+The object (key: 25 , OID: (1000,  777,   25,   25)) is inserted into the index.
+The object (key: 26 , OID: (1000,  777,   26,   26)) is inserted into the index.
+The object (key: 27 , OID: (1000,  777,   27,   27)) is inserted into the index.
+The object (key: 28 , OID: (1000,  777,   28,   28)) is inserted into the index.
+The object (key: 29 , OID: (1000,  777,   29,   29)) is inserted into the index.
+The object (key: 30 , OID: (1000,  777,   30,   30)) is inserted into the index.
+The object (key: 31 , OID: (1000,  777,   31,   31)) is inserted into the index.
+The object (key: 32 , OID: (1000,  777,   32,   32)) is inserted into the index.
+The object (key: 33 , OID: (1000,  777,   33,   33)) is inserted into the index.
+The object (key: 34 , OID: (1000,  777,   34,   34)) is inserted into the index.
+The object (key: 35 , OID: (1000,  777,   35,   35)) is inserted into the index.
+The object (key: 36 , OID: (1000,  777,   36,   36)) is inserted into the index.
+The object (key: 37 , OID: (1000,  777,   37,   37)) is inserted into the index.
+The object (key: 38 , OID: (1000,  777,   38,   38)) is inserted into the index.
+The object (key: 39 , OID: (1000,  777,   39,   39)) is inserted into the index.
+The object (key: 40 , OID: (1000,  777,   40,   40)) is inserted into the index.
+The object (key: 41 , OID: (1000,  777,   41,   41)) is inserted into the index.
+The object (key: 42 , OID: (1000,  777,   42,   42)) is inserted into the index.
+The object (key: 43 , OID: (1000,  777,   43,   43)) is inserted into the index.
+The object (key: 44 , OID: (1000,  777,   44,   44)) is inserted into the index.
+The object (key: 45 , OID: (1000,  777,   45,   45)) is inserted into the index.
+The object (key: 46 , OID: (1000,  777,   46,   46)) is inserted into the index.
+The object (key: 47 , OID: (1000,  777,   47,   47)) is inserted into the index.
+The object (key: 48 , OID: (1000,  777,   48,   48)) is inserted into the index.
+The object (key: 49 , OID: (1000,  777,   49,   49)) is inserted into the index.
+The object (key: 50 , OID: (1000,  777,   50,   50)) is inserted into the index.
+The object (key: 51 , OID: (1000,  777,   51,   51)) is inserted into the index.
+The object (key: 52 , OID: (1000,  777,   52,   52)) is inserted into the index.
+The object (key: 53 , OID: (1000,  777,   53,   53)) is inserted into the index.
+The object (key: 54 , OID: (1000,  777,   54,   54)) is inserted into the index.
+The object (key: 55 , OID: (1000,  777,   55,   55)) is inserted into the index.
+The object (key: 56 , OID: (1000,  777,   56,   56)) is inserted into the index.
+The object (key: 57 , OID: (1000,  777,   57,   57)) is inserted into the index.
+The object (key: 58 , OID: (1000,  777,   58,   58)) is inserted into the index.
+The object (key: 59 , OID: (1000,  777,   59,   59)) is inserted into the index.
+The object (key: 60 , OID: (1000,  777,   60,   60)) is inserted into the index.
+The object (key: 61 , OID: (1000,  777,   61,   61)) is inserted into the index.
+The object (key: 62 , OID: (1000,  777,   62,   62)) is inserted into the index.
+The object (key: 63 , OID: (1000,  777,   63,   63)) is inserted into the index.
+The object (key: 64 , OID: (1000,  777,   64,   64)) is inserted into the index.
+The object (key: 65 , OID: (1000,  777,   65,   65)) is inserted into the index.
+The object (key: 66 , OID: (1000,  777,   66,   66)) is inserted into the index.
+The object (key: 67 , OID: (1000,  777,   67,   67)) is inserted into the index.
+The object (key: 68 , OID: (1000,  777,   68,   68)) is inserted into the index.
+The object (key: 69 , OID: (1000,  777,   69,   69)) is inserted into the index.
+The object (key: 70 , OID: (1000,  777,   70,   70)) is inserted into the index.
+The object (key: 71 , OID: (1000,  777,   71,   71)) is inserted into the index.
+The object (key: 72 , OID: (1000,  777,   72,   72)) is inserted into the index.
+The object (key: 73 , OID: (1000,  777,   73,   73)) is inserted into the index.
+The object (key: 74 , OID: (1000,  777,   74,   74)) is inserted into the index.
+The object (key: 75 , OID: (1000,  777,   75,   75)) is inserted into the index.
+The object (key: 76 , OID: (1000,  777,   76,   76)) is inserted into the index.
+The object (key: 77 , OID: (1000,  777,   77,   77)) is inserted into the index.
+The object (key: 78 , OID: (1000,  777,   78,   78)) is inserted into the index.
+The object (key: 79 , OID: (1000,  777,   79,   79)) is inserted into the index.
+The object (key: 80 , OID: (1000,  777,   80,   80)) is inserted into the index.
+The object (key: 81 , OID: (1000,  777,   81,   81)) is inserted into the index.
+The object (key: 82 , OID: (1000,  777,   82,   82)) is inserted into the index.
+The object (key: 83 , OID: (1000,  777,   83,   83)) is inserted into the index.
+The object (key: 84 , OID: (1000,  777,   84,   84)) is inserted into the index.
+The object (key: 85 , OID: (1000,  777,   85,   85)) is inserted into the index.
+The object (key: 86 , OID: (1000,  777,   86,   86)) is inserted into the index.
+The object (key: 87 , OID: (1000,  777,   87,   87)) is inserted into the index.
+The object (key: 88 , OID: (1000,  777,   88,   88)) is inserted into the index.
+The object (key: 89 , OID: (1000,  777,   89,   89)) is inserted into the index.
+The object (key: 90 , OID: (1000,  777,   90,   90)) is inserted into the index.
+The object (key: 91 , OID: (1000,  777,   91,   91)) is inserted into the index.
+The object (key: 92 , OID: (1000,  777,   92,   92)) is inserted into the index.
+The object (key: 93 , OID: (1000,  777,   93,   93)) is inserted into the index.
+The object (key: 94 , OID: (1000,  777,   94,   94)) is inserted into the index.
+The object (key: 95 , OID: (1000,  777,   95,   95)) is inserted into the index.
+The object (key: 96 , OID: (1000,  777,   96,   96)) is inserted into the index.
+The object (key: 97 , OID: (1000,  777,   97,   97)) is inserted into the index.
+The object (key: 98 , OID: (1000,  777,   98,   98)) is inserted into the index.
+The object (key: 99 , OID: (1000,  777,   99,   99)) is inserted into the index.
+The object (key: 100 , OID: (1000,  777,  100,  100)) is inserted into the index.
+The object (key: 101 , OID: (1000,  777,  101,  101)) is inserted into the index.
+The object (key: 102 , OID: (1000,  777,  102,  102)) is inserted into the index.
+The object (key: 103 , OID: (1000,  777,  103,  103)) is inserted into the index.
+The object (key: 104 , OID: (1000,  777,  104,  104)) is inserted into the index.
+The object (key: 105 , OID: (1000,  777,  105,  105)) is inserted into the index.
+The object (key: 106 , OID: (1000,  777,  106,  106)) is inserted into the index.
+The object (key: 107 , OID: (1000,  777,  107,  107)) is inserted into the index.
+The object (key: 108 , OID: (1000,  777,  108,  108)) is inserted into the index.
+The object (key: 109 , OID: (1000,  777,  109,  109)) is inserted into the index.
+The object (key: 110 , OID: (1000,  777,  110,  110)) is inserted into the index.
+The object (key: 111 , OID: (1000,  777,  111,  111)) is inserted into the index.
+The object (key: 112 , OID: (1000,  777,  112,  112)) is inserted into the index.
+The object (key: 113 , OID: (1000,  777,  113,  113)) is inserted into the index.
+The object (key: 114 , OID: (1000,  777,  114,  114)) is inserted into the index.
+The object (key: 115 , OID: (1000,  777,  115,  115)) is inserted into the index.
+The object (key: 116 , OID: (1000,  777,  116,  116)) is inserted into the index.
+The object (key: 117 , OID: (1000,  777,  117,  117)) is inserted into the index.
+The object (key: 118 , OID: (1000,  777,  118,  118)) is inserted into the index.
+The object (key: 119 , OID: (1000,  777,  119,  119)) is inserted into the index.
+The object (key: 120 , OID: (1000,  777,  120,  120)) is inserted into the index.
+The object (key: 121 , OID: (1000,  777,  121,  121)) is inserted into the index.
+The object (key: 122 , OID: (1000,  777,  122,  122)) is inserted into the index.
+The object (key: 123 , OID: (1000,  777,  123,  123)) is inserted into the index.
+The object (key: 124 , OID: (1000,  777,  124,  124)) is inserted into the index.
+The object (key: 125 , OID: (1000,  777,  125,  125)) is inserted into the index.
+The object (key: 126 , OID: (1000,  777,  126,  126)) is inserted into the index.
+The object (key: 127 , OID: (1000,  777,  127,  127)) is inserted into the index.
+The object (key: 128 , OID: (1000,  777,  128,  128)) is inserted into the index.
+The object (key: 129 , OID: (1000,  777,  129,  129)) is inserted into the index.
+The object (key: 130 , OID: (1000,  777,  130,  130)) is inserted into the index.
+The object (key: 131 , OID: (1000,  777,  131,  131)) is inserted into the index.
+The object (key: 132 , OID: (1000,  777,  132,  132)) is inserted into the index.
+The object (key: 133 , OID: (1000,  777,  133,  133)) is inserted into the index.
+The object (key: 134 , OID: (1000,  777,  134,  134)) is inserted into the index.
+The object (key: 135 , OID: (1000,  777,  135,  135)) is inserted into the index.
+The object (key: 136 , OID: (1000,  777,  136,  136)) is inserted into the index.
+The object (key: 137 , OID: (1000,  777,  137,  137)) is inserted into the index.
+The object (key: 138 , OID: (1000,  777,  138,  138)) is inserted into the index.
+The object (key: 139 , OID: (1000,  777,  139,  139)) is inserted into the index.
+The object (key: 140 , OID: (1000,  777,  140,  140)) is inserted into the index.
+The object (key: 141 , OID: (1000,  777,  141,  141)) is inserted into the index.
+The object (key: 142 , OID: (1000,  777,  142,  142)) is inserted into the index.
+The object (key: 143 , OID: (1000,  777,  143,  143)) is inserted into the index.
+The object (key: 144 , OID: (1000,  777,  144,  144)) is inserted into the index.
+The object (key: 145 , OID: (1000,  777,  145,  145)) is inserted into the index.
+The object (key: 146 , OID: (1000,  777,  146,  146)) is inserted into the index.
+The object (key: 147 , OID: (1000,  777,  147,  147)) is inserted into the index.
+The object (key: 148 , OID: (1000,  777,  148,  148)) is inserted into the index.
+The object (key: 149 , OID: (1000,  777,  149,  149)) is inserted into the index.
+The object (key: 150 , OID: (1000,  777,  150,  150)) is inserted into the index.
+The object (key: 151 , OID: (1000,  777,  151,  151)) is inserted into the index.
+The object (key: 152 , OID: (1000,  777,  152,  152)) is inserted into the index.
+The object (key: 153 , OID: (1000,  777,  153,  153)) is inserted into the index.
+The object (key: 154 , OID: (1000,  777,  154,  154)) is inserted into the index.
+The object (key: 155 , OID: (1000,  777,  155,  155)) is inserted into the index.
+The object (key: 156 , OID: (1000,  777,  156,  156)) is inserted into the index.
+The object (key: 157 , OID: (1000,  777,  157,  157)) is inserted into the index.
+The object (key: 158 , OID: (1000,  777,  158,  158)) is inserted into the index.
+The object (key: 159 , OID: (1000,  777,  159,  159)) is inserted into the index.
+The object (key: 160 , OID: (1000,  777,  160,  160)) is inserted into the index.
+The object (key: 161 , OID: (1000,  777,  161,  161)) is inserted into the index.
+The object (key: 162 , OID: (1000,  777,  162,  162)) is inserted into the index.
+The object (key: 163 , OID: (1000,  777,  163,  163)) is inserted into the index.
+The object (key: 164 , OID: (1000,  777,  164,  164)) is inserted into the index.
+The object (key: 165 , OID: (1000,  777,  165,  165)) is inserted into the index.
+The object (key: 166 , OID: (1000,  777,  166,  166)) is inserted into the index.
+The object (key: 167 , OID: (1000,  777,  167,  167)) is inserted into the index.
+The object (key: 168 , OID: (1000,  777,  168,  168)) is inserted into the index.
+The object (key: 169 , OID: (1000,  777,  169,  169)) is inserted into the index.
+The object (key: 170 , OID: (1000,  777,  170,  170)) is inserted into the index.
+The object (key: 171 , OID: (1000,  777,  171,  171)) is inserted into the index.
+The object (key: 172 , OID: (1000,  777,  172,  172)) is inserted into the index.
+The object (key: 173 , OID: (1000,  777,  173,  173)) is inserted into the index.
+The object (key: 174 , OID: (1000,  777,  174,  174)) is inserted into the index.
+The object (key: 175 , OID: (1000,  777,  175,  175)) is inserted into the index.
+The object (key: 176 , OID: (1000,  777,  176,  176)) is inserted into the index.
+The object (key: 177 , OID: (1000,  777,  177,  177)) is inserted into the index.
+The object (key: 178 , OID: (1000,  777,  178,  178)) is inserted into the index.
+The object (key: 179 , OID: (1000,  777,  179,  179)) is inserted into the index.
+The object (key: 180 , OID: (1000,  777,  180,  180)) is inserted into the index.
+The object (key: 181 , OID: (1000,  777,  181,  181)) is inserted into the index.
+The object (key: 182 , OID: (1000,  777,  182,  182)) is inserted into the index.
+The object (key: 183 , OID: (1000,  777,  183,  183)) is inserted into the index.
+The object (key: 184 , OID: (1000,  777,  184,  184)) is inserted into the index.
+The object (key: 185 , OID: (1000,  777,  185,  185)) is inserted into the index.
+The object (key: 186 , OID: (1000,  777,  186,  186)) is inserted into the index.
+The object (key: 187 , OID: (1000,  777,  187,  187)) is inserted into the index.
+The object (key: 188 , OID: (1000,  777,  188,  188)) is inserted into the index.
+The object (key: 189 , OID: (1000,  777,  189,  189)) is inserted into the index.
+The object (key: 190 , OID: (1000,  777,  190,  190)) is inserted into the index.
+The object (key: 191 , OID: (1000,  777,  191,  191)) is inserted into the index.
+The object (key: 192 , OID: (1000,  777,  192,  192)) is inserted into the index.
+The object (key: 193 , OID: (1000,  777,  193,  193)) is inserted into the index.
+The object (key: 194 , OID: (1000,  777,  194,  194)) is inserted into the index.
+The object (key: 195 , OID: (1000,  777,  195,  195)) is inserted into the index.
+The object (key: 196 , OID: (1000,  777,  196,  196)) is inserted into the index.
+The object (key: 197 , OID: (1000,  777,  197,  197)) is inserted into the index.
+The object (key: 198 , OID: (1000,  777,  198,  198)) is inserted into the index.
+The object (key: 199 , OID: (1000,  777,  199,  199)) is inserted into the index.
+The objects are inserted into the index
+Press enter key to continue...
+
+
+****************************** TEST#2, EduBtM_InsertObject. ******************************
+****************************** Option. ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	1
+****************************** EduBtM_InsertObject. ******************************
+Enter the key value : 1000
+The object (key: 1000, OID: ( 1000, 777, 200, 200)) is inserted into the B+ tree index.
+****************************** EduBtM_InsertObject. ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	1
+****************************** EduBtM_InsertObject. ******************************
+Enter the key value : 2000
+The object (key: 2000, OID: ( 1000, 777, 201, 201)) is inserted into the B+ tree index.
+****************************** EduBtM_InsertObject. ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	2
+****************************** EduBtM_DeleteObject. ******************************
+Enter the key value : 100
+The object (key: 100, OID: ( 1000, 777, 201, 201)) is deleted from the B+ tree index.
+****************************** EduBtM_DeleteObject. ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	2
+****************************** EduBtM_DeleteObject. ******************************
+Enter the key value : 1000
+The object (key: 1000, OID: ( 1000, 777, 201, 201)) is deleted from the B+ tree index.
+****************************** EduBtM_DeleteObject. ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	4
+****************************** Dump  ******************************
+pageNo of rootPid : 224
+Enter the pageNo : 224
+
+	|=========================================================|
+	|    PageID = (1000,   224)     type = INTERNAL|ROOT      |
+	|=========================================================|
+	| free = 12   , unused = 0    nSlots = 1    , p0 = 226    |
+	|---------------------------------------------------------|
+	|         klen =    4 :  Key =   93  : spid =  225        |
+	|---------------------------------------------------------|
+****************************** Dump  ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	4
+****************************** Dump  ******************************
+pageNo of rootPid : 224
+Enter the pageNo : 225
+
+	|===============================================================================|
+	|               PageID = (1000, 225)            type = LEAF                     |
+	|===============================================================================|
+	|             free = 2180 , unused = 40     nSlots = 107                        |
+	|             nextPage = -1        ,  prevPage = 226                            |
+	|-------------------------------------------------------------------------------|
+	| klen =   4 : Key = 93   : nObjects = 1 :  ObjectID = (1000,  777,   93,   93) |
+	| klen =   4 : Key = 94   : nObjects = 1 :  ObjectID = (1000,  777,   94,   94) |
+	| klen =   4 : Key = 95   : nObjects = 1 :  ObjectID = (1000,  777,   95,   95) |
+	| klen =   4 : Key = 96   : nObjects = 1 :  ObjectID = (1000,  777,   96,   96) |
+	| klen =   4 : Key = 97   : nObjects = 1 :  ObjectID = (1000,  777,   97,   97) |
+	| klen =   4 : Key = 98   : nObjects = 1 :  ObjectID = (1000,  777,   98,   98) |
+	| klen =   4 : Key = 99   : nObjects = 1 :  ObjectID = (1000,  777,   99,   99) |
+	| klen =   4 : Key = 101  : nObjects = 1 :  ObjectID = (1000,  777,  101,  101) |
+	| klen =   4 : Key = 102  : nObjects = 1 :  ObjectID = (1000,  777,  102,  102) |
+	| klen =   4 : Key = 103  : nObjects = 1 :  ObjectID = (1000,  777,  103,  103) |
+	| klen =   4 : Key = 104  : nObjects = 1 :  ObjectID = (1000,  777,  104,  104) |
+	| klen =   4 : Key = 105  : nObjects = 1 :  ObjectID = (1000,  777,  105,  105) |
+	| klen =   4 : Key = 106  : nObjects = 1 :  ObjectID = (1000,  777,  106,  106) |
+	| klen =   4 : Key = 107  : nObjects = 1 :  ObjectID = (1000,  777,  107,  107) |
+	| klen =   4 : Key = 108  : nObjects = 1 :  ObjectID = (1000,  777,  108,  108) |
+	| klen =   4 : Key = 109  : nObjects = 1 :  ObjectID = (1000,  777,  109,  109) |
+	| klen =   4 : Key = 110  : nObjects = 1 :  ObjectID = (1000,  777,  110,  110) |
+	| klen =   4 : Key = 111  : nObjects = 1 :  ObjectID = (1000,  777,  111,  111) |
+	| klen =   4 : Key = 112  : nObjects = 1 :  ObjectID = (1000,  777,  112,  112) |
+	| klen =   4 : Key = 113  : nObjects = 1 :  ObjectID = (1000,  777,  113,  113) |
+	| klen =   4 : Key = 114  : nObjects = 1 :  ObjectID = (1000,  777,  114,  114) |
+	| klen =   4 : Key = 115  : nObjects = 1 :  ObjectID = (1000,  777,  115,  115) |
+	| klen =   4 : Key = 116  : nObjects = 1 :  ObjectID = (1000,  777,  116,  116) |
+	| klen =   4 : Key = 117  : nObjects = 1 :  ObjectID = (1000,  777,  117,  117) |
+	| klen =   4 : Key = 118  : nObjects = 1 :  ObjectID = (1000,  777,  118,  118) |
+	| klen =   4 : Key = 119  : nObjects = 1 :  ObjectID = (1000,  777,  119,  119) |
+	| klen =   4 : Key = 120  : nObjects = 1 :  ObjectID = (1000,  777,  120,  120) |
+	| klen =   4 : Key = 121  : nObjects = 1 :  ObjectID = (1000,  777,  121,  121) |
+	| klen =   4 : Key = 122  : nObjects = 1 :  ObjectID = (1000,  777,  122,  122) |
+	| klen =   4 : Key = 123  : nObjects = 1 :  ObjectID = (1000,  777,  123,  123) |
+	| klen =   4 : Key = 124  : nObjects = 1 :  ObjectID = (1000,  777,  124,  124) |
+	| klen =   4 : Key = 125  : nObjects = 1 :  ObjectID = (1000,  777,  125,  125) |
+	| klen =   4 : Key = 126  : nObjects = 1 :  ObjectID = (1000,  777,  126,  126) |
+	| klen =   4 : Key = 127  : nObjects = 1 :  ObjectID = (1000,  777,  127,  127) |
+	| klen =   4 : Key = 128  : nObjects = 1 :  ObjectID = (1000,  777,  128,  128) |
+	| klen =   4 : Key = 129  : nObjects = 1 :  ObjectID = (1000,  777,  129,  129) |
+	| klen =   4 : Key = 130  : nObjects = 1 :  ObjectID = (1000,  777,  130,  130) |
+	| klen =   4 : Key = 131  : nObjects = 1 :  ObjectID = (1000,  777,  131,  131) |
+	| klen =   4 : Key = 132  : nObjects = 1 :  ObjectID = (1000,  777,  132,  132) |
+	| klen =   4 : Key = 133  : nObjects = 1 :  ObjectID = (1000,  777,  133,  133) |
+	| klen =   4 : Key = 134  : nObjects = 1 :  ObjectID = (1000,  777,  134,  134) |
+	| klen =   4 : Key = 135  : nObjects = 1 :  ObjectID = (1000,  777,  135,  135) |
+	| klen =   4 : Key = 136  : nObjects = 1 :  ObjectID = (1000,  777,  136,  136) |
+	| klen =   4 : Key = 137  : nObjects = 1 :  ObjectID = (1000,  777,  137,  137) |
+	| klen =   4 : Key = 138  : nObjects = 1 :  ObjectID = (1000,  777,  138,  138) |
+	| klen =   4 : Key = 139  : nObjects = 1 :  ObjectID = (1000,  777,  139,  139) |
+	| klen =   4 : Key = 140  : nObjects = 1 :  ObjectID = (1000,  777,  140,  140) |
+	| klen =   4 : Key = 141  : nObjects = 1 :  ObjectID = (1000,  777,  141,  141) |
+	| klen =   4 : Key = 142  : nObjects = 1 :  ObjectID = (1000,  777,  142,  142) |
+	| klen =   4 : Key = 143  : nObjects = 1 :  ObjectID = (1000,  777,  143,  143) |
+	| klen =   4 : Key = 144  : nObjects = 1 :  ObjectID = (1000,  777,  144,  144) |
+	| klen =   4 : Key = 145  : nObjects = 1 :  ObjectID = (1000,  777,  145,  145) |
+	| klen =   4 : Key = 146  : nObjects = 1 :  ObjectID = (1000,  777,  146,  146) |
+	| klen =   4 : Key = 147  : nObjects = 1 :  ObjectID = (1000,  777,  147,  147) |
+	| klen =   4 : Key = 148  : nObjects = 1 :  ObjectID = (1000,  777,  148,  148) |
+	| klen =   4 : Key = 149  : nObjects = 1 :  ObjectID = (1000,  777,  149,  149) |
+	| klen =   4 : Key = 150  : nObjects = 1 :  ObjectID = (1000,  777,  150,  150) |
+	| klen =   4 : Key = 151  : nObjects = 1 :  ObjectID = (1000,  777,  151,  151) |
+	| klen =   4 : Key = 152  : nObjects = 1 :  ObjectID = (1000,  777,  152,  152) |
+	| klen =   4 : Key = 153  : nObjects = 1 :  ObjectID = (1000,  777,  153,  153) |
+	| klen =   4 : Key = 154  : nObjects = 1 :  ObjectID = (1000,  777,  154,  154) |
+	| klen =   4 : Key = 155  : nObjects = 1 :  ObjectID = (1000,  777,  155,  155) |
+	| klen =   4 : Key = 156  : nObjects = 1 :  ObjectID = (1000,  777,  156,  156) |
+	| klen =   4 : Key = 157  : nObjects = 1 :  ObjectID = (1000,  777,  157,  157) |
+	| klen =   4 : Key = 158  : nObjects = 1 :  ObjectID = (1000,  777,  158,  158) |
+	| klen =   4 : Key = 159  : nObjects = 1 :  ObjectID = (1000,  777,  159,  159) |
+	| klen =   4 : Key = 160  : nObjects = 1 :  ObjectID = (1000,  777,  160,  160) |
+	| klen =   4 : Key = 161  : nObjects = 1 :  ObjectID = (1000,  777,  161,  161) |
+	| klen =   4 : Key = 162  : nObjects = 1 :  ObjectID = (1000,  777,  162,  162) |
+	| klen =   4 : Key = 163  : nObjects = 1 :  ObjectID = (1000,  777,  163,  163) |
+	| klen =   4 : Key = 164  : nObjects = 1 :  ObjectID = (1000,  777,  164,  164) |
+	| klen =   4 : Key = 165  : nObjects = 1 :  ObjectID = (1000,  777,  165,  165) |
+	| klen =   4 : Key = 166  : nObjects = 1 :  ObjectID = (1000,  777,  166,  166) |
+	| klen =   4 : Key = 167  : nObjects = 1 :  ObjectID = (1000,  777,  167,  167) |
+	| klen =   4 : Key = 168  : nObjects = 1 :  ObjectID = (1000,  777,  168,  168) |
+	| klen =   4 : Key = 169  : nObjects = 1 :  ObjectID = (1000,  777,  169,  169) |
+	| klen =   4 : Key = 170  : nObjects = 1 :  ObjectID = (1000,  777,  170,  170) |
+	| klen =   4 : Key = 171  : nObjects = 1 :  ObjectID = (1000,  777,  171,  171) |
+	| klen =   4 : Key = 172  : nObjects = 1 :  ObjectID = (1000,  777,  172,  172) |
+	| klen =   4 : Key = 173  : nObjects = 1 :  ObjectID = (1000,  777,  173,  173) |
+	| klen =   4 : Key = 174  : nObjects = 1 :  ObjectID = (1000,  777,  174,  174) |
+	| klen =   4 : Key = 175  : nObjects = 1 :  ObjectID = (1000,  777,  175,  175) |
+	| klen =   4 : Key = 176  : nObjects = 1 :  ObjectID = (1000,  777,  176,  176) |
+	| klen =   4 : Key = 177  : nObjects = 1 :  ObjectID = (1000,  777,  177,  177) |
+	| klen =   4 : Key = 178  : nObjects = 1 :  ObjectID = (1000,  777,  178,  178) |
+	| klen =   4 : Key = 179  : nObjects = 1 :  ObjectID = (1000,  777,  179,  179) |
+	| klen =   4 : Key = 180  : nObjects = 1 :  ObjectID = (1000,  777,  180,  180) |
+	| klen =   4 : Key = 181  : nObjects = 1 :  ObjectID = (1000,  777,  181,  181) |
+	| klen =   4 : Key = 182  : nObjects = 1 :  ObjectID = (1000,  777,  182,  182) |
+	| klen =   4 : Key = 183  : nObjects = 1 :  ObjectID = (1000,  777,  183,  183) |
+	| klen =   4 : Key = 184  : nObjects = 1 :  ObjectID = (1000,  777,  184,  184) |
+	| klen =   4 : Key = 185  : nObjects = 1 :  ObjectID = (1000,  777,  185,  185) |
+	| klen =   4 : Key = 186  : nObjects = 1 :  ObjectID = (1000,  777,  186,  186) |
+	| klen =   4 : Key = 187  : nObjects = 1 :  ObjectID = (1000,  777,  187,  187) |
+	| klen =   4 : Key = 188  : nObjects = 1 :  ObjectID = (1000,  777,  188,  188) |
+	| klen =   4 : Key = 189  : nObjects = 1 :  ObjectID = (1000,  777,  189,  189) |
+	| klen =   4 : Key = 190  : nObjects = 1 :  ObjectID = (1000,  777,  190,  190) |
+	| klen =   4 : Key = 191  : nObjects = 1 :  ObjectID = (1000,  777,  191,  191) |
+	| klen =   4 : Key = 192  : nObjects = 1 :  ObjectID = (1000,  777,  192,  192) |
+	| klen =   4 : Key = 193  : nObjects = 1 :  ObjectID = (1000,  777,  193,  193) |
+	| klen =   4 : Key = 194  : nObjects = 1 :  ObjectID = (1000,  777,  194,  194) |
+	| klen =   4 : Key = 195  : nObjects = 1 :  ObjectID = (1000,  777,  195,  195) |
+	| klen =   4 : Key = 196  : nObjects = 1 :  ObjectID = (1000,  777,  196,  196) |
+	| klen =   4 : Key = 197  : nObjects = 1 :  ObjectID = (1000,  777,  197,  197) |
+	| klen =   4 : Key = 198  : nObjects = 1 :  ObjectID = (1000,  777,  198,  198) |
+	| klen =   4 : Key = 199  : nObjects = 1 :  ObjectID = (1000,  777,  199,  199) |
+	| klen =   4 : Key = 2000 : nObjects = 1 :  ObjectID = (1000,  777,  201,  201) |
+	|-------------------------------------------------------------------------------|
+****************************** Dump  ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	4
+****************************** Dump  ******************************
+pageNo of rootPid : 224
+Enter the pageNo : 226
+
+	|===============================================================================|
+	|               PageID = (1000, 226)            type = LEAF                     |
+	|===============================================================================|
+	|             free = 3660 , unused = 1800   nSlots = 93                         |
+	|             nextPage = 225       ,  prevPage = -1                             |
+	|-------------------------------------------------------------------------------|
+	| klen =   4 : Key = 0    : nObjects = 1 :  ObjectID = (1000,  777,    0,    0) |
+	| klen =   4 : Key = 1    : nObjects = 1 :  ObjectID = (1000,  777,    1,    1) |
+	| klen =   4 : Key = 2    : nObjects = 1 :  ObjectID = (1000,  777,    2,    2) |
+	| klen =   4 : Key = 3    : nObjects = 1 :  ObjectID = (1000,  777,    3,    3) |
+	| klen =   4 : Key = 4    : nObjects = 1 :  ObjectID = (1000,  777,    4,    4) |
+	| klen =   4 : Key = 5    : nObjects = 1 :  ObjectID = (1000,  777,    5,    5) |
+	| klen =   4 : Key = 6    : nObjects = 1 :  ObjectID = (1000,  777,    6,    6) |
+	| klen =   4 : Key = 7    : nObjects = 1 :  ObjectID = (1000,  777,    7,    7) |
+	| klen =   4 : Key = 8    : nObjects = 1 :  ObjectID = (1000,  777,    8,    8) |
+	| klen =   4 : Key = 9    : nObjects = 1 :  ObjectID = (1000,  777,    9,    9) |
+	| klen =   4 : Key = 10   : nObjects = 1 :  ObjectID = (1000,  777,   10,   10) |
+	| klen =   4 : Key = 11   : nObjects = 1 :  ObjectID = (1000,  777,   11,   11) |
+	| klen =   4 : Key = 12   : nObjects = 1 :  ObjectID = (1000,  777,   12,   12) |
+	| klen =   4 : Key = 13   : nObjects = 1 :  ObjectID = (1000,  777,   13,   13) |
+	| klen =   4 : Key = 14   : nObjects = 1 :  ObjectID = (1000,  777,   14,   14) |
+	| klen =   4 : Key = 15   : nObjects = 1 :  ObjectID = (1000,  777,   15,   15) |
+	| klen =   4 : Key = 16   : nObjects = 1 :  ObjectID = (1000,  777,   16,   16) |
+	| klen =   4 : Key = 17   : nObjects = 1 :  ObjectID = (1000,  777,   17,   17) |
+	| klen =   4 : Key = 18   : nObjects = 1 :  ObjectID = (1000,  777,   18,   18) |
+	| klen =   4 : Key = 19   : nObjects = 1 :  ObjectID = (1000,  777,   19,   19) |
+	| klen =   4 : Key = 20   : nObjects = 1 :  ObjectID = (1000,  777,   20,   20) |
+	| klen =   4 : Key = 21   : nObjects = 1 :  ObjectID = (1000,  777,   21,   21) |
+	| klen =   4 : Key = 22   : nObjects = 1 :  ObjectID = (1000,  777,   22,   22) |
+	| klen =   4 : Key = 23   : nObjects = 1 :  ObjectID = (1000,  777,   23,   23) |
+	| klen =   4 : Key = 24   : nObjects = 1 :  ObjectID = (1000,  777,   24,   24) |
+	| klen =   4 : Key = 25   : nObjects = 1 :  ObjectID = (1000,  777,   25,   25) |
+	| klen =   4 : Key = 26   : nObjects = 1 :  ObjectID = (1000,  777,   26,   26) |
+	| klen =   4 : Key = 27   : nObjects = 1 :  ObjectID = (1000,  777,   27,   27) |
+	| klen =   4 : Key = 28   : nObjects = 1 :  ObjectID = (1000,  777,   28,   28) |
+	| klen =   4 : Key = 29   : nObjects = 1 :  ObjectID = (1000,  777,   29,   29) |
+	| klen =   4 : Key = 30   : nObjects = 1 :  ObjectID = (1000,  777,   30,   30) |
+	| klen =   4 : Key = 31   : nObjects = 1 :  ObjectID = (1000,  777,   31,   31) |
+	| klen =   4 : Key = 32   : nObjects = 1 :  ObjectID = (1000,  777,   32,   32) |
+	| klen =   4 : Key = 33   : nObjects = 1 :  ObjectID = (1000,  777,   33,   33) |
+	| klen =   4 : Key = 34   : nObjects = 1 :  ObjectID = (1000,  777,   34,   34) |
+	| klen =   4 : Key = 35   : nObjects = 1 :  ObjectID = (1000,  777,   35,   35) |
+	| klen =   4 : Key = 36   : nObjects = 1 :  ObjectID = (1000,  777,   36,   36) |
+	| klen =   4 : Key = 37   : nObjects = 1 :  ObjectID = (1000,  777,   37,   37) |
+	| klen =   4 : Key = 38   : nObjects = 1 :  ObjectID = (1000,  777,   38,   38) |
+	| klen =   4 : Key = 39   : nObjects = 1 :  ObjectID = (1000,  777,   39,   39) |
+	| klen =   4 : Key = 40   : nObjects = 1 :  ObjectID = (1000,  777,   40,   40) |
+	| klen =   4 : Key = 41   : nObjects = 1 :  ObjectID = (1000,  777,   41,   41) |
+	| klen =   4 : Key = 42   : nObjects = 1 :  ObjectID = (1000,  777,   42,   42) |
+	| klen =   4 : Key = 43   : nObjects = 1 :  ObjectID = (1000,  777,   43,   43) |
+	| klen =   4 : Key = 44   : nObjects = 1 :  ObjectID = (1000,  777,   44,   44) |
+	| klen =   4 : Key = 45   : nObjects = 1 :  ObjectID = (1000,  777,   45,   45) |
+	| klen =   4 : Key = 46   : nObjects = 1 :  ObjectID = (1000,  777,   46,   46) |
+	| klen =   4 : Key = 47   : nObjects = 1 :  ObjectID = (1000,  777,   47,   47) |
+	| klen =   4 : Key = 48   : nObjects = 1 :  ObjectID = (1000,  777,   48,   48) |
+	| klen =   4 : Key = 49   : nObjects = 1 :  ObjectID = (1000,  777,   49,   49) |
+	| klen =   4 : Key = 50   : nObjects = 1 :  ObjectID = (1000,  777,   50,   50) |
+	| klen =   4 : Key = 51   : nObjects = 1 :  ObjectID = (1000,  777,   51,   51) |
+	| klen =   4 : Key = 52   : nObjects = 1 :  ObjectID = (1000,  777,   52,   52) |
+	| klen =   4 : Key = 53   : nObjects = 1 :  ObjectID = (1000,  777,   53,   53) |
+	| klen =   4 : Key = 54   : nObjects = 1 :  ObjectID = (1000,  777,   54,   54) |
+	| klen =   4 : Key = 55   : nObjects = 1 :  ObjectID = (1000,  777,   55,   55) |
+	| klen =   4 : Key = 56   : nObjects = 1 :  ObjectID = (1000,  777,   56,   56) |
+	| klen =   4 : Key = 57   : nObjects = 1 :  ObjectID = (1000,  777,   57,   57) |
+	| klen =   4 : Key = 58   : nObjects = 1 :  ObjectID = (1000,  777,   58,   58) |
+	| klen =   4 : Key = 59   : nObjects = 1 :  ObjectID = (1000,  777,   59,   59) |
+	| klen =   4 : Key = 60   : nObjects = 1 :  ObjectID = (1000,  777,   60,   60) |
+	| klen =   4 : Key = 61   : nObjects = 1 :  ObjectID = (1000,  777,   61,   61) |
+	| klen =   4 : Key = 62   : nObjects = 1 :  ObjectID = (1000,  777,   62,   62) |
+	| klen =   4 : Key = 63   : nObjects = 1 :  ObjectID = (1000,  777,   63,   63) |
+	| klen =   4 : Key = 64   : nObjects = 1 :  ObjectID = (1000,  777,   64,   64) |
+	| klen =   4 : Key = 65   : nObjects = 1 :  ObjectID = (1000,  777,   65,   65) |
+	| klen =   4 : Key = 66   : nObjects = 1 :  ObjectID = (1000,  777,   66,   66) |
+	| klen =   4 : Key = 67   : nObjects = 1 :  ObjectID = (1000,  777,   67,   67) |
+	| klen =   4 : Key = 68   : nObjects = 1 :  ObjectID = (1000,  777,   68,   68) |
+	| klen =   4 : Key = 69   : nObjects = 1 :  ObjectID = (1000,  777,   69,   69) |
+	| klen =   4 : Key = 70   : nObjects = 1 :  ObjectID = (1000,  777,   70,   70) |
+	| klen =   4 : Key = 71   : nObjects = 1 :  ObjectID = (1000,  777,   71,   71) |
+	| klen =   4 : Key = 72   : nObjects = 1 :  ObjectID = (1000,  777,   72,   72) |
+	| klen =   4 : Key = 73   : nObjects = 1 :  ObjectID = (1000,  777,   73,   73) |
+	| klen =   4 : Key = 74   : nObjects = 1 :  ObjectID = (1000,  777,   74,   74) |
+	| klen =   4 : Key = 75   : nObjects = 1 :  ObjectID = (1000,  777,   75,   75) |
+	| klen =   4 : Key = 76   : nObjects = 1 :  ObjectID = (1000,  777,   76,   76) |
+	| klen =   4 : Key = 77   : nObjects = 1 :  ObjectID = (1000,  777,   77,   77) |
+	| klen =   4 : Key = 78   : nObjects = 1 :  ObjectID = (1000,  777,   78,   78) |
+	| klen =   4 : Key = 79   : nObjects = 1 :  ObjectID = (1000,  777,   79,   79) |
+	| klen =   4 : Key = 80   : nObjects = 1 :  ObjectID = (1000,  777,   80,   80) |
+	| klen =   4 : Key = 81   : nObjects = 1 :  ObjectID = (1000,  777,   81,   81) |
+	| klen =   4 : Key = 82   : nObjects = 1 :  ObjectID = (1000,  777,   82,   82) |
+	| klen =   4 : Key = 83   : nObjects = 1 :  ObjectID = (1000,  777,   83,   83) |
+	| klen =   4 : Key = 84   : nObjects = 1 :  ObjectID = (1000,  777,   84,   84) |
+	| klen =   4 : Key = 85   : nObjects = 1 :  ObjectID = (1000,  777,   85,   85) |
+	| klen =   4 : Key = 86   : nObjects = 1 :  ObjectID = (1000,  777,   86,   86) |
+	| klen =   4 : Key = 87   : nObjects = 1 :  ObjectID = (1000,  777,   87,   87) |
+	| klen =   4 : Key = 88   : nObjects = 1 :  ObjectID = (1000,  777,   88,   88) |
+	| klen =   4 : Key = 89   : nObjects = 1 :  ObjectID = (1000,  777,   89,   89) |
+	| klen =   4 : Key = 90   : nObjects = 1 :  ObjectID = (1000,  777,   90,   90) |
+	| klen =   4 : Key = 91   : nObjects = 1 :  ObjectID = (1000,  777,   91,   91) |
+	| klen =   4 : Key = 92   : nObjects = 1 :  ObjectID = (1000,  777,   92,   92) |
+	|-------------------------------------------------------------------------------|
+****************************** Dump  ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	5
+****************************** EduBtM_DropIndex. ******************************
+****************************** EduBtM_DropIndex. ******************************
+****************************** Option. ******************************
+############################## End EduBtM test for integer key value ##############################
+
+
+Press enter key to continue...
+
+############################## Start EduBtM test for variable key value ##############################
+****************************** TEST#1, EduBtM_CreateIndex. ******************************
+*Test1_1 : Test for EduBtM_CreateIndex()
+->Create a root page
+Press enter key to continue...
+
+
+
+	|===============================================================================|
+	|               PageID = (1000, 256)            type = LEAF|ROOT                |
+	|===============================================================================|
+	|             free = 0    , unused = 0      nSlots = 0                          |
+	|             nextPage = -1        ,  prevPage = -1                             |
+	|-------------------------------------------------------------------------------|
+	|-------------------------------------------------------------------------------|
+Press enter key to continue...
+
+
+****************************** TEST#1, EduBtM_CreateIndex. ******************************
+****************************** TEST#2, EduBtM_InsertObject. ******************************
+*Test 2_1 : Test for EduBtM_InsertObject()
+144 variable string objects are inserted into the B+ tree index
+Press enter key to continue...
+
+
+The object (key: Benik Afobe , OID: (1000,  777,    0,    0)) is inserted into the index.
+The object (key: Chuba Akpom , OID: (1000,  777,    1,    1)) is inserted into the index.
+The object (key: Manuel Almunia , OID: (1000,  777,    2,    2)) is inserted into the index.
+The object (key: Chuks Aneke , OID: (1000,  777,    3,    3)) is inserted into the index.
+The object (key: Martin Angha , OID: (1000,  777,    4,    4)) is inserted into the index.
+The object (key: Zak Ansah , OID: (1000,  777,    5,    5)) is inserted into the index.
+The object (key: Andrey Arshavin , OID: (1000,  777,    6,    6)) is inserted into the index.
+The object (key: Mikel Arteta , OID: (1000,  777,    7,    7)) is inserted into the index.
+The object (key: Kyle Bartley , OID: (1000,  777,    8,    8)) is inserted into the index.
+The object (key: Hector Bellerin , OID: (1000,  777,    9,    9)) is inserted into the index.
+The object (key: Nicklas Bendtner , OID: (1000,  777,   10,   10)) is inserted into the index.
+The object (key: Daniel Boateng , OID: (1000,  777,   11,   11)) is inserted into the index.
+The object (key: Santi Cazorla , OID: (1000,  777,   12,   12)) is inserted into the index.
+The object (key: Marouane Chamakh , OID: (1000,  777,   13,   13)) is inserted into the index.
+The object (key: Francis Coquelin , OID: (1000,  777,   14,   14)) is inserted into the index.
+The object (key: Tom Dallison , OID: (1000,  777,   15,   15)) is inserted into the index.
+The object (key: Tarum Dawkins , OID: (1000,  777,   16,   16)) is inserted into the index.
+The object (key: Vassiriki Diaby , OID: (1000,  777,   17,   17)) is inserted into the index.
+The object (key: Johan Djourou , OID: (1000,  777,   18,   18)) is inserted into the index.
+The object (key: Craig Eastmond , OID: (1000,  777,   19,   19)) is inserted into the index.
+The object (key: Thomas Eisfeld , OID: (1000,  777,   20,   20)) is inserted into the index.
+The object (key: Lukasz Fabianski , OID: (1000,  777,   21,   21)) is inserted into the index.
+The object (key: Emmanuel Frimpong , OID: (1000,  777,   22,   22)) is inserted into the index.
+The object (key: Yao Gervinho , OID: (1000,  777,   23,   23)) is inserted into the index.
+The object (key: Kieran Gibbs , OID: (1000,  777,   24,   24)) is inserted into the index.
+The object (key: Olivier Giroud , OID: (1000,  777,   25,   25)) is inserted into the index.
+The object (key: Serge Gnabry , OID: (1000,  777,   26,   26)) is inserted into the index.
+The object (key: Sead Hajrovic , OID: (1000,  777,   27,   27)) is inserted into the index.
+The object (key: Conor Henderson , OID: (1000,  777,   28,   28)) is inserted into the index.
+The object (key: Alex Iwobi , OID: (1000,  777,   29,   29)) is inserted into the index.
+The object (key: Carl Jenkinson , OID: (1000,  777,   30,   30)) is inserted into the index.
+The object (key: Glen Kamara , OID: (1000,  777,   31,   31)) is inserted into the index.
+The object (key: Laurent Koscielny , OID: (1000,  777,   32,   32)) is inserted into the index.
+The object (key: Henri Lansbury , OID: (1000,  777,   33,   33)) is inserted into the index.
+The object (key: Vito Mannone , OID: (1000,  777,   34,   34)) is inserted into the index.
+The object (key: Damian Martinez , OID: (1000,  777,   35,   35)) is inserted into the index.
+The object (key: Jernade Meade , OID: (1000,  777,   36,   36)) is inserted into the index.
+The object (key: Per Mertesacker , OID: (1000,  777,   37,   37)) is inserted into the index.
+The object (key: Ignasi Miquel , OID: (1000,  777,   38,   38)) is inserted into the index.
+The object (key: Ryo Miyaichi , OID: (1000,  777,   39,   39)) is inserted into the index.
+The object (key: Elton Monteiro , OID: (1000,  777,   40,   40)) is inserted into the index.
+The object (key: Rhys Murphy , OID: (1000,  777,   41,   41)) is inserted into the index.
+The object (key: Alex Oxlade-Chamberlain , OID: (1000,  777,   42,   42)) is inserted into the index.
+The object (key: Chu-Young Park , OID: (1000,  777,   43,   43)) is inserted into the index.
+The object (key: Robin van Persie , OID: (1000,  777,   44,   44)) is inserted into the index.
+The object (key: Lukas Podolski , OID: (1000,  777,   45,   45)) is inserted into the index.
+The object (key: Aaron Ramsey , OID: (1000,  777,   46,   46)) is inserted into the index.
+The object (key: Tomas Rosicky , OID: (1000,  777,   47,   47)) is inserted into the index.
+The object (key: Bacary Sagna , OID: (1000,  777,   48,   48)) is inserted into the index.
+The object (key: Clarindo Andre Santos , OID: (1000,  777,   49,   49)) is inserted into the index.
+The object (key: James Shea , OID: (1000,  777,   50,   50)) is inserted into the index.
+The object (key: Alex Song , OID: (1000,  777,   51,   51)) is inserted into the index.
+The object (key: Sebastien Squillaci , OID: (1000,  777,   52,   52)) is inserted into the index.
+The object (key: Wojciech Szczesny , OID: (1000,  777,   53,   53)) is inserted into the index.
+The object (key: Arinse Uade , OID: (1000,  777,   54,   54)) is inserted into the index.
+The object (key: Thomas Vermaelen , OID: (1000,  777,   55,   55)) is inserted into the index.
+The object (key: Theo Walcott , OID: (1000,  777,   56,   56)) is inserted into the index.
+The object (key: Sanchez Watt , OID: (1000,  777,   57,   57)) is inserted into the index.
+The object (key: Jack Wilshere , OID: (1000,  777,   58,   58)) is inserted into the index.
+The object (key: Nico Yennaris , OID: (1000,  777,   59,   59)) is inserted into the index.
+The object (key: Bruno Andrade , OID: (1000,  777,   60,   60)) is inserted into the index.
+The object (key: Angelo Balanta , OID: (1000,  777,   61,   61)) is inserted into the index.
+The object (key: Joey Barton , OID: (1000,  777,   62,   62)) is inserted into the index.
+The object (key: Jose Bosingwa , OID: (1000,  777,   63,   63)) is inserted into the index.
+The object (key: Jay Bothroyd , OID: (1000,  777,   64,   64)) is inserted into the index.
+The object (key: DJ Campbell , OID: (1000,  777,   65,   65)) is inserted into the index.
+The object (key: Radek Cerny , OID: (1000,  777,   66,   66)) is inserted into the index.
+The object (key: Soares Julio Cesar , OID: (1000,  777,   67,   67)) is inserted into the index.
+The object (key: Djibril Cisse , OID: (1000,  777,   68,   68)) is inserted into the index.
+The object (key: Matthew Connolly , OID: (1000,  777,   69,   69)) is inserted into the index.
+The object (key: Shaun Derry , OID: (1000,  777,   70,   70)) is inserted into the index.
+The object (key: Samba Diakite , OID: (1000,  777,   71,   71)) is inserted into the index.
+The object (key: Michael Doughty , OID: (1000,  777,   72,   72)) is inserted into the index.
+The object (key: Kieron Dyer , OID: (1000,  777,   73,   73)) is inserted into the index.
+The object (key: Max Ehmer , OID: (1000,  777,   74,   74)) is inserted into the index.
+The object (key: Hogan Ephraim , OID: (1000,  777,   75,   75)) is inserted into the index.
+The object (key: Alejandro Faurlin , OID: (1000,  777,   76,   76)) is inserted into the index.
+The object (key: Anton Ferdinand , OID: (1000,  777,   77,   77)) is inserted into the index.
+The object (key: Esteban Granero , OID: (1000,  777,   78,   78)) is inserted into the index.
+The object (key: Rob Green , OID: (1000,  777,   79,   79)) is inserted into the index.
+The object (key: Tal Ben Haim , OID: (1000,  777,   80,   80)) is inserted into the index.
+The object (key: Michael Harriman , OID: (1000,  777,   81,   81)) is inserted into the index.
+The object (key: Heidar Helguson , OID: (1000,  777,   82,   82)) is inserted into the index.
+The object (key: Clint Hill , OID: (1000,  777,   83,   83)) is inserted into the index.
+The object (key: David Hoilett , OID: (1000,  777,   84,   84)) is inserted into the index.
+The object (key: Rob Hulse , OID: (1000,  777,   85,   85)) is inserted into the index.
+The object (key: Andrew Johnson , OID: (1000,  777,   86,   86)) is inserted into the index.
+The object (key: Jamie Mackie , OID: (1000,  777,   87,   87)) is inserted into the index.
+The object (key: Sam Magri , OID: (1000,  777,   88,   88)) is inserted into the index.
+The object (key: Stephane Mbia , OID: (1000,  777,   89,   89)) is inserted into the index.
+The object (key: Brian Murphy , OID: (1000,  777,   90,   90)) is inserted into the index.
+The object (key: Ryan Nelsen , OID: (1000,  777,   91,   91)) is inserted into the index.
+The object (key: Nedum Onuoha , OID: (1000,  777,   92,   92)) is inserted into the index.
+The object (key: Ji-Sung Park , OID: (1000,  777,   93,   93)) is inserted into the index.
+The object (key: Loic Remy , OID: (1000,  777,   94,   94)) is inserted into the index.
+The object (key: Fabio Da Silva , OID: (1000,  777,   95,   95)) is inserted into the index.
+The object (key: Tommy Smith , OID: (1000,  777,   96,   96)) is inserted into the index.
+The object (key: Adel Taarabt , OID: (1000,  777,   97,   97)) is inserted into the index.
+The object (key: Armand Traore , OID: (1000,  777,   98,   98)) is inserted into the index.
+The object (key: Shaun Wright-Phillips , OID: (1000,  777,   99,   99)) is inserted into the index.
+The object (key: Luke Young , OID: (1000,  777,  100,  100)) is inserted into the index.
+The object (key: Bobby Zamora , OID: (1000,  777,  101,  101)) is inserted into the index.
+The object (key: Kemy Agustien , OID: (1000,  777,  102,  102)) is inserted into the index.
+The object (key: Daniel Alfei , OID: (1000,  777,  103,  103)) is inserted into the index.
+The object (key: Joe Allen , OID: (1000,  777,  104,  104)) is inserted into the index.
+The object (key: Federico Bessone , OID: (1000,  777,  105,  105)) is inserted into the index.
+The object (key: Leon Britton , OID: (1000,  777,  106,  106)) is inserted into the index.
+The object (key: Chico , OID: (1000,  777,  107,  107)) is inserted into the index.
+The object (key: David Cornell , OID: (1000,  777,  108,  108)) is inserted into the index.
+The object (key: Ben Davies , OID: (1000,  777,  109,  109)) is inserted into the index.
+The object (key: Stephen Dobbie , OID: (1000,  777,  110,  110)) is inserted into the index.
+The object (key: Rory Donnelly , OID: (1000,  777,  111,  111)) is inserted into the index.
+The object (key: Nathan Dyer , OID: (1000,  777,  112,  112)) is inserted into the index.
+The object (key: Gwion Edwards , OID: (1000,  777,  113,  113)) is inserted into the index.
+The object (key: Mark Gower , OID: (1000,  777,  114,  114)) is inserted into the index.
+The object (key: Danny Graham , OID: (1000,  777,  115,  115)) is inserted into the index.
+The object (key: Jonathan de Guzman , OID: (1000,  777,  116,  116)) is inserted into the index.
+The object (key: Pablo Hernandez , OID: (1000,  777,  117,  117)) is inserted into the index.
+The object (key: Henry Jones , OID: (1000,  777,  118,  118)) is inserted into the index.
+The object (key: Sung-Yeung Ki , OID: (1000,  777,  119,  119)) is inserted into the index.
+The object (key: Roland Lamah , OID: (1000,  777,  120,  120)) is inserted into the index.
+The object (key: Leroy Lita , OID: (1000,  777,  121,  121)) is inserted into the index.
+The object (key: James Loveridge , OID: (1000,  777,  122,  122)) is inserted into the index.
+The object (key: Lee Lucas , OID: (1000,  777,  123,  123)) is inserted into the index.
+The object (key: Kurtis March , OID: (1000,  777,  124,  124)) is inserted into the index.
+The object (key: Miguel Michu , OID: (1000,  777,  125,  125)) is inserted into the index.
+The object (key: Garry Monk , OID: (1000,  777,  126,  126)) is inserted into the index.
+The object (key: Luke Moore , OID: (1000,  777,  127,  127)) is inserted into the index.
+The object (key: Curtis Obeng , OID: (1000,  777,  128,  128)) is inserted into the index.
+The object (key: Andrea Orlandi , OID: (1000,  777,  129,  129)) is inserted into the index.
+The object (key: Jamie Proctor , OID: (1000,  777,  130,  130)) is inserted into the index.
+The object (key: Angel Rangel , OID: (1000,  777,  131,  131)) is inserted into the index.
+The object (key: Ashley Richards , OID: (1000,  777,  132,  132)) is inserted into the index.
+The object (key: Wayne Routledge , OID: (1000,  777,  133,  133)) is inserted into the index.
+The object (key: Itay Shechter , OID: (1000,  777,  134,  134)) is inserted into the index.
+The object (key: Scott Sinclair , OID: (1000,  777,  135,  135)) is inserted into the index.
+The object (key: Darnel Situ , OID: (1000,  777,  136,  136)) is inserted into the index.
+The object (key: Scott Tancock , OID: (1000,  777,  137,  137)) is inserted into the index.
+The object (key: Alan Tate , OID: (1000,  777,  138,  138)) is inserted into the index.
+The object (key: Neil Taylor , OID: (1000,  777,  139,  139)) is inserted into the index.
+The object (key: Dwight Tiendalli , OID: (1000,  777,  140,  140)) is inserted into the index.
+The object (key: Gerhard Tremmel , OID: (1000,  777,  141,  141)) is inserted into the index.
+The object (key: Michel Vorm , OID: (1000,  777,  142,  142)) is inserted into the index.
+The object (key: Ashley Williams , OID: (1000,  777,  143,  143)) is inserted into the index.
+Press enter key to continue...
+
+
+The objects are inserted into the index
+****************************** TEST#2, EduBtM_InsertObject. ******************************
+****************************** Option. ******************************
+(1. Insert Object   2. Delete Object   3. Scan   4. Dump   5. Drop Index and Exit)	5
+****************************** EduBtM_DropIndex. ******************************
+****************************** EduBtM_DropIndex. ******************************
+****************************** Option. ******************************
+]0;hemistone@anode3:~/CS360/hemistone/ODYSSEUS-EduCOSMOS/Projects/EduBtM(base) [hemistone@anode3 EduBtM]$ exit
+exit
+
+Script done on Sat 13 Jun 2020 04:08:31 PM KST

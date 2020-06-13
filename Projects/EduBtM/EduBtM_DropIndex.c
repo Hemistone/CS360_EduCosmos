@@ -56,11 +56,8 @@
  *  Four EduBtM_DropIndex(FileID*, PageID*, Pool*, DeallocListElem*)
  */
 
-
 #include "EduBtM_common.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * EduBtM_DropIndex()
@@ -79,18 +76,27 @@
  *    some errors : by other function calls
  */
 Four EduBtM_DropIndex(
-    PhysicalFileID *pFid,	/* IN FileID of the Btree file */
-    PageID *rootPid,		/* IN root PageID to be dropped */
-    Pool   *dlPool,		/* INOUT pool of the dealloc list elements */
+    PhysicalFileID *pFid,    /* IN FileID of the Btree file */
+    PageID *rootPid,         /* IN root PageID to be dropped */
+    Pool *dlPool,            /* INOUT pool of the dealloc list elements */
     DeallocListElem *dlHead) /* INOUT head of the dealloc list */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four e;			/* for the error number */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e; /* for the error number */
 
     /*@ Free all pages concerned with the root. */
 
-	
-    return(eNOERROR);
-    
+    // Four edubtm_FreePages(
+    //     PhysicalFileID * pFid,    /* IN FileID of the Btree file */
+    //     PageID * curPid,          /* IN The PageID to be freed */
+    //     Pool * dlPool,            /* INOUT pool of dealloc list elements */
+    //     DeallocListElem * dlHead) /* INOUT head of the dealloc list */
+
+    // e = edubtm_FreePages(pFid, rootPid, dlPool, dlHead);
+    e = btm_FreePages(pFid, rootPid, dlPool, dlHead);
+    if (e < 0)
+        ERR(e);
+
+    return (eNOERROR);
+
 } /* EduBtM_DropIndex() */

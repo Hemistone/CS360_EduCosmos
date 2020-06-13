@@ -62,17 +62,13 @@
  *  Four EduBtM_Fetch(PageID*, KeyDesc*, KeyValue*, Four, KeyValue*, Four, BtreeCursor*)
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "BfM.h"
 #include "EduBtM_Internal.h"
 
-
 /*@ Internal Function Prototypes */
-Four edubtm_Fetch(PageID*, KeyDesc*, KeyValue*, Four, KeyValue*, Four, BtreeCursor*);
-
-
+Four edubtm_Fetch(PageID *, KeyDesc *, KeyValue *, Four, KeyValue *, Four, BtreeCursor *);
 
 /*@================================
  * EduBtM_Fetch()
@@ -96,34 +92,52 @@ Four edubtm_Fetch(PageID*, KeyDesc*, KeyValue*, Four, KeyValue*, Four, BtreeCurs
  *            (it may indicate a ObjectID in an  overflow page).
  */
 Four EduBtM_Fetch(
-    PageID   *root,		/* IN The current root of the subtree */
-    KeyDesc  *kdesc,		/* IN Btree key descriptor */
-    KeyValue *startKval,	/* IN key value of start condition */
-    Four     startCompOp,	/* IN comparison operator of start condition */
-    KeyValue *stopKval,		/* IN key value of stop condition */
-    Four     stopCompOp,	/* IN comparison operator of stop condition */
-    BtreeCursor *cursor)	/* OUT Btree Cursor */
+    PageID *root,        /* IN The current root of the subtree */
+    KeyDesc *kdesc,      /* IN Btree key descriptor */
+    KeyValue *startKval, /* IN key value of start condition */
+    Four startCompOp,    /* IN comparison operator of start condition */
+    KeyValue *stopKval,  /* IN key value of stop condition */
+    Four stopCompOp,     /* IN comparison operator of stop condition */
+    BtreeCursor *cursor) /* OUT Btree Cursor */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
     int i;
-    Four e;		   /* error number */
+    Four e; /* error number */
 
-    
-    if (root == NULL) ERR(eBADPARAMETER_BTM);
+    if (root == NULL)
+        ERR(eBADPARAMETER_BTM);
 
     /* Error check whether using not supported functionality by EduBtM */
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
-    
 
-    return(eNOERROR);
+    // Using Function : edubtm_Fetch(), edubtm_FirstObject(), edubtm_LastObject()
+
+    if (startCompOp == SM_BOF)
+    {
+        // e = edubtm_FirstObject(root, kdesc, startKval, stopCompOp, cursor);
+        e = btm_FirstObject(root, kdesc, stopKval, stopCompOp, cursor);
+    }
+    else if (startCompOp == SM_EOF)
+    {
+        // e = edubtm_LastObject(root, kdesc, stopKval, stopCompOp, cursor);
+        e = btm_LastObject(root, kdesc, stopKval, stopCompOp, cursor);
+    }
+    else
+    {
+        //  e = edubtm_Fetch(root, kdesc, startKval, startCompOp, stopKval, stopCompOp, cursor);
+        e = btm_Fetch(root, kdesc, startKval, startCompOp, stopKval, stopCompOp, cursor);
+    }
+
+    if (e < 0)
+        ERR(e);
+
+    return (eNOERROR);
 
 } /* EduBtM_Fetch() */
-
-
 
 /*@================================
  * edubtm_Fetch()
@@ -146,46 +160,43 @@ Four EduBtM_Fetch(
  *    some errors caused by function calls
  */
 Four edubtm_Fetch(
-    PageID              *root,          /* IN The current root of the subtree */
-    KeyDesc             *kdesc,         /* IN Btree key descriptor */
-    KeyValue            *startKval,     /* IN key value of start condition */
-    Four                startCompOp,    /* IN comparison operator of start condition */
-    KeyValue            *stopKval,      /* IN key value of stop condition */
-    Four                stopCompOp,     /* IN comparison operator of stop condition */
-    BtreeCursor         *cursor)        /* OUT Btree Cursor */
+    PageID *root,        /* IN The current root of the subtree */
+    KeyDesc *kdesc,      /* IN Btree key descriptor */
+    KeyValue *startKval, /* IN key value of start condition */
+    Four startCompOp,    /* IN comparison operator of start condition */
+    KeyValue *stopKval,  /* IN key value of stop condition */
+    Four stopCompOp,     /* IN comparison operator of stop condition */
+    BtreeCursor *cursor) /* OUT Btree Cursor */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                e;              /* error number */
-    Four                cmp;            /* result of comparison */
-    Two                 idx;            /* index */
-    PageID              child;          /* child page when the root is an internla page */
-    Two                 alignedKlen;    /* aligned size of the key length */
-    BtreePage           *apage;         /* a Page Pointer to the given root */
-    BtreeOverflow       *opage;         /* a page pointer if it necessary to access an overflow page */
-    Boolean             found;          /* search result */
-    PageID              *leafPid;       /* leaf page pointed by the cursor */
-    Two                 slotNo;         /* slot pointed by the slot */
-    PageID              ovPid;          /* PageID of the overflow page */
-    PageNo              ovPageNo;       /* PageNo of the overflow page */
-    PageID              prevPid;        /* PageID of the previous page */
-    PageID              nextPid;        /* PageID of the next page */
-    ObjectID            *oidArray;      /* array of the ObjectIDs */
-    Two                 iEntryOffset;   /* starting offset of an internal entry */
-    btm_InternalEntry   *iEntry;        /* an internal entry */
-    Two                 lEntryOffset;   /* starting offset of a leaf entry */
-    btm_LeafEntry       *lEntry;        /* a leaf entry */
-
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                    /* error number */
+    Four cmp;                  /* result of comparison */
+    Two idx;                   /* index */
+    PageID child;              /* child page when the root is an internla page */
+    Two alignedKlen;           /* aligned size of the key length */
+    BtreePage *apage;          /* a Page Pointer to the given root */
+    BtreeOverflow *opage;      /* a page pointer if it necessary to access an overflow page */
+    Boolean found;             /* search result */
+    PageID *leafPid;           /* leaf page pointed by the cursor */
+    Two slotNo;                /* slot pointed by the slot */
+    PageID ovPid;              /* PageID of the overflow page */
+    PageNo ovPageNo;           /* PageNo of the overflow page */
+    PageID prevPid;            /* PageID of the previous page */
+    PageID nextPid;            /* PageID of the next page */
+    ObjectID *oidArray;        /* array of the ObjectIDs */
+    Two iEntryOffset;          /* starting offset of an internal entry */
+    btm_InternalEntry *iEntry; /* an internal entry */
+    Two lEntryOffset;          /* starting offset of a leaf entry */
+    btm_LeafEntry *lEntry;     /* a leaf entry */
 
     /* Error check whether using not supported functionality by EduBtM */
     int i;
-    for(i=0; i<kdesc->nparts; i++)
+    for (i = 0; i < kdesc->nparts; i++)
     {
-        if(kdesc->kpart[i].type!=SM_INT && kdesc->kpart[i].type!=SM_VARSTRING)
+        if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
+    return (eNOERROR);
 
-    return(eNOERROR);
-    
 } /* edubtm_Fetch() */
-

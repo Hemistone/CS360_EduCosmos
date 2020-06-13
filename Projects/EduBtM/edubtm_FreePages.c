@@ -56,13 +56,10 @@
  *  Four edubtm_FreePages(FileID*, PageID*, Pool*, DeallocListElem*)
  */
 
-
 #include "EduBtM_common.h"
 #include "Util.h"
 #include "BfM.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_FreePages()
@@ -87,27 +84,25 @@
  *    some errors caused by function calls
  */
 Four edubtm_FreePages(
-    PhysicalFileID      *pFid,          /* IN FileID of the Btree file */
-    PageID              *curPid,        /* IN The PageID to be freed */
-    Pool                *dlPool,        /* INOUT pool of dealloc list elements */
-    DeallocListElem     *dlHead)        /* INOUT head of the dealloc list */
+    PhysicalFileID *pFid,    /* IN FileID of the Btree file */
+    PageID *curPid,          /* IN The PageID to be freed */
+    Pool *dlPool,            /* INOUT pool of dealloc list elements */
+    DeallocListElem *dlHead) /* INOUT head of the dealloc list */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                e;              /* error number */
-    Two                 i;              /* index */
-    Two                 alignedKlen;    /* aligned length of the key length */
-    PageID              tPid;           /* a temporary PageID */
-    PageID              ovPid;          /* a temporary PageID of an overflow page */
-    BtreePage           *apage;         /* a page pointer */
-    BtreeOverflow       *opage;         /* page pointer to a buffer holding an overflow page */
-    Two                 iEntryOffset;   /* starting offset of an internal entry */
-    Two                 lEntryOffset;   /* starting offset of a leaf entry */
-    btm_InternalEntry   *iEntry;        /* an internal entry */
-    btm_LeafEntry       *lEntry;        /* a leaf entry */
-    DeallocListElem     *dlElem;        /* an element of dealloc list */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                    /* error number */
+    Two i;                     /* index */
+    Two alignedKlen;           /* aligned length of the key length */
+    PageID tPid;               /* a temporary PageID */
+    PageID ovPid;              /* a temporary PageID of an overflow page */
+    BtreePage *apage;          /* a page pointer */
+    BtreeOverflow *opage;      /* page pointer to a buffer holding an overflow page */
+    Two iEntryOffset;          /* starting offset of an internal entry */
+    Two lEntryOffset;          /* starting offset of a leaf entry */
+    btm_InternalEntry *iEntry; /* an internal entry */
+    btm_LeafEntry *lEntry;     /* a leaf entry */
+    DeallocListElem *dlElem;   /* an element of dealloc list */
 
+    return (eNOERROR);
 
-    
-    return(eNOERROR);
-    
-}   /* edubtm_FreePages() */
+} /* edubtm_FreePages() */

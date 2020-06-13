@@ -60,13 +60,10 @@
  *  Four edubtm_SplitLeaf(ObjectID*, PageID*, BtreeLeaf*, Two, LeafItem*, InternalItem*)
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "BfM.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_SplitInternal()
@@ -95,36 +92,32 @@
  *  The caller should call BfM_SetDirty() for 'fpage'.
  */
 Four edubtm_SplitInternal(
-    ObjectID                    *catObjForFile,         /* IN catalog object of B+ tree file */
-    BtreeInternal               *fpage,                 /* INOUT the page which will be splitted */
-    Two                         high,                   /* IN slot No. for the given 'item' */
-    InternalItem                *item,                  /* IN the item which will be inserted */
-    InternalItem                *ritem)                 /* OUT the item which will be returned by spliting */
+    ObjectID *catObjForFile, /* IN catalog object of B+ tree file */
+    BtreeInternal *fpage,    /* INOUT the page which will be splitted */
+    Two high,                /* IN slot No. for the given 'item' */
+    InternalItem *item,      /* IN the item which will be inserted */
+    InternalItem *ritem)     /* OUT the item which will be returned by spliting */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                        e;                      /* error number */
-    Two                         i;                      /* slot No. in the given page, fpage */
-    Two                         j;                      /* slot No. in the splitted pages */
-    Two                         k;                      /* slot No. in the new page */
-    Two                         maxLoop;                /* # of max loops; # of slots in fpage + 1 */
-    Four                        sum;                    /* the size of a filled area */
-    Boolean                     flag=FALSE;             /* TRUE if 'item' become a member of fpage */
-    PageID                      newPid;                 /* for a New Allocated Page */
-    BtreeInternal               *npage;                 /* a page pointer for the new allocated page */
-    Two                         fEntryOffset;           /* starting offset of an entry in fpage */
-    Two                         nEntryOffset;           /* starting offset of an entry in npage */
-    Two                         entryLen;               /* length of an entry */
-    btm_InternalEntry           *fEntry;                /* internal entry in the given page, fpage */
-    btm_InternalEntry           *nEntry;                /* internal entry in the new page, npage*/
-    Boolean                     isTmp;
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                    /* error number */
+    Two i;                     /* slot No. in the given page, fpage */
+    Two j;                     /* slot No. in the splitted pages */
+    Two k;                     /* slot No. in the new page */
+    Two maxLoop;               /* # of max loops; # of slots in fpage + 1 */
+    Four sum;                  /* the size of a filled area */
+    Boolean flag = FALSE;      /* TRUE if 'item' become a member of fpage */
+    PageID newPid;             /* for a New Allocated Page */
+    BtreeInternal *npage;      /* a page pointer for the new allocated page */
+    Two fEntryOffset;          /* starting offset of an entry in fpage */
+    Two nEntryOffset;          /* starting offset of an entry in npage */
+    Two entryLen;              /* length of an entry */
+    btm_InternalEntry *fEntry; /* internal entry in the given page, fpage */
+    btm_InternalEntry *nEntry; /* internal entry in the new page, npage*/
+    Boolean isTmp;
 
+    return (eNOERROR);
 
-    
-    return(eNOERROR);
-    
 } /* edubtm_SplitInternal() */
-
-
 
 /*@================================
  * edubtm_SplitLeaf()
@@ -151,41 +144,39 @@ Four edubtm_SplitInternal(
  *  The caller should call BfM_SetDirty() for 'fpage'.
  */
 Four edubtm_SplitLeaf(
-    ObjectID                    *catObjForFile, /* IN catalog object of B+ tree file */
-    PageID                      *root,          /* IN PageID for the given page, 'fpage' */
-    BtreeLeaf                   *fpage,         /* INOUT the page which will be splitted */
-    Two                         high,           /* IN slotNo for the given 'item' */
-    LeafItem                    *item,          /* IN the item which will be inserted */
-    InternalItem                *ritem)         /* OUT the item which will be returned by spliting */
+    ObjectID *catObjForFile, /* IN catalog object of B+ tree file */
+    PageID *root,            /* IN PageID for the given page, 'fpage' */
+    BtreeLeaf *fpage,        /* INOUT the page which will be splitted */
+    Two high,                /* IN slotNo for the given 'item' */
+    LeafItem *item,          /* IN the item which will be inserted */
+    InternalItem *ritem)     /* OUT the item which will be returned by spliting */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four                        e;              /* error number */
-    Two                         i;              /* slot No. in the given page, fpage */
-    Two                         j;              /* slot No. in the splitted pages */
-    Two                         k;              /* slot No. in the new page */
-    Two                         maxLoop;        /* # of max loops; # of slots in fpage + 1 */
-    Four                        sum;            /* the size of a filled area */
-    PageID                      newPid;         /* for a New Allocated Page */
-    PageID                      nextPid;        /* for maintaining doubly linked list */
-    BtreeLeaf                   tpage;          /* a temporary page for the given page */
-    BtreeLeaf                   *npage;         /* a page pointer for the new page */
-    BtreeLeaf                   *mpage;         /* for doubly linked list */
-    btm_LeafEntry               *itemEntry;     /* entry for the given 'item' */
-    btm_LeafEntry               *fEntry;        /* an entry in the given page, 'fpage' */
-    btm_LeafEntry               *nEntry;        /* an entry in the new page, 'npage' */
-    ObjectID                    *iOidArray;     /* ObjectID array of 'itemEntry' */
-    ObjectID                    *fOidArray;     /* ObjectID array of 'fEntry' */
-    Two                         fEntryOffset;   /* starting offset of 'fEntry' */
-    Two                         nEntryOffset;   /* starting offset of 'nEntry' */
-    Two                         oidArrayNo;     /* element No in an ObjectID array */
-    Two                         alignedKlen;    /* aligned length of the key length */
-    Two                         itemEntryLen;   /* length of entry for item */
-    Two                         entryLen;       /* entry length */
-    Boolean                     flag;
-    Boolean                     isTmp;
- 
-    
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                   /* error number */
+    Two i;                    /* slot No. in the given page, fpage */
+    Two j;                    /* slot No. in the splitted pages */
+    Two k;                    /* slot No. in the new page */
+    Two maxLoop;              /* # of max loops; # of slots in fpage + 1 */
+    Four sum;                 /* the size of a filled area */
+    PageID newPid;            /* for a New Allocated Page */
+    PageID nextPid;           /* for maintaining doubly linked list */
+    BtreeLeaf tpage;          /* a temporary page for the given page */
+    BtreeLeaf *npage;         /* a page pointer for the new page */
+    BtreeLeaf *mpage;         /* for doubly linked list */
+    btm_LeafEntry *itemEntry; /* entry for the given 'item' */
+    btm_LeafEntry *fEntry;    /* an entry in the given page, 'fpage' */
+    btm_LeafEntry *nEntry;    /* an entry in the new page, 'npage' */
+    ObjectID *iOidArray;      /* ObjectID array of 'itemEntry' */
+    ObjectID *fOidArray;      /* ObjectID array of 'fEntry' */
+    Two fEntryOffset;         /* starting offset of 'fEntry' */
+    Two nEntryOffset;         /* starting offset of 'nEntry' */
+    Two oidArrayNo;           /* element No in an ObjectID array */
+    Two alignedKlen;          /* aligned length of the key length */
+    Two itemEntryLen;         /* length of entry for item */
+    Two entryLen;             /* entry length */
+    Boolean flag;
+    Boolean isTmp;
 
-    return(eNOERROR);
-    
+    return (eNOERROR);
+
 } /* edubtm_SplitLeaf() */

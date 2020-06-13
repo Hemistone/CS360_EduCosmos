@@ -60,14 +60,11 @@
  *  Four edubtm_root_insert(ObjectID*, PageID*, InternalItem*)
  */
 
-
 #include <string.h>
 #include "EduBtM_common.h"
 #include "Util.h"
 #include "BfM.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_root_insert()
@@ -91,22 +88,20 @@
  *    some errors caused by function calls
  */
 Four edubtm_root_insert(
-    ObjectID     *catObjForFile, /* IN catalog object of B+ tree file */
-    PageID       *root,		 /* IN root Page IDentifier */
-    InternalItem *item)		 /* IN Internal item which will be the unique entry of the new root */
+    ObjectID *catObjForFile, /* IN catalog object of B+ tree file */
+    PageID *root,            /* IN root Page IDentifier */
+    InternalItem *item)      /* IN Internal item which will be the unique entry of the new root */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four      e;		/* error number */
-    PageID    newPid;		/* newly allocated page */
-    PageID    nextPid;		/* PageID of the next page of root if root is leaf */
-    BtreePage *rootPage;	/* pointer to a buffer holding the root page */
-    BtreePage *newPage;		/* pointer to a buffer holding the new page */
-    BtreeLeaf *nextPage;	/* pointer to a buffer holding next page of root */
-    btm_InternalEntry *entry;	/* an internal entry */
-    Boolean   isTmp;
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;                   /* error number */
+    PageID newPid;            /* newly allocated page */
+    PageID nextPid;           /* PageID of the next page of root if root is leaf */
+    BtreePage *rootPage;      /* pointer to a buffer holding the root page */
+    BtreePage *newPage;       /* pointer to a buffer holding the new page */
+    BtreeLeaf *nextPage;      /* pointer to a buffer holding next page of root */
+    btm_InternalEntry *entry; /* an internal entry */
+    Boolean isTmp;
 
+    return (eNOERROR);
 
-    
-    return(eNOERROR);
-    
 } /* edubtm_root_insert() */

@@ -58,12 +58,9 @@
  *  Four edubtm_InitLeaf(PageID*, Boolean)
  */
 
-
 #include "EduBtM_common.h"
 #include "BfM.h"
 #include "EduBtM_Internal.h"
-
-
 
 /*@================================
  * edubtm_InitInternal()
@@ -83,21 +80,17 @@
  *    some errors caused by function calls
  */
 Four edubtm_InitInternal(
-    PageID  *internal,		/* IN the PageID to be initialized */
-    Boolean root,		/* IN Is it root ? */
-    Boolean isTmp)              /* IN Is it temporary ? - COOKIE12FEB98 */
+    PageID *internal, /* IN the PageID to be initialized */
+    Boolean root,     /* IN Is it root ? */
+    Boolean isTmp)    /* IN Is it temporary ? - COOKIE12FEB98 */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four e;			/* error number */
-    BtreeInternal *page;	/* a page pointer */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;              /* error number */
+    BtreeInternal *page; /* a page pointer */
 
+    return (eNOERROR);
 
-    
-    return(eNOERROR);
-    
-}  /* edubtm_InitInternal() */
-
-
+} /* edubtm_InitInternal() */
 
 /*@================================
  * edubtm_InitLeaf()
@@ -117,16 +110,14 @@ Four edubtm_InitInternal(
  *    some errors caused by function calls
  */
 Four edubtm_InitLeaf(
-    PageID *leaf,		/* IN the PageID to be initialized */
-    Boolean root,		/* IN Is it root ? */
-    Boolean isTmp)              /* IN Is it temporary ? */
+    PageID *leaf,  /* IN the PageID to be initialized */
+    Boolean root,  /* IN Is it root ? */
+    Boolean isTmp) /* IN Is it temporary ? */
 {
-	/* These local variables are used in the solution code. However, you don¡¯t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
-    Four e;			/* error number */
-    BtreeLeaf *page;		/* a page pointer */
+    /* These local variables are used in the solution code. However, you donï¿½ï¿½t have to use all these variables in your code, and you may also declare and use additional local variables if needed. */
+    Four e;          /* error number */
+    BtreeLeaf *page; /* a page pointer */
 
+    return (eNOERROR);
 
-    
-    return(eNOERROR);
-    
-}  /* edubtm_InitLeaf() */
+} /* edubtm_InitLeaf() */
