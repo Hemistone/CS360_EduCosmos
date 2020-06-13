@@ -120,13 +120,9 @@ Four EduBtM_CreateIndex(
     if (e < 0)
         ERR(e);
 
-    // Four edubtm_InitLeaf(
-    //     PageID * leaf, /* IN the PageID to be initialized */
-    //     Boolean root,  /* IN Is it root ? */
-    //     Boolean isTmp) /* IN Is it temporary ? */
-
-    // e = edubtm_InitLeaf(rootPid, TRUE, isTmp);
-    e = btm_InitLeaf(rootPid, TRUE, isTmp);
+    isTmp = FALSE; // Just initializing, for incase. Not used in EduBtM
+    e = edubtm_InitLeaf(rootPid, TRUE, isTmp);
+    // e = btm_InitLeaf(rootPid, TRUE, isTmp);
     if (e < 0)
         ERRB1(e, catObjForFile, PAGE_BUF);
 

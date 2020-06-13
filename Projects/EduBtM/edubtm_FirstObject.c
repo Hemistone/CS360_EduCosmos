@@ -112,6 +112,59 @@ Four edubtm_FirstObject(
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
+    // Using Func : edubtm_KeyCompare(), BfM_GetTrain(), BfM_FreeTrain()
+    // edubtm_KeyCompare() is not used in here (maybe should use if concerning ovPid)
+    // Did not concerned about overflow. (not using ovPid or nextovPid)
+
+    curPid = *root;
+
+    e = BfM_GetTrain((TrainID *)&curPid, (char **)&apage, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    while (!(apage->any.hdr.type & LEAF))
+    {
+        if (!(apage->any.hdr.type & INTERNAL)) // if the page is freepage, overflow
+            ERRB1(eBADPAGE_BTM, &curPid, PAGE_BUF);
+
+        e = BfM_FreeTrain((TrainID *)&curPid, PAGE_BUF);
+        if (e < 0)
+            ERR(e);
+
+        // p0 is the most smallest childs - by setting them, we can find the smallest leafEntry page
+        MAKE_PAGEID(child, root->volNo, apage->bi.hdr.p0);
+        e = BfM_GetTrain((TrainID *)&child, (char **)&apage, PAGE_BUF);
+        if (e < 0)
+            ERR(e);
+
+        curPid = child;
+    }
+
+    lEntryOffset = apage->bl.slot[0];
+    lEntry = (btm_LeafEntry *)&apage->bl.data[lEntryOffset];
+    alignedKlen = ((lEntry->klen + 3) >> 2) << 2;
+
+    // typedef struct
+    // {
+    //     One flag;           /* state of the cursor */
+    //     ObjectID oid;       /* object pointed by the cursor */
+    //     KeyValue key;       /* what key value? */
+    //     PageID leaf;        /* which leaf page? */
+    //     PageID overflow;    /* which overflow page? */
+    //     Two slotNo;         /* which slot? */
+    //     Two oidArrayElemNo; /* which element of the object array? */
+    // } BtreeCursor;
+
+    cursor->flag = CURSOR_ON;
+    cursor->oid = *(ObjectID *)&lEntry->kval[alignedKlen];
+    cursor->key = *(KeyValue *)&lEntry->klen;
+    cursor->leaf = curPid;
+    cursor->slotNo = 0;
+
+    e = BfM_FreeTrain(&curPid, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
     return (eNOERROR);
 
 } /* edubtm_FirstObject() */

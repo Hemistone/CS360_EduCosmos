@@ -118,18 +118,18 @@ Four EduBtM_Fetch(
 
     if (startCompOp == SM_BOF)
     {
-        // e = edubtm_FirstObject(root, kdesc, startKval, stopCompOp, cursor);
-        e = btm_FirstObject(root, kdesc, stopKval, stopCompOp, cursor);
+        e = edubtm_FirstObject(root, kdesc, startKval, stopCompOp, cursor);
+        //e = btm_FirstObject(root, kdesc, stopKval, stopCompOp, cursor);
     }
     else if (startCompOp == SM_EOF)
     {
-        // e = edubtm_LastObject(root, kdesc, stopKval, stopCompOp, cursor);
-        e = btm_LastObject(root, kdesc, stopKval, stopCompOp, cursor);
+        e = edubtm_LastObject(root, kdesc, stopKval, stopCompOp, cursor);
+        //e = btm_LastObject(root, kdesc, stopKval, stopCompOp, cursor);
     }
     else
     {
-        //  e = edubtm_Fetch(root, kdesc, startKval, startCompOp, stopKval, stopCompOp, cursor);
-        e = btm_Fetch(root, kdesc, startKval, startCompOp, stopKval, stopCompOp, cursor);
+        e = edubtm_Fetch(root, kdesc, startKval, startCompOp, stopKval, stopCompOp, cursor);
+        //e = btm_Fetch(root, kdesc, startKval, startCompOp, stopKval, stopCompOp, cursor);
     }
 
     if (e < 0)
@@ -197,6 +197,170 @@ Four edubtm_Fetch(
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
-    return (eNOERROR);
+    // Using Func : edubtm_BinarySearchLeaf(), edubtm_BinarySearchInternal(),
+    //              edubtm_KeyCompare(), BfM_GetTrain(), BfM_FreeTrain()
+    // edubtm_KeyCompare() is not used in here (maybe should use if concerning ovPid)
+    // Did not concerned about overflow. (not using ovPid or ovPageNo etc.)
 
+    if (startCompOp <= 0)
+        ERR(eBADCOMPOP_BTM);
+
+    e = BfM_GetTrain((TrainID *)root, (char **)&apage, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    if (apage->any.hdr.type & INTERNAL)
+    {
+        // Boolean edubtm_BinarySearchInternal(
+        //     BtreeInternal * ipage, /* IN Page Pointer to an internal page */
+        //     KeyDesc * kdesc,       /* IN key descriptor */
+        //     KeyValue * kval,       /* IN key value */
+        //     Two * idx)             /* OUT index to be returned */
+        edubtm_BinarySearchInternal(apage, kdesc, startKval, &idx);
+        if (idx == -1)
+        {
+            MAKE_PAGEID(child, root->volNo, apage->bi.hdr.p0);
+        }
+        else
+        {
+            iEntryOffset = apage->bi.slot[-idx];
+            iEntry = (btm_InternalEntry *)&apage->bi.data[iEntryOffset];
+            MAKE_PAGEID(child, root->volNo, iEntry->spid);
+        }
+        e = edubtm_Fetch(&child, kdesc, startKval, startCompOp, stopKval, stopCompOp, cursor);
+        if (e < 0)
+            ERRB1(e, root, PAGE_BUF);
+    }
+    else if (apage->any.hdr.type & LEAF)
+    {
+        // Boolean edubtm_BinarySearchLeaf(
+        //     BtreeLeaf * lpage, /* IN Page Pointer to a leaf page */
+        //     KeyDesc * kdesc,   /* IN key descriptor */
+        //     KeyValue * kval,   /* IN key value */
+        //     Two * idx)         /* OUT index to be returned */
+        found = edubtm_BinarySearchLeaf(apage, kdesc, startKval, &idx);
+        nextPid.pageNo = NIL;
+        prevPid.pageNo = NIL;
+
+        switch (startCompOp)
+        {
+        case SM_EQ:
+            if (found)
+            {
+                cursor->flag = CURSOR_ON;
+                leafPid = root; // Save Cursored page
+                slotNo = idx;   // Save Cursored page's slot
+            }
+            else
+            {
+                cursor->flag = CURSOR_EOS;
+            }
+            break;
+        case SM_LT:
+        case SM_LE:
+            if (idx == -1 || (idx == 0 && found && startCompOp == SM_LT))
+            {
+                if (apage->bl.hdr.prevPage == NIL)
+                {
+                    cursor->flag = CURSOR_EOS;
+                }
+                else
+                {
+                    MAKE_PAGEID(prevPid, root->volNo, apage->bl.hdr.prevPage);
+                    e = BfM_GetTrain(&prevPid, (char **)&apage, PAGE_BUF);
+                    if (e < 0)
+                        ERR(e);
+                    cursor->flag = CURSOR_ON;
+                    leafPid = &prevPid;
+                    slotNo = apage->bl.hdr.nSlots - 1;
+                }
+            }
+            else
+            {
+                cursor->flag = CURSOR_ON;
+                leafPid = root;
+                if (startCompOp == SM_LT)
+                    slotNo = found ? (idx - 1) : idx; // If it was EQ, make index 1 smaller to let be suitable to LT
+                else
+                    slotNo = idx;
+            }
+            break;
+        case SM_GT:
+        case SM_GE:
+            if (idx == (apage->bl.hdr.nSlots - 1) && !((startCompOp == SM_GE) && found))
+            {
+                if (apage->bl.hdr.nextPage == NIL)
+                {
+                    cursor->flag = CURSOR_EOS;
+                }
+                else
+                {
+                    MAKE_PAGEID(nextPid, root->volNo, apage->bl.hdr.nextPage);
+                    e = BfM_GetTrain(&nextPid, (char **)&apage, PAGE_BUF);
+                    if (e < 0)
+                        ERR(e);
+                    cursor->flag = CURSOR_ON;
+                    leafPid = &nextPid;
+                    slotNo = 0;
+                }
+            }
+            else
+            {
+                cursor->flag = CURSOR_ON;
+                leafPid = root;
+                if (startCompOp == SM_GE && found)
+                    slotNo = idx;
+                else
+                    slotNo = idx + 1;
+            }
+            break;
+        default:
+            cursor->flag = CURSOR_INVALID;
+            break;
+        }
+
+        if (cursor->flag == CURSOR_ON)
+        {
+            lEntryOffset = apage->bl.slot[-slotNo];
+            lEntry = (btm_LeafEntry *)&apage->bl.data[lEntryOffset];
+            alignedKlen = ((lEntry->klen + 3) >> 2) << 2;
+
+            // typedef struct
+            // {
+            //     One flag;           /* state of the cursor */
+            //     ObjectID oid;       /* object pointed by the cursor */
+            //     KeyValue key;       /* what key value? */
+            //     PageID leaf;        /* which leaf page? */
+            //     PageID overflow;    /* which overflow page? */
+            //     Two slotNo;         /* which slot? */
+            //     Two oidArrayElemNo; /* which element of the object array? */
+            // } BtreeCursor;
+
+            cursor->oid = *(ObjectID *)&lEntry->kval[alignedKlen];
+            cursor->key = *(KeyValue *)&lEntry->klen;
+            cursor->leaf = *leafPid;
+            cursor->slotNo = slotNo;
+
+            if (prevPid.pageNo != NIL)
+            {
+                e = BfM_FreeTrain(&prevPid, PAGE_BUF);
+                if (e < 0)
+                    ERR(e);
+            }
+            if (nextPid.pageNo != NIL)
+            {
+                e = BfM_FreeTrain(&nextPid, PAGE_BUF);
+                if (e < 0)
+                    ERR(e);
+            }
+        }
+    }
+    else
+        ERR(eBADBTREEPAGE_BTM);
+
+    e = BfM_FreeTrain(root, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    return (eNOERROR);
 } /* edubtm_Fetch() */

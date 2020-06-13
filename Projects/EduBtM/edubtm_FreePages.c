@@ -103,6 +103,71 @@ Four edubtm_FreePages(
     btm_LeafEntry *lEntry;     /* a leaf entry */
     DeallocListElem *dlElem;   /* an element of dealloc list */
 
+    // Using : BfM_GetNewTrain(), BfM_FreeTrain(), BfM_SetDirty(), Util_getElementFromPool()
+    // typedef union {
+    //     BtreeAny any;     /* btree any page */
+    //     BtreeInternal bi; /* btree internal page */
+    //     BtreeLeaf bl;     /* btree leaf page */
+    //     BtreeOverflow bo; /* btree overflow page */
+    // } BtreePage;
+
+    // {
+    //     PageID pid;    /* page id of this page, should be located on the beginning */
+    //     Four flags;    /* flag to store page information */
+    //     Four reserved; /* reserved space to store page information */
+    //     One type;      /* Internal, Leaf, or Overflow */
+    // } BtreeAnyHdr;
+
+    // {
+    //     ShortPageID spid; /* pointer to the child page */
+    //     Two klen;     /* key length */
+    //     char kval[1]; /* key value */
+    // } btm_InternalEntry;
+
+    e = BfM_GetNewTrain((TrainID *)curPid, (char **)&apage, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    if (apage->any.hdr.type & INTERNAL) // If the page is Internal
+    {
+        // Free p0 - page
+        MAKE_PAGEID(tPid, curPid->volNo, apage->bi.hdr.p0);
+        e = edubtm_FreePages(pFid, &tPid, dlPool, dlHead);
+        if (e < 0)
+            ERRB1(e, curPid, PAGE_BUF);
+
+        // Free slotted pages
+        for (i = 0; i < apage->bi.hdr.nSlots; i++)
+        {
+            iEntryOffset = apage->bi.slot[-i];
+            //printf("iEntryOffset : %d\n", iEntryOffset);
+            iEntry = (btm_InternalEntry *)&(apage->bi.data[iEntryOffset]);
+            MAKE_PAGEID(tPid, curPid->volNo, iEntry->spid);
+            e = edubtm_FreePages(pFid, &tPid, dlPool, dlHead);
+            if (e < 0)
+                ERRB1(e, curPid, PAGE_BUF);
+        }
+    }
+
+    /* Insert the deallocated page into the dealloc list */
+    e = Util_getElementFromPool(dlPool, &dlElem);
+    if (e < 0)
+        ERR(e);
+    dlElem->type = DL_PAGE;
+    dlElem->elem.pid = *curPid; /* ID of the deallocated page */
+    dlElem->next = dlHead->next;
+    dlHead->next = dlElem;
+
+    e = BfM_SetDirty((TrainID *)curPid, PAGE_BUF);
+    if (e < 0)
+        ERRB1(e, curPid, PAGE_BUF);
+
+    e = BfM_FreeTrain((TrainID *)curPid, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    apage->any.hdr.type = FREEPAGE;
+
     return (eNOERROR);
 
 } /* edubtm_FreePages() */

@@ -129,7 +129,7 @@ Four EduBtM_FetchNext(
     }
 
     // Using Function : edubtm_FetchNext()
-    // edubtm_KeyCompare(), BfM_GetTrain(),   BfM_FreeTrain() - Need not use...
+    // edubtm_KeyCompare(), BfM_GetTrain(),   BfM_FreeTrain() - Maybe should use for overflow control, but not in this code
 
     // typedef struct
     // {

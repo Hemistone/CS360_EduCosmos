@@ -118,6 +118,41 @@ Four edubtm_InitLeaf(
     Four e;          /* error number */
     BtreeLeaf *page; /* a page pointer */
 
+    // * Structure of page header - copyed from Internal.h
+    // {
+    //     PageID pid;           /* page id of this page, should be located on the beginning */
+    //     Four flags;           /* flag to store page information */
+    //     Four reserved;        /* reserved space to store page information */
+    //     One type;             /* Internal, Leaf, or Overflow */
+    //     Two nSlots;           /* # of entries in this page */
+    //     Two free;             /* starting point of the free space */
+    //     ShortPageID prevPage; /* Previous page */
+    //     ShortPageID nextPage; /* Next page */
+    //     Two unused;           /* number of unused bytes which are not part of the contiguous freespace */
+    // } BtreeLeafHdr;
+
+    e = BfM_GetNewTrain((TrainID *)leaf, (char **)&page, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    page->hdr.pid = *leaf;
+    page->hdr.flags = 3;
+    page->hdr.reserved = 0;
+    page->hdr.type = (root) ? (LEAF | ROOT) : LEAF;
+    page->hdr.nSlots = 0;
+    page->hdr.free = 0;
+    page->hdr.prevPage = NIL;
+    page->hdr.nextPage = NIL;
+    page->hdr.unused = 0;
+
+    e = BfM_SetDirty((TrainID *)leaf, PAGE_BUF);
+    if (e < 0)
+        ERRB1(e, leaf, PAGE_BUF);
+
+    e = BfM_FreeTrain((TrainID *)leaf, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
     return (eNOERROR);
 
 } /* edubtm_InitLeaf() */

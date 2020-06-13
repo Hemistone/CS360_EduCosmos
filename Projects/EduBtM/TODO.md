@@ -1,15 +1,15 @@
 ### API Functions
 - [x] EduBtM_CreateIndex
 - [x] EduBtM_DropIndex
-- [x] EduBtM_InsertObject
-- [x] EduBtM_DeleteObject
-- [x] EduBtM_Fetch
-- [x] EduBtM_FetchNext
+- [ ] EduBtM_InsertObject
+- [ ] EduBtM_DeleteObject
+- [ ] EduBtM_Fetch
+- [ ] EduBtM_FetchNext
 
 ### Internal Functions
-- [ ] edubtm_InitLeaf
+- [x] edubtm_InitLeaf
 - [ ] edubtm_InitInternal
-- [ ] edubtm_FreePages
+- [x] edubtm_FreePages
 - [ ] edubtm_Insert
 - [ ] edubtm_InsertLeaf
 - [ ] edubtm_InsertInternal
@@ -20,10 +20,10 @@
 - [ ] edubtm_DeleteLeaf
 - [ ] edubtm_CompactLeafPage
 - [ ] edubtm_CompactInternalPage
-- [ ] edubtm_Fetch
+- [x] edubtm_Fetch
 - [ ] edubtm_FetchNext
-- [ ] edubtm_FirstObject
-- [ ] edubtm_LastObject
-- [ ] edubtm_BinarySearchLeaf
-- [ ] edubtm_BinarySearchInternal
-- [ ] edubtm_KeyCompare
+- [x] edubtm_FirstObject
+- [x] edubtm_LastObject
+- [x] edubtm_BinarySearchLeaf
+- [x] edubtm_BinarySearchInternal
+- [-] edubtm_KeyCompare

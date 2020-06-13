@@ -116,6 +116,60 @@ Four edubtm_LastObject(
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
+    // Using Func : edubtm_KeyCompare(), BfM_GetTrain(), BfM_FreeTrain()
+    // edubtm_KeyCompare() is not used in here (maybe should use if concerning ovPid)
+    // Did not concerned about overflow. (not using ovPid or nextovPid)
+
+    curPid = *root;
+
+    e = BfM_GetTrain((TrainID *)&curPid, (char **)&apage, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
+    while (!(apage->any.hdr.type & LEAF))
+    {
+        if (!(apage->any.hdr.type & INTERNAL)) // if the page is freepage, overflow
+            ERRB1(eBADPAGE_BTM, &curPid, PAGE_BUF);
+
+        e = BfM_FreeTrain((TrainID *)&curPid, PAGE_BUF);
+        if (e < 0)
+            ERR(e);
+
+        iEntryOffset = apage->bl.slot[-(apage->bi.hdr.nSlots - 1)];
+        iEntry = (btm_InternalEntry *)&apage->bi.data[iEntryOffset]; // Find the last one
+        MAKE_PAGEID(child, root->volNo, iEntry->spid);
+        e = BfM_GetTrain((TrainID *)&child, (char **)&apage, PAGE_BUF);
+        if (e < 0)
+            ERR(e);
+
+        curPid = child;
+    }
+
+    lEntryOffset = apage->bl.slot[-(apage->bl.hdr.nSlots - 1)];
+    lEntry = (btm_LeafEntry *)&apage->bl.data[lEntryOffset];
+    alignedKlen = ((lEntry->klen + 3) >> 2) << 2;
+
+    // typedef struct
+    // {
+    //     One flag;           /* state of the cursor */
+    //     ObjectID oid;       /* object pointed by the cursor */
+    //     KeyValue key;       /* what key value? */
+    //     PageID leaf;        /* which leaf page? */
+    //     PageID overflow;    /* which overflow page? */
+    //     Two slotNo;         /* which slot? */
+    //     Two oidArrayElemNo; /* which element of the object array? */
+    // } BtreeCursor;
+
+    cursor->flag = CURSOR_ON;
+    cursor->oid = *(ObjectID *)&lEntry->kval[alignedKlen];
+    cursor->key = *(KeyValue *)&lEntry->klen;
+    cursor->leaf = curPid;
+    cursor->slotNo = apage->bl.hdr.nSlots - 1;
+
+    e = BfM_FreeTrain(&curPid, PAGE_BUF);
+    if (e < 0)
+        ERR(e);
+
     return (eNOERROR);
 
 } /* edubtm_LastObject() */

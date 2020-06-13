@@ -92,8 +92,11 @@ Four EduBtM_DropIndex(
     //     Pool * dlPool,            /* INOUT pool of dealloc list elements */
     //     DeallocListElem * dlHead) /* INOUT head of the dealloc list */
 
-    // e = edubtm_FreePages(pFid, rootPid, dlPool, dlHead);
-    e = btm_FreePages(pFid, rootPid, dlPool, dlHead);
+    if (pFid == NULL || rootPid == NULL)
+        ERR(eBADPAGE_BTM);
+
+    e = edubtm_FreePages(pFid, rootPid, dlPool, dlHead);
+    //e = btm_FreePages(pFid, rootPid, dlPool, dlHead);
     if (e < 0)
         ERR(e);
 

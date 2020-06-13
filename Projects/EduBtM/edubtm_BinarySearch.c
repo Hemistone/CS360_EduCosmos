@@ -109,6 +109,31 @@ Boolean edubtm_BinarySearchInternal(
             ERR(eNOTSUPPORTED_EDUBTM);
     }
 
+    // Using Func : edubtm_KeyCompare()
+
+    // Binary Search
+    low = 0;
+    high = ipage->hdr.nSlots;
+    while (low < high)
+    {
+        mid = (low + high) / 2;
+        entry = (btm_InternalEntry *)&ipage->data[ipage->slot[-mid]];
+        cmp = edubtm_KeyCompare(kdesc, kval, (KeyValue *)&entry->klen); // Arrows to kVal of entry
+        if (cmp == GREAT)
+            low = mid + 1;
+        else if (cmp == LESS)
+            high = mid;
+        else
+        {
+            *idx = mid; // returns slot number, not array index
+            return TRUE;
+        }
+    }
+
+    // IF there is no key || If kval is less than every value(low = 0 -> idx = -1)
+    *idx = low - 1;
+    return (FALSE);
+
 } /* edubtm_BinarySearchInternal() */
 
 /*@================================
@@ -152,5 +177,30 @@ Boolean edubtm_BinarySearchLeaf(
         if (kdesc->kpart[i].type != SM_INT && kdesc->kpart[i].type != SM_VARSTRING)
             ERR(eNOTSUPPORTED_EDUBTM);
     }
+
+    // Using Func : edubtm_KeyCompare()
+
+    //Binary Search for value
+    low = 0;
+    high = lpage->hdr.nSlots;
+    while (low < high)
+    {
+        mid = (low + high) / 2;
+        entry = (btm_LeafEntry *)&lpage->data[lpage->slot[-mid]];
+        cmp = edubtm_KeyCompare(kdesc, kval, (KeyValue *)&entry->klen);
+        if (cmp == GREAT)
+            low = mid + 1;
+        else if (cmp == LESS)
+            high = mid;
+        else
+        {
+            *idx = mid; // returns slot number, not array index
+            return TRUE;
+        }
+    }
+
+    // IF there is no key || If kval is less than every value(low = 0 -> idx = -1)
+    *idx = low - 1;
+    return (FALSE);
 
 } /* edubtm_BinarySearchLeaf() */
